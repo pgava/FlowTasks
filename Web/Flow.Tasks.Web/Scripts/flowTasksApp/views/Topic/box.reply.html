@@ -1,0 +1,103 @@
+﻿<div class="widget-body widget-hide-overflow no-padding">
+    <!-- CHAT BODY -->
+    <div id="chat-body" class="chat-body custom-scroll">
+        <ul>
+            <li class="message load-older-replies" ng-show="topicReplies.hasOlderReplies && !topicReplies.showOlderReplies">
+                <button class="btn btn-primary btn-xs" ng-click="loadOlderMessages(topic)">Load older replies</button>
+                <div data-indicator="5" class="fa-2x" data-show="topicReplies.loadingOlderReplies"></div>
+            </li>
+            <li class="message" ng-repeat="reply in topicReplies.recentReplies">
+                <div class="dmessage-avatar">
+                    <img ng-src="{{reply.imageUrl}}" class="online" alt="" ng-click="viewUserInfo(reply.from)">
+                </div>
+                <div class="message-text">
+                    <time>{{reply.when}}</time>
+                    <a href="#" class="username" ng-click="viewUserInfo(reply.from)">{{reply.from}}</a>
+                    <p ng-bind-html="reply.message"></p>
+                    <p class="chat-file row" ng-repeat="file in reply.attachments">
+                        <download-file file="file"></download-file>
+                    </p>
+                </div>
+            </li>
+            <li class="message" ng-repeat="reply in topicReplies.olderReplies">
+                <div class="dmessage-avatar">
+                    <img ng-src="{{reply.imageUrl}}" class="online" alt="" ng-click="viewUserInfo(reply.from)">
+                </div>
+                <div class="message-text">
+                    <time>{{reply.when}}</time>
+                    <a href="#" class="username" ng-click="viewUserInfo(reply.from)">{{reply.from}}</a>
+                    <p ng-bind-html="reply.message"></p>
+                    <p class="chat-file row" ng-repeat="file in reply.attachments">
+                        <download-file file="file"></download-file>
+                    </p>
+                </div>
+            </li>
+            <li class="message topic-no-message" ng-if="topicReplies.recentReplies.length<=0">
+                <div class="topic-no-message-text">No replies</div>
+            </li>
+        </ul>
+    </div>
+    <!-- CHAT FOOTER -->
+    <div class="chat-footer">
+        <form name="replyform" enctype="multipart/form-data" novalidate ui-keypress="{13:'submitReply(reply,topic,false)'}" ng-class="{'has-error': validate('body','required'),'has-error has-error-maxlength': validate('body','maxlength')}">
+            <div data-upload-control
+                 data-upload-control-attachments-list="reply.attachments"
+                 data-files-list="filesList"
+                 data-upload-url="postUrl"
+                 data-is-clear="isClear"
+                 data-defer="defer"
+                 data-iframe="iframe">
+                <!-- CHAT TEXTAREA -->
+                <div class="textarea-div">
+                    <div class="typearea">
+                        <textarea placeholder="Write a reply..." id="textarea-expand" name="message" class="custom-scroll" required ng-model="reply.body" ui-keypress="{13:'preventNewLine(reply,$event)'}" data-textareamaxlengthwithbr="500"></textarea>
+                    </div>
+                    <div class='dropzone fu-dropzone'></div>
+                </div>
+
+                <!-- CHAT REPLY/SEND -->
+                <span class="textarea-controls">
+                    <span data-indicator="6" class="pull-right fa-2x" data-show="isPosting"></span>
+                    <button class="btn btn-sm btn-primary pull-right btnAddReply" type="submit" ng-click="submitReply(reply,topic,true)" ng-disabled="isPosting">
+                        Reply
+                    </button>
+                    <span class="pull-right smart-form margin-right-10 margin-top-5">
+                        <label class="checkbox pull-right">
+                            <input type="checkbox" ng-model="reply.entertosend">
+                            <i></i>Press <strong>ENTER </strong>to send
+                        </label>
+                    </span>
+
+                    <a href="javascript:void(0);" class="pull-left uploadbutton"><i class="fa fa-camera fa-fw fa-lg"></i></a>
+                    <span class="file-upload-warning">Max files: 3 (0.5MB each file). <span class="allowedExtension">Accept: {{allowedExtension}}</span></span>
+                    <span class="btnupload">
+                        <span id="file-upload-control">
+                        </span>
+                    </span>
+                </span>
+                <span class="textarea-controls error-block max-length-error">
+                    <span class="help-block">The message is too long. (500 is maximum)</span>
+                </span>
+                <div class="alert alert-info alert-block" ng-show="reply.attachments.length">
+                    <h4 class="alert-heading">Attach Files</h4>
+                    <ul>
+                        <li ng-repeat="file in reply.attachments" class="attach-file">
+                            <span>{{file.name}}</span>
+                            <span class="label label-danger remove-attachment" data-index="{{ $index }}"><i class="fa fa-fw fa-minus-circle"></i>Remove</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="alert alert-warning fade in" ng-show="floodError">
+                    <i class="fa-fw fa fa-warning"></i>
+                    <strong>Warning</strong> You have to wait {{replyFlood}} second(s) to continue.
+                </div>
+                <div class="alert alert-danger fade in" ng-show="hasErrorWhilePosting">
+                    <i class="fa-fw fa fa-times"></i>
+                    <strong>Error</strong> {{errorMessage}}
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- end content -->
+</div>

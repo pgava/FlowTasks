@@ -1,0 +1,22 @@
+﻿@model Flow.Tasks.View.Models.TaskModel
+@{
+    ViewBag.Title = "Read Notification View";
+    
+    <!-- Send data back to app -->
+    Html.Assets().Scripts.Add("../Scripts/task.action.js");
+    
+}
+
+@Html.Partial("_HeaderPartial")
+
+@using (Html.BeginForm("Index", "TaskList", new { area = "", controller = "TaskList" }, FormMethod.Post, new { id = "flowTasksTaskView" }))
+{
+    <div id="taskCommand">
+        <input type="submit" name="completeTask" value="OK" class="roundBox" />
+        @*<input type="submit" name="completeTask" value="Back" class="cancel roundBox identRight" />*@
+    </div>
+
+    @Html.Partial("_TaskDataPartial")
+    @Html.Hidden("TaskAcceptFlag", "OK") 
+
+}

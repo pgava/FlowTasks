@@ -1,0 +1,14 @@
+﻿@model Flow.Tasks.View.Models.TaskModel           
+
+@*Added target = _parent for new UI*@
+@using (Html.BeginForm("Index", "TaskList", new { area = "", controller = "TaskList" }, FormMethod.Post, new { id = "flowTasksTaskView" }))
+{
+    <div id="taskCommand wfrow">
+        <input type="submit" name="completeTask" value="Accept" class="roundBox"/> @*keepTaskInList*@
+        <input type="submit" name="completeTask" value="Reject" class="roundBox"/>
+        @*<input type="submit" name="completeTask" value="Back" class="roundBox identRight"/>*@ @*This is not necessary in the new UI*@
+    </div>
+
+    @Html.Partial("_TaskDataPartial")
+
+}

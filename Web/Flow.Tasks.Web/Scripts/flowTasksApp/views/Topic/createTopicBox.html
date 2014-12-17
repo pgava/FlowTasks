@@ -1,0 +1,98 @@
+﻿<div class="btncreatetopicblock col-md-3">
+    <a href="javascript:void(0);" class="btn btn-primary btn-lg btncreatetopic" ng-click="createNewTopic.createTopic()"><i class="fa fa-fw fa-lg fa-comments"></i>Create Topic</a>
+    <div class="modal fade" id="createTopicBox" tabindex="-1" role="dialog" aria-labelledby="createTopicBoxLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="createtopicform" id="createtopicform" class="createtopicform" novalidate>
+                    <div class="modal-header">
+                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                            ×
+                        </button>
+                        <h4 id="myModalLabel" class="modal-title">Create New Topic</h4>
+                    </div>
+                    <div class="modal-body">
+                      
+                        <div class="form-group" ng-class="{'has-error': (!createtopicform.message.$pristine || showError) && (createtopicform.message.$error.required || createtopicform.message.$error.maxLengthValid)}">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" placeholder="Enter message..." id="message" name="message" ng-model="createNewTopic.newtopic.message" rows="8" data-textareamaxlengthwithbr="500" required></textarea>
+                            <span class="help-block" ng-show="createtopicform.message.$error.maxLengthValid">The message is too long. (500 is maximum)</span>
+
+                        </div>
+
+                        <div class="form-group" ng-class="{'has-error': !createNewTopic.newtopic.directTo.length && createNewTopic.isDirectTo}">
+                            <label>
+                                <input type="checkbox" ng-model="createNewTopic.isDirectTo" data-expand-element="directtoselector" />
+                                <span>Direct to</span>
+                            </label>
+                            <div id="directtoblock dp-none">
+                                <div class="selected-users margin-bottom-10" ng-show="createNewTopic.newtopic.directTo.length">
+                                    <span class="label label-primary" ng-repeat="dt in createNewTopic.newtopic.directTo" data-ng-bind="dt.userName"></span>
+                                </div>
+                                <div id="directtoselector">
+                                    <select multiple class="custom-scroll padding-5 w-100p"
+                                            ng-show="createNewTopic.userFollowing.length"
+                                            ng-model="createNewTopic.newtopic.directTo"
+                                            ng-options="c.userName for c in createNewTopic.userFollowing"
+                                            data-select-multi
+                                            ng-required="createNewTopic.isDirectTo"></select>
+                                    <div class="note">
+                                        <strong>Note:</strong> hold down the ctrl/cmd button to select multiple options.
+                                    </div>
+                                </div>
+                                <div class="alert alert-warning no-margin" ng-show="!createNewTopic.userFollowing.length"><i class="fa fa-warning"></i> You don't have any followers.</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group"
+                             data-upload-control
+                             data-upload-control-attachments-list="createNewTopic.newtopic.attachments"
+                             data-files-list="createNewTopic.filesList"
+                             data-upload-url="createNewTopic.postUrl"
+                             data-is-clear="createNewTopic.isClear"
+                             data-defer="createNewTopic.defer"
+                             data-iframe="createNewTopic.iframe">
+
+                            <label for="title">Attachments</label>
+
+                            <div class="uploadattachment">
+                                <div class="control">
+                                    <div class="fu-text">
+                                        Drop files to upload<br />
+                                        (or click)
+                                    </div>
+                                    <div id="file-upload-control" class="row">
+                                    </div>
+                                </div>
+                                <div class="fu-dropzone"></div>
+                            </div>
+
+                            <div class="attachmentlist alert alert-info alert-block" ng-show="createNewTopic.newtopic.attachments.length">
+                                <h4 class="alert-heading">Attach Files</h4>
+                                <ul>
+                                    <li ng-repeat="f in createNewTopic.newtopic.attachments" class="attach-file">
+                                        <span data-ng-bind="f.name"></span>
+                                        <span class="label label-danger remove-attachment" data-index="{{ $index }}"><i class="fa fa-fw fa-minus-circle"></i>Remove</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="ovf-hidden">
+                            <button class="btn btn-primary btnCreateTopic" type="submit" ng-disabled="createNewTopic.onSubmitting || createtopicform.$invalid" ng-click="createNewTopic.submitTopic(createNewTopic.newtopic)">
+                                Create Topic
+                            </button>
+                            <div data-indicator="3" class="fa-2x" data-show="createNewTopic.onSubmitting"></div>
+                        </div>
+                        <div class="alert alert-danger fade in margin-top-10 txt-align-left clearfix" ng-show="createNewTopic.hasErrorWhilePosting">
+                            <i class="fa-fw fa fa-warning"></i>
+                            <strong>Error</strong> {{createNewTopic.errorMessage}}
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>

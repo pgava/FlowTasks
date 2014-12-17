@@ -1,0 +1,47 @@
+﻿<section id="widget-grid" class="">
+    <!-- row -->
+    <div class="row">
+        <article class="col-sm-12 col-md-12 col-lg-12">
+            <!-- new widget -->            
+            <div ng-show="topic.showDateDivider">
+                <br />
+                <div class="date-divider">
+                    <span>
+                        {{topic.message.whenDay}}
+                    </span>
+                </div>
+                <br />
+                <br />
+            </div>
+            <div class="jarviswidget jarviswidget-color-blueDark">
+                
+                <div class="topic-message" ng-click="expandTopicBox($event,topic)" ng-class="{'highlight-topic':topic.status!=='Read'}">
+                    <div class="chat-body">
+                        <div class="topic-box-loading-replies" ng-show="topicReplies.loadingReplies">
+                            <div data-indicator="4" class="fa-2x" data-show="topicReplies.loadingReplies"></div>
+                        </div>
+                        <ul>
+                            <li class="message">
+                            <div class="dmessage-avatar">
+                                <img alt="" class="online message-avatar" ng-src="{{topic.message.imageUrl}}" ng-click="viewUserInfo(topic.message.from)">
+                            </div>
+                            <div class="message-text">
+                                <time>{{topic.message.whenTime}}</time>
+                                <a class="username message-username" href="#" ng-click="viewUserInfo(topic.message.from)">{{topic.message.from}}</a>
+                                <p ng-bind-html="topic.message.message"></p>
+                                <p class="chat-file row" ng-repeat="file in topic.message.attachments">
+                                    <download-file file="file"></download-file>
+                                </p>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="topic-replies" ng-include src="topicReply.templateUrl" onload="onTopicReplyLoad()">
+                </div>
+
+            </div>
+            <!-- end widget -->
+        </article>
+    </div>
+    <!-- end row -->
+</section>

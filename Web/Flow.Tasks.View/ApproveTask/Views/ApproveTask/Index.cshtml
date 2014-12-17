@@ -1,0 +1,20 @@
+﻿@model Flow.Tasks.View.Models.TaskModel
+@{
+    ViewBag.Title = "Approve Task View";
+    
+    <!-- Send data back to app -->
+    Html.Assets().Scripts.Add("../Scripts/task.action.js");
+
+}
+
+
+@Html.Partial("_HeaderPartial")
+
+
+@Html.Partial("_ViewDocPartial")
+
+
+@Html.Partial("_CommentsPartial")
+
+
+@Html.Partial("_CommandsPartial")

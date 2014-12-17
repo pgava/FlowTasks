@@ -1,0 +1,297 @@
+.logo {
+    background-image: url("../Images/logosmall-orange.png");
+    width: 148px;
+    height: 29px;
+}
+
+.title {
+    text-align: center;
+}
+
+.code {
+    color: #534a4a;
+    border: 1px dashed gray;
+    background-color: #c8c8c8;
+}
+
+.feature {
+    width: 640px;
+    height: 320px;
+}
+
+@media only screen and (max-width: 1024px) {
+    h1 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+}
+
+@media only screen and (max-width:720px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .feature {
+        width: 320px;
+        height: 180px;
+    }
+}
+
+/* Styles for sliders
+-----------------------------------------------------------*/
+
+.slides {
+    background-color: #FFF;
+    /*height: 288px;*/
+    overflow: hidden;
+}
+
+.slide {
+    position: relative;
+    align-content: center;
+    /*height: 288px;
+	margin-bottom: -288px;*/
+}
+
+.slideControlsWrap {
+    position: relative;
+    top: 5px;
+    margin-bottom: -30px;
+    text-align: center;
+    font-size: 0;
+}
+
+.slideControlsFront {
+    display: inline-block;
+    width: 2px;
+    height: 30px;
+    vertical-align: top;
+    background-image: url(../Images/slideControlsFront.png);
+}
+
+.slideControls {
+    display: inline-block;
+    height: 30px;
+    padding: 0 24px;
+    vertical-align: top;
+    text-align: center;
+    background: url(../Images/slideControlsBG.png) repeat-x;
+}
+
+.slideControlsBack {
+    display: inline-block;
+    width: 2px;
+    height: 30px;
+    vertical-align: top;
+    background-image: url(../Images/slideControlsBack.png);
+}
+
+.slideButton {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    padding: 8px;
+    vertical-align: middle;
+    cursor: pointer;
+    background: url(../Images/slideButton.png) no-repeat center center;
+}
+
+    .slideButton:hover, .slideButton.selected {
+        background: url(../Images/slideButtonHL.png) no-repeat center center;
+    }
+
+.sliderTip {
+    position: absolute;
+    z-index: 100;
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    font-size: 0; /* Prevents inline-block elements from having gaps between them */
+}
+
+    .sliderTip img.up {
+        display: block;
+        position: relative;
+        margin: 0 auto;
+        margin-bottom: -17px;
+        top: -14px;
+    }
+
+    .sliderTip img.down {
+        display: block;
+        position: relative;
+        margin: 0 auto;
+        margin-bottom: -17px;
+        top: 27px;
+    }
+
+    .sliderTip p {
+        display: inline-block;
+        vertical-align: top;
+        margin: 0;
+        padding: 0 20px;
+        background: url(../Images/sliderTipBG.png) repeat-x;
+        font-size: 12px;
+    }
+
+
+.slide img {
+    float: none!important;
+    clear: both!important;
+    display: block!important;
+    width: auto!important;
+    height: auto!important;
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* LightBox styles
+-----------------------------------------------------------*/
+
+.lightBoxBack {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    zoom: 1;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity = 70);
+    opacity: 0.7;
+    z-index: 9999;
+}
+
+.lightBoxContent {
+    position: fixed;
+    top: 10%;
+    left: 0;    
+    width: 100%;
+    height: 85%;
+    margin: 0 auto;
+    text-align: center;
+    z-index: 10000;
+    white-space: nowrap;
+}
+
+    .lightBoxContent .x {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 24px;
+        height: 24px;
+        margin: 8px;
+        font-size: 12px;
+        line-height: 24px;
+        cursor: pointer;
+        color: #FFF;
+        background-color: #000;
+    }
+
+        .lightBoxContent .x:hover {
+            background-color: #333;
+        }
+
+        .lightBoxContent .x:active {
+            background-color: #222;
+        }
+
+    .lightBoxContent * {
+        vertical-align: middle;
+    }
+
+    .lightBoxContent > * {
+        display: inline-block;
+        height: 100%;
+        margin: 0 10px;
+    }
+
+    .lightBoxContent .arrow div {
+        display: inline-block;
+        height: 100%;
+        width: inherit;
+        margin-right: -100%;
+    }
+
+    .lightBoxContent .arrow img {
+        margin-left: 16px;
+    }
+
+    .lightBoxContent .arrow {
+        text-align: left;
+        cursor: pointer;
+        width: 64px;
+    }
+
+        .lightBoxContent .arrow:hover div {
+            opacity: 0.1;
+            filter: alpha(opacity = 20);
+            background-color: #FFF;
+        }
+
+        .lightBoxContent .arrow:active div {
+            opacity: 0.2;
+            filter: alpha(opacity = 20);
+            background-color: #FFF;
+        }
+
+    .lightBoxContent .feature {
+        cursor: pointer;
+        box-shadow: 0 0 10px #000;
+    }
+
+    .lightBoxContent .title {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 10%;
+        line-height: 100%;
+        text-align: center;
+        color: #FFF;
+        margin: 0;
+        vertical-align: middle;
+    }
+
+        .lightBoxContent .title .filler {
+            height: 100%;
+            display: inline-block;
+        }
+
+        .lightBoxContent .title .text {
+            background-color: #000;
+            padding: 10px 40px;
+        }
+
+    .lightBoxContent .centreContent {
+        height: 89%;
+        display: inline-block;
+    }
+
+    .lightBoxContent iframe {
+        border: none;
+        background-color: Black;
+    }
+
+.lightBoxImageContainer {
+    width: 80%;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+    .lightBoxImageContainer img {
+        width: 100%;
+        height: auto;
+    }

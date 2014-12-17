@@ -1,0 +1,188 @@
+﻿<WorkflowService mc:Ignorable="sap sap2010 sads" p:TextExpression.Namespaces="{x:Reference __ReferenceID0}" p:TextExpression.References="{x:Reference __ReferenceID1}" ConfigurationName="SketchWf" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap2010:WorkflowViewState.IdRef="WorkflowService_1" Name="SketchWf"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel"
+ xmlns:ftwa="clr-namespace:Flow.Tasks.Workflow.Activities;assembly=Flow.Tasks.Workflow"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:p="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sw="clr-namespace:Sketch.Workflows;assembly=Sketch.Workflows"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ftwa:StartWorkflow WorkflowId="{x:Null}" WorkflowResult="{x:Null}" CorrelationId="1" sap2010:WorkflowViewState.IdRef="StartWorkflow_1">
+    <ftwa:StartWorkflow.Activities>
+      <p:DoWhile sap2010:WorkflowViewState.IdRef="DoWhile_1" Condition="[LoopResult &lt;&gt; &quot;Exit&quot;]">
+        <p:Sequence sap2010:WorkflowViewState.IdRef="Sequence_1">
+          <p:Sequence.Variables>
+            <p:Variable x:TypeArguments="x:String" Name="ApproveRes">
+              <p:Variable.Default>
+                <p:Literal x:TypeArguments="x:String" Value="" />
+              </p:Variable.Default>
+            </p:Variable>
+          </p:Sequence.Variables>
+          <ftwa:ApproveTask DefaultResult="{x:Null}" ExpiresIn="{x:Null}" ExpiresWhen="{x:Null}" HandOverUsers="{x:Null}" OnInit="{x:Null}" AssignResultTo="[SketchResult]" AssignedToUsers="{}{r.Dev}" CorrelationId="1" Description="Workflow {p.SketchWorkflowCode} has been deployed to development. Please complete the development and deploy when complete." DisplayName="SketchDev" sap2010:WorkflowViewState.IdRef="ApproveTask_1" TaskCode="SketchDev" Title="Complete development for {p.SketchWorkflowCode}" UiCode="SketchDevView">
+            <ftwa:ApproveTask.OnComplete>
+              <p:ActivityFunc x:TypeArguments="ftwa:TaskStateData, ftwa:TaskStateData">
+                <p:ActivityFunc.Argument>
+                  <p:DelegateInArgument x:TypeArguments="ftwa:TaskStateData" Name="Argument" />
+                </p:ActivityFunc.Argument>
+                <p:ActivityFunc.Result>
+                  <p:DelegateOutArgument x:TypeArguments="ftwa:TaskStateData" Name="Result" />
+                </p:ActivityFunc.Result>
+                <sw:OnCompleteDevTask Request="{x:Null}" sap2010:WorkflowViewState.IdRef="OnCompleteDevTask_1" />
+              </p:ActivityFunc>
+            </ftwa:ApproveTask.OnComplete>
+          </ftwa:ApproveTask>
+          <p:If Condition="[SketchResult = &quot;Send Back&quot;]" sap2010:WorkflowViewState.IdRef="If_1">
+            <p:If.Then>
+              <p:Sequence sap2010:WorkflowViewState.IdRef="Sequence_2">
+                <ftwa:ApproveTask DefaultResult="{x:Null}" ExpiresIn="{x:Null}" ExpiresWhen="{x:Null}" HandOverUsers="{x:Null}" OnInit="{x:Null}" AssignResultTo="[SketchResult]" AssignedToUsers="{}{r.BA}" CorrelationId="1" Description="The development team has sent workflow: {p.SketchWorkflowCode} for review. Please check the workflow and re-deploy to development." DisplayName="SketchFix" sap2010:WorkflowViewState.IdRef="ApproveTask_2" TaskCode="SketchFix" Title="Review workflow: {p.SketchWorkflowCode}" UiCode="SketchFixView">
+                  <ftwa:ApproveTask.OnComplete>
+                    <p:ActivityFunc x:TypeArguments="ftwa:TaskStateData, ftwa:TaskStateData">
+                      <p:ActivityFunc.Argument>
+                        <p:DelegateInArgument x:TypeArguments="ftwa:TaskStateData" Name="Argument" />
+                      </p:ActivityFunc.Argument>
+                      <p:ActivityFunc.Result>
+                        <p:DelegateOutArgument x:TypeArguments="ftwa:TaskStateData" Name="Result" />
+                      </p:ActivityFunc.Result>
+                      <sw:OnCompleteFixTask Request="{x:Null}" sap2010:WorkflowViewState.IdRef="OnCompleteFixTask_1" />
+                    </p:ActivityFunc>
+                  </ftwa:ApproveTask.OnComplete>
+                </ftwa:ApproveTask>
+                <p:If Condition="[SketchResult = &quot;Abort&quot;]" sap2010:WorkflowViewState.IdRef="If_2">
+                  <p:If.Then>
+                    <p:Assign sap2010:WorkflowViewState.IdRef="Assign_2">
+                      <p:Assign.To>
+                        <p:OutArgument x:TypeArguments="x:String">[LoopResult]</p:OutArgument>
+                      </p:Assign.To>
+                      <p:Assign.Value>
+                        <p:InArgument x:TypeArguments="x:String">Exit</p:InArgument>
+                      </p:Assign.Value>
+                    </p:Assign>
+                  </p:If.Then>
+                </p:If>
+              </p:Sequence>
+            </p:If.Then>
+            <p:If.Else>
+              <p:Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+                <p:Assign.To>
+                  <p:OutArgument x:TypeArguments="x:String">[LoopResult]</p:OutArgument>
+                </p:Assign.To>
+                <p:Assign.Value>
+                  <p:InArgument x:TypeArguments="x:String">Exit</p:InArgument>
+                </p:Assign.Value>
+              </p:Assign>
+            </p:If.Else>
+          </p:If>
+        </p:Sequence>
+      </p:DoWhile>
+    </ftwa:StartWorkflow.Activities>
+    <p:TextExpression.Namespaces>
+      <sco:Collection x:TypeArguments="x:String" x:Name="__ReferenceID0">
+        <x:String>System</x:String>
+        <x:String>System.Collections.Generic</x:String>
+        <x:String>System.Data</x:String>
+        <x:String>System.Linq</x:String>
+        <x:String>System.Text</x:String>
+      </sco:Collection>
+    </p:TextExpression.Namespaces>
+    <p:TextExpression.References>
+      <sco:Collection x:TypeArguments="p:AssemblyReference" x:Name="__ReferenceID1">
+        <p:AssemblyReference>log4net</p:AssemblyReference>
+        <p:AssemblyReference>System</p:AssemblyReference>
+        <p:AssemblyReference>System.Activities</p:AssemblyReference>
+        <p:AssemblyReference>System.Activities.Core.Presentation</p:AssemblyReference>
+        <p:AssemblyReference>System.Core</p:AssemblyReference>
+        <p:AssemblyReference>System.ServiceModel</p:AssemblyReference>
+        <p:AssemblyReference>System.ServiceModel.Activities</p:AssemblyReference>
+        <p:AssemblyReference>System.ServiceModel.Channels</p:AssemblyReference>
+        <p:AssemblyReference>System.Xaml</p:AssemblyReference>
+        <p:AssemblyReference>System.Xml.Linq</p:AssemblyReference>
+        <p:AssemblyReference>System.Data.DataSetExtensions</p:AssemblyReference>
+        <p:AssemblyReference>Microsoft.CSharp</p:AssemblyReference>
+        <p:AssemblyReference>System.Data</p:AssemblyReference>
+        <p:AssemblyReference>System.Xml</p:AssemblyReference>
+        <p:AssemblyReference>Flow.Tasks.Workflow</p:AssemblyReference>
+        <p:AssemblyReference>mscorlib</p:AssemblyReference>
+        <p:AssemblyReference>Sketch.Workflows</p:AssemblyReference>
+      </sco:Collection>
+    </p:TextExpression.References>
+    <ftwa:StartWorkflow.Variables>
+      <p:Variable x:TypeArguments="x:String" Name="SketchResult">
+        <p:Variable.Default>
+          <p:Literal x:TypeArguments="x:String" Value="" />
+        </p:Variable.Default>
+      </p:Variable>
+      <p:Variable x:TypeArguments="x:String" Name="LoopResult">
+        <p:Variable.Default>
+          <p:Literal x:TypeArguments="x:String" Value="" />
+        </p:Variable.Default>
+      </p:Variable>
+    </ftwa:StartWorkflow.Variables>
+    <sads:DebugSymbol.Symbol>dz1DOlxEZXZcQ29kZXBsZXhcRmxvd1Rhc2tzXHNyY1xTa2V0Y2hcV29ya2Zsb3dzXFNrZXRjaFdmLnhhbWx4GA0DfBgBAXILcjwCAQ93C3c8AgEODwdPEwIBEA9ID3ACASoQCU4WAgERFBEUQgIBEhgLJB4CASYlC00SAgETGJwBGKwBAgEoIREhcgIBJyUbJUMCARQnD0EcAgEaRA9LGgIBFigRNCQCASI1EUAYAgEbSTxJQAIBGUY9RkkCARcoogEosgECASQxFzF4AgEjNSE1RQIBHDcVPiACAR48QjxGAgEhOUM5TwIBHw==</sads:DebugSymbol.Symbol>
+  </ftwa:StartWorkflow>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="OnCompleteDevTask_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="ApproveTask_1" sap:VirtualizedContainerService.HintSize="753,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="OnCompleteFixTask_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="ApproveTask_2" sap:VirtualizedContainerService.HintSize="464,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="464,212">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="486,427">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="753,577">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="775,792">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="DoWhile_1" sap:VirtualizedContainerService.HintSize="801,956" />
+      <sap2010:ViewStateData Id="StartWorkflow_1" sap:VirtualizedContainerService.HintSize="823,1080">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WorkflowService_1" sap:VirtualizedContainerService.HintSize="853,1150" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</WorkflowService>

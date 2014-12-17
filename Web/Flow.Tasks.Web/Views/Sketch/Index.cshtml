@@ -1,0 +1,157 @@
+﻿@model Flow.Tasks.View.Models.SketchModel
+@{
+    Layout = "~/Views/Shared/_LayoutSketch.cshtml";
+    ViewBag.Title = "Sketch";
+}
+<!-- js flowchart-->
+<script src="@Url.Content("~/Scripts/Sketch/raphael.js")" type="text/javascript"></script> <!-- js raphael -->
+<script src="@Url.Content("~/Scripts/Sketch/raphael.export.js")" type="text/javascript"></script> <!-- js export raphael -->
+<script src="@Url.Content("~/Scripts/Sketch/raphael.json.js")" type="text/javascript"></script> <!-- js json raphael -->
+<script src="@Url.Content("~/Scripts/Sketch/objectController.js")" type="text/javascript"></script> <!-- js object controller -->
+<script src="@Url.Content("~/Scripts/Sketch/entity.js")" type="text/javascript"></script> <!-- js entity -->
+<script src="@Url.Content("~/Scripts/Sketch/utils.js")" type="text/javascript"></script> <!-- js utils -->
+<script src="@Url.Content("~/Scripts/Sketch/graphics.js")" type="text/javascript"></script> <!-- js graphics -->
+<script src="@Url.Content("~/Scripts/Sketch/process.js")" type="text/javascript"></script> <!-- js process -->
+
+<link href="@Url.Content("~/Content/themes/jquery.jscrollpane.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/Sketch/jquery.jscrollpane.js")" type="text/javascript"></script> <!-- jquery scrollpane -->
+
+<script src="@Url.Content("~/Scripts/Sketch/jquery.mousewheel.js")" type="text/javascript"></script> <!-- jquery mousewheel -->
+
+<link href="@Url.Content("~/Content/themes/jquery.flexbox.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/Sketch/jquery.flexbox.js")" type="text/javascript"></script> <!-- jquery flexbox -->
+<!-- parse xml - jon - xml -->
+<script src="@Url.Content("~/Scripts/Sketch/xml2json.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/Sketch/json2xml.js")" type="text/javascript"></script>
+
+<div class="tools" style="float: left; width: 100%; margin-bottom: 10px;">
+    <div style="float: left">
+        Workflows:
+        <input id="workflows" type="text" onkeydown="return handlePressKey(event)" maxlength="75" onkeypress="return restrictCharacter(event)" onpaste="return false;" />
+
+        <button onclick="return handleLoad();" id="loadSketch" class="roundBox">Select</button>
+        <button onclick="return handleNew();" id="newSketch" class="roundBox">New</button>
+    </div>
+    <div id="workflow-name">workflow name</div>
+    <div id="save" style="float: left; display: none">
+        <button onclick="return handleSave();" id="saveSketch" class="roundBox">Save</button>
+        <button onclick="return handleDeploy();" id="deploySketch" class="roundBox">Deploy</button>
+    </div>
+</div>
+<div id="flowchartjs" style="clear: both">
+    <div id="toolbars">
+        <!--<div id="toolbar"></div>-->
+        <div id="toolbox">
+            <div class="title">Toolbox</div>
+            <div id="flowchart">
+                <div class="title">Flowchart</div>
+                <ul class="flowchart">
+                    <li id="decision">
+                        <img width="15" src="images/decision-icon.png" />
+                        <span>FlowDecision</span>
+                    </li>
+                    <li id="switch">
+                        <img width="15" src="images/switch-icon.png" />
+                        <span>FlowSwitch</span>
+                    </li>
+                </ul>
+            </div>
+            <div id="flowtask">
+                <div class="title">FlowTasks</div>
+                <ul class="flowtask" style="display: none;">
+                    <li id="generic">
+                        <img width="15" src="images/generic-icon.png" />
+                        <span>Generic</span>
+                    </li>
+                    <li id="approve">
+                        <img width="15" src="images/approve-icon.png" />
+                        <span>Approve</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="variables">
+            <div class="title">Variables</div>
+            <div id="addvariables">
+                <div class="title">Add Variables</div>
+                <div class="scroll" style="overflow: auto">
+                    <ul class="variables"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="chart">
+        <!-- viewport -->
+        <div id="viewport"></div>
+    </div>
+</div>
+
+<!-- popup content-->
+<div id="popup-modal" title="Properties">
+    <div class="properties">
+        <table class="table-properties">
+            <tr>
+                <td class="label">Condition</td>
+                <td class="value"></td>
+            </tr>
+            <tr>
+                <td class="label">Name</td>
+                <td class="value">
+                    <div id="name-properties">
+                        <input type="text" id="name" maxlength="30" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">Description</td>
+                <td class="value">
+                    <div id="decsription-properties">
+                        <input type="text" id="description" maxlength="150" />
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- popup variable -->
+<div id="popup-variable-modal" title="Add Avariable">
+    <div class="variable">
+        <table class="table-variable">
+            <thead>
+                <tr>
+                    <th class="var-name">Name</th>
+                    <th class="var-type">Variable Type</th>
+                    <th class="var-value">Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="var-name">
+                        <input id="var-name" type="text" value="Res" maxlength="20" />
+                    </td>
+                    <td class="var-type">
+                        <select id="var-type" style="width: 99%; padding: 1px;"></select>
+                    </td>
+                    <td class="var-value">
+                        <input id="var-value" type="text" value="Flowchart" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="confirm-popup-modal">
+    <div class="message">
+        Do you want to save this workflow?
+    </div>
+</div>
+
+@if (Model.RedirectTask != null)
+{
+    @Html.Partial("_RedirectToTask", Model.RedirectTask)
+}
+
+<script>
+    Loading("@Model.Workflow");
+</script>

@@ -1,0 +1,36 @@
+﻿<div id="searchWorkflow">
+    <form class="smart-form">
+        <div class="row">
+            <div class="col col-xs-6 col-md-3">
+                <label class="label">Starting from</label>
+                <label class="input">
+                    <i class="icon-append fa fa-calendar"></i>
+                    <input type="text" id="Start_UserTasks" class="datePicker" data-ng-model="startDate" data-datepicker data-format="{{ dateFormat }}" />
+                </label>
+            </div>
+            <div class="col col-xs-6 col-md-3">
+                <label class="label">till</label>
+                <label class="input">
+                    <i class="icon-append fa fa-calendar"></i>
+                    <input type="text" id="End_UserTasks" class="datePicker" data-ng-model="endDate" data-datepicker data-format="{{ dateFormat }}" />
+                </label>
+            </div>
+            <div class="col col-xs-6 col-md-3 line2">
+                <label class="label">Users</label>
+                <label class="input">
+                    <select id="Select_UserTasks" name="Select_UserTasks" multiple="multiple" data-ng-model="selectedUsersList" data-multiple-select="usersList" data-non-selected-text="Select users below"></select>
+                </label>
+            </div>
+            <div class="col col-xs-6 col-md-3 line2">
+                <label class="label">Action</label>
+                <label class="input">
+                    <button type="button" name="refresh_UserTasks" id="refresh_UserTasks" value="Refresh" class="btn btn-primary" data-ng-click="refresh()">Refresh</button>
+                </label>
+            </div>
+        </div>
+    </form>
+</div>
+
+<br class="break" />
+
+<div id="chart_userTasks" data-google-chart data-chart="chartObject" style="height:400px; width:100%;"></div>

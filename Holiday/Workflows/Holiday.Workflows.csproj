@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{87065E3A-FE55-4563-8946-A1882A6B2811}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Holiday.Workflows</RootNamespace>
+    <AssemblyName>Holiday.Workflows</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Activities.Core.Presentation" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activities" />
+    <Reference Include="System.ServiceModel.Channels" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HolidayTask.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="HolidayWf.xamlx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Flow.Services\Tasks\Flow.Tasks.Contract\Flow.Tasks.Contract.csproj">
+      <Project>{20e13ad7-3513-4e52-b6d2-e2a164ed53db}</Project>
+      <Name>Flow.Tasks.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Flow.Services\Tasks\Flow.Tasks.Proxy\Flow.Tasks.Proxy.csproj">
+      <Project>{0923d1d5-e675-43dc-9e72-7141b3c34a8b}</Project>
+      <Name>Flow.Tasks.Proxy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Flow.Services\Users\Flow.Users.Contract\Flow.Users.Contract.csproj">
+      <Project>{aeaa0e19-938c-4973-815e-c687f7d7d0c0}</Project>
+      <Name>Flow.Users.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Flow.Services\Users\Flow.Users.Proxy\Flow.Users.Proxy.csproj">
+      <Project>{6b68de3c-3c1f-4b48-9fb9-c623ea67cbbc}</Project>
+      <Name>Flow.Users.Proxy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Flow.Tasks\Flow.Tasks.Workflow\Flow.Tasks.Workflow.csproj">
+      <Project>{9C30DB3B-A699-43AE-8C67-B23FBA030C25}</Project>
+      <Name>Flow.Tasks.Workflow</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>rem copy /Y "$(TargetDir)..\..\HolidayWf.xamlx" "$(ProjectDir)..\..\Workflows\ServiceWorkflows"
+</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,91 @@
+﻿<button class="btn btn-default" ng-click="workflowBackTolist()"><i class="fa fa-chevron-left"></i>&nbsp;Back to list</button>
+<form name="workflowdetailform" novalidate>
+    <fieldset>
+        <legend>Tasks</legend>
+        <div class="form-group">
+            <label><strong>Workflow Id</strong>: {{dashboard.workflow.detail.wfid}}</label>
+        </div>
+        <div class="form-group table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Task id</th>
+                        <th>Code</th>
+                        <th class="mw-90">Assigned to</th>
+                        <th>Title</th>
+                        <th class="mw-90">Expire date</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="t in dashboard.workflow.detail.tasks.tasks">
+                        <td>{{t.taskId}}</td>
+                        <td>{{t.code}}</td>
+                        <td>{{t.acceptedBy}}</td>
+                        <td>{{t.title}}</td>
+                        <td>{{t.expiryDate}}</td>
+                        <td>
+                            <p ng-bind-html="t.description"></p>
+                        </td>
+                    </tr>
+                    <tr class="workflow-detail-notasks" ng-show="!dashboard.workflow.detail.tasks.tasks.length">
+                        <td colspan="6">No tasks was found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Traces</legend>
+        <div class="form-group table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Action</th>
+                        <th>Message</th>
+                        <th>When</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="t in dashboard.workflow.detail.traces.traces">
+                        <td>{{t.user}}</td>
+                        <td>{{t.action}}</td>
+                        <td>{{t.message}}</td>
+                        <td>{{t.when}}</td>
+                        <td>{{t.result}}</td>
+                    </tr>
+                    <tr class="workflow-detail-notraces" ng-show="!dashboard.workflow.detail.traces.traces.length">
+                        <td colspan="5">No traces was found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Properties</legend>
+        <div class="form-group table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="p in dashboard.workflow.detail.properties.properties">
+                        <td>{{p.name}}</td>
+                        <td>
+                            <p ng-show="!isDocumentType(p)">{{p.value}}</p>
+                            <p ng-show="isDocumentType(p)"><download-file-dashboard property="p"></download-file-dashboard></p>
+                        </td>
+                    </tr>
+                    <tr class="workflow-detail-notproperties" ng-show="!dashboard.workflow.detail.properties.properties.length">
+                        <td colspan="5">No properties found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+</form>

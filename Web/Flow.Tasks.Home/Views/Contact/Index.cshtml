@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "FlowTasks - Contact";
+    ViewBag.Keywords = "flowtasks,contact";
+    ViewBag.Description = "Connecting with us is easy";
+}
+
+<div class="navbar navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="~/" class="navbar-brand">
+                    <div class="logo"></div>
+                </a>
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
+                    <li>
+                        @Html.ActionLink("Documentation", "Index", "Doc")
+                    </li>
+                    <li>
+                        @Html.ActionLink("Download", "Index", "Download")
+                    </li>
+                    <li>
+                        @Html.ActionLink("FAQ", "Index", "Faq")
+                    </li>
+                    <li class="active">
+                        @Html.ActionLink("Contact", "Index", "Contact")
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="bs-docs-section  clearfix">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-header">
+                    </div>
+                    <div class="bs-example">
+                        <div class="">
+                            <h1 class="title">Connecting with us is easy.</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bs-docs-section clearfix">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Email</h2>
+                    <p>
+                        Send us an email 
+                        <a href="mailto:sydney.shown@gmail.com">sydney.shown@gmail.com</a>
+                    </p>
+                    <h2>Twitter</h2>
+                    <p>
+                        Send us a tweet <a href="https://twitter.com/SydneyShown">@@SydneyShown</a>
+                    </p>
+                    <h2>Blog</h2>
+                    <p>
+                        Blog us from CodePlex at
+                        <a href="https://flowtasks.codeplex.com/discussions">Discussion</a>
+                    </p>
+                    <br />
+                    <div class="well well-sm">
+                        Visit also our <a href="https://flowtasks.codeplex.com">Home</a> in CodePlex.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

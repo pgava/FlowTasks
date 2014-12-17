@@ -1,0 +1,14 @@
+﻿<td class="tbcheckbox">
+    <label class="checkbox">
+        <input type="checkbox" name="checkbox-inline" ng-checked="isSelected(fl)" data-workflow="fl" data-select-workflow="selectWorkflow(fl,selected)"><i></i>
+    </label>
+</td>
+<td data-view-workflow-details="viewWorkflowDetail(fl)">
+    <div class="workflow-code">
+        <span ng-if="isHaveChild(fl)" class="expand-button" ng-click="expandChild(fl)"><i class="fa fa-plus expand-collapse-button" ng-if="!isExpanded(fl)"></i><i class="fa fa-minus expand-collapse-button" ng-if="isExpanded(fl)"></i></span>{{fl.code}}
+    </div>
+</td>
+<td data-view-workflow-details="viewWorkflowDetail(fl)">{{fl.status}}</td>
+<td data-view-workflow-details="viewWorkflowDetail(fl)">{{fl.wfid}}</td>
+<td data-view-workflow-details="viewWorkflowDetail(fl)">{{fl.start}}</td>
+<td data-view-workflow-details="viewWorkflowDetail(fl)">{{fl.end}}</td>

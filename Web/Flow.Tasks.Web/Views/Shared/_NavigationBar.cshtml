@@ -1,0 +1,28 @@
+﻿@if (Request.IsAuthenticated)
+{
+    
+<div id="headerMenu">
+    <span class="menuSpace"></span>
+    @Html.ActionLink("Home", "Index", "Home", null, new { @id = "homeNav" })
+    <span class="menuSpace"></span>
+    @Html.ActionLink("Task List", "Index", "TaskList", null, new { @class = "menuSelected", @id="tasklistNav" })
+    <span class="menuSpace"></span>
+    @Html.ActionLink("Topics", "Index", "Topics", null, new { @id = "topicsNav" })
+    @if (Flow.Tasks.View.Models.UserModel.IsInRole(HttpContext.Current.User, "BA"))
+    {
+        <span class="menuSpace"></span>
+        @Html.ActionLink("Sketch", "Index", "Sketch", null, new { @id = "sketchNav" })
+    }
+    @if (Flow.Tasks.View.Models.UserModel.IsInRole(HttpContext.Current.User, "Admin"))
+    {
+        <span class="menuSpace"></span>
+        @Html.ActionLink("Dashboard", "Index", "Dashboard", null, new { @id = "dashboardNav" })
+    }
+    @if (Flow.Tasks.View.Models.UserModel.IsInRole(HttpContext.Current.User, "PM"))
+    {
+        <span class="menuSpace"></span>
+        @Html.ActionLink("Reports", "Index", "Report", null, new { @id = "reportNav" })
+    }
+</div>
+
+}

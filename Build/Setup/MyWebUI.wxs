@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+		<!-- MyWeb UI -->
+		<UI Id="MyWebUI">
+
+			<UIRef Id="WixUI_FeatureTree" />
+			<UIRef Id="WixUI_ErrorProgressText" />
+
+			<DialogRef Id="ConnectionStringDlg" />
+			<!-- Injection of custom UI. -->
+			<Publish Dialog="LicenseAgreementDlg" Control="Next" Event="NewDialog" Value="ConnectionStringDlg" Order="3">LicenseAccepted = "1"</Publish>
+		</UI>		
+		
+	</Fragment>
+</Wix>

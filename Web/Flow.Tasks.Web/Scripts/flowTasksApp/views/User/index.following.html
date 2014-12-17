@@ -1,0 +1,39 @@
+﻿<form class="smart-form" name="followinglistform" novalidate>
+    <header>Search user</header>
+    <fieldset>
+        <div class="row">
+            <section class="col col-xs-6 col-md-4">
+                <label class="label">Name</label>
+                <label class="input">
+                    <input type="text" name="namfilter" ng-model="followingFilter.name" placeholder="Type name...">
+                </label>
+            </section>
+        </div>
+    </fieldset>
+</form>
+<div class="jarviswidget jarviswidget-color-blueDark margin-bottom-0">
+    <header>
+        <div class="table-headerbar-loading">
+            <span data-indicator="7" class="fa-2x" data-show="onLoadingUser"></span>
+        </div>
+        <span class="widget-icon"><i class="fa fa-table"></i></span>
+        <h2>User(s) </h2>
+    </header>
+</div>
+<div>
+    <div class="widget-body">
+        <table id="datatable_fixed_column" class="table table-striped table-bordered smart-form userfollowing" ng-table="followingTable">
+            <tr ng-class-odd="odd" ng-class-even="even" ng-repeat="fl in $data" ng-click="viewUserInfo(fl)" class="following-tr">
+                <td data-title="'Username'">{{fl.userName}}</td>
+                <td data-title="'Firstname'">{{fl.firstName}}</td>
+                <td data-title="'Lastname'">{{fl.lastName}}</td>
+                <td data-title="'Email'">{{fl.email}}</td>
+                <td data-title="'Status'" class="follow-status">
+                    <label class="label label-danger" ng-show="isFollowed(fl.userName)">Followed</label>
+                    <label class="label label-default" ng-show="!isFollowed(fl.userName)">Not follow</label>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>

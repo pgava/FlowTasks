@@ -1,0 +1,26 @@
+﻿<header>Select date</header>
+<fieldset>
+    <section class="display-calendar">
+        <div id="holiday-calendar" data-holiday-calendar="holiday" ></div>
+    </section>
+    <section>
+        <label class="label">Note</label>
+        <label class="textarea">
+            <textarea ng-model="holiday.submit.note" class="form-control" name="note" rows="10" cols="50" placeholder="Enter note..."></textarea>
+        </label>
+    </section>
+</fieldset>
+<footer>
+    <div class="row-line" ng-show="holiday.submit.success || holiday.submit.hasError">
+        <div class="alert alert-danger" ng-show="holiday.submit.hasError">
+            <i class="fa-fw fa fa-times"></i>
+            <strong>Error!</strong> {{holiday.submit.errorMessage}}
+        </div>
+        <div class="alert alert-success" ng-show="holiday.submit.success">
+            <i class="fa-fw fa fa-check"></i>
+            <strong>Success</strong> {{holiday.submit.successMessage}}
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit" ng-disabled="holiday.onSubmitting" ng-if="!holiday.viewUser">Submit</button>
+    <div data-indicator="2" class="fa-2x" data-show="holiday.onSubmitting"></div>
+</footer>

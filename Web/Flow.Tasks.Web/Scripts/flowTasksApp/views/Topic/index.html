@@ -1,0 +1,29 @@
+﻿<div data-collapse-topic-click data-on-searching="topic.topicSearch.onSearching" data-show-search="topic.topicSearch.showSearch">
+    <section class="topic-search">
+        <h5><i class="fa fa-fw fa-lg fa-comments"></i>Search topics</h5>
+        <div class="well well-sm col-md-9">
+            <div class="input-group">
+                <input type="hidden" name="status" ng-model="topic.topicSearch.status" />
+                <input type="text" placeholder="Search for topics..." id="fa-icon-search" class="form-control input-lg" ng-model="topic.topicSearch.query">
+                <span class="input-group-addon"><i class="fa fa-fw fa-lg fa-search"></i></span>
+            </div>
+            <div class="topic-search-result" ng-show="topic.topicSearch.showSearch">
+                <span data-indicator="0" class="fa-2x topic-search-loading" data-show="topic.topicSearch.onSearching"></span>
+                <p class="topic-search-result-item" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="sitem in topic.topicSearch.searchResult" data-select-topic-search="topic.chooseSearchItem(sitem)" data-search-item="sitem" >{{sitem.result}}</p>
+                <p class="topic-search-result-item odd fw-b" ng-show="topic.topicSearch.showMessage">No result</p>
+            </div>
+        </div>
+        <create-topic-box data-new-topic-model="topic.newTopicModel" data-add-new-topic-to-list="topic.addNewTopicToList(newTopicModel)"></create-topic-box>
+        <div class="clearfix"></div>
+    </section>
+
+    <div data-infinite-scroll='topic.loadMoreTopics()' data-infinite-scroll-distance='1' data-infinite-scroll-disabled='topic.topicList.onLoading'>
+        <topic-box topic="t" showdate="topic.showDate(myDate)" ng-repeat="t in topic.topicList.results" fade-in="800"></topic-box>
+    </div>
+    <div class="topic-loader ct100" ng-show="topic.topicList.onLoading">
+        <span data-indicator="0" class="fa-2x" data-show="topic.topicList.onLoading"></span>
+    </div>
+    <div class="alert alert-info alert-block" ng-show="topic.topicList.noResult">
+        <h4 class="alert-heading">No Topics found!</h4>
+    </div>
+</div>

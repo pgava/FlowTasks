@@ -1,0 +1,20 @@
+﻿@model Flow.Tasks.View.Models.TaskModel
+
+@if (Model.HasDocument)
+{
+    <div class="documentattached wfrow">
+        <span>Document attached </span>
+        @foreach (var doc in Model.Documents)
+        {
+            using (Html.BeginForm("Document", "ApproveTask", new { area = "ApproveTask", controller = "ApproveTask" }, FormMethod.Post))
+            {    
+            <div id="viewDocument">
+
+                <input type="submit" name="completeTask" value="@doc.DocumentName" class="linkBoxColor" />
+                @Html.HiddenFor(m => m.TaskOid, Model.TaskOid)
+                @Html.Hidden("DocumentOid", doc.DocumentOid)
+            </div>
+            }
+        }
+    </div>
+}

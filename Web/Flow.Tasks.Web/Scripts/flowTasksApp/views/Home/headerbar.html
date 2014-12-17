@@ -1,0 +1,34 @@
+﻿<!-- HEADER -->
+<header id="header">
+    <div id="logo-group">
+        <!-- PLACE YOUR LOGO HERE -->
+        <span id="logo">
+            <img src="Content/themes/smart/img/logo.png" alt="SmartAdmin">
+        </span>
+        <!-- END LOGO PLACEHOLDER -->
+    </div>
+
+    <!-- pulled right: nav area -->
+    <div class="pull-right">
+        <!-- collapse menu button -->
+        <div id="hide-menu" class="btn-header pull-right">
+            <span>
+                <close-sidebar></close-sidebar>
+            </span>
+        </div>
+        <!-- end collapse menu -->
+        <!-- logout button -->
+        <div id="logout" class="btn-header transparent pull-right">
+            <span>
+                <smart-alert iconclass="fa fa-sign-out" type="logout" title="{{username}}" text="You can improve your security further after logging out by closing this opened browser" />
+                <!--<a href="#" ng-click="signout()" title="Sign Out" confirm-box><i class="fa fa-sign-out"></i></a>-->
+            </span>
+        </div>
+        <!-- end logout button -->
+        <span data-blink="application.taskData.isBlink" class="header-bar-go-to pull-right" ng-click="application.goToTask()"><i class="fa fa-inbox"></i><b class="badge bounceIn animated" data-ng-bind="application.taskData.counter">0 </b></span>
+        <span data-blink="application.topicData.isBlink" class="header-bar-go-to pull-right" ng-click="application.goToHome()"><i class="fa fa-comments"></i><b class="badge bounceIn animated" data-ng-bind="application.topicData.counter">0 </b></span>
+    </div>
+    <!-- end pulled right: nav area -->
+
+</header>
+<!-- END HEADER -->

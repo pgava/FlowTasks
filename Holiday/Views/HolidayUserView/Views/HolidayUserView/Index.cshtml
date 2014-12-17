@@ -1,0 +1,34 @@
+﻿@model Flow.Tasks.View.Models.TaskModel
+@{
+    ViewBag.Title = "Dev Workflow";
+
+    <!-- Send data back to app -->
+    Html.Assets().Scripts.Add("../Scripts/task.action.js");
+}
+
+@Html.Partial("_HeaderPartial")
+@Html.Partial("_ViewDocPartial")
+@Html.Partial("_CommentsPartial")
+<div class="overlay">
+    @* <img class="loading" src="@Url.Content("~/Content/themes/smart/img/ie-preloader.GIF")" />*@
+</div>
+<div class="error-container wfrow">
+    <ul>
+    </ul>
+</div>
+
+@using (Html.BeginForm("CompleteUserTask", "HolidayUserView", FormMethod.Post, new { id = "flowTasksTaskView", area = "HolidayUserView", controller = "HolidayUserView" }))
+{
+    <!-- Wrap user and note inside wfrow -->
+    <div class="wfrow">
+
+        <div id="taskCommand">
+            <input type="submit" name="completeTask" value="OK" class="roundBox btn" />
+        </div>
+    </div>
+    @Html.Partial("_TaskDataPartial")
+    @Html.Hidden("TaskAcceptFlag", "OK") @*Comma separated values*@
+    
+    
+}
+

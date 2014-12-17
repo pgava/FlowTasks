@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+	 xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+	
+	<Fragment>
+		<?include ConfigurationInitialize.wxi ?>
+
+		<!-- Install to default web site -->
+		<iis:WebSite Id="DefaultWebSite" Description='Default Web Site'>
+			<iis:WebAddress Id="AllUnassigned" Port="80" />
+		</iis:WebSite>
+
+		<DirectoryRef Id="WEB">
+			<!-- Configuring app pool -->
+			<Component Id="MyWebAppPoolCmp" Guid="1E7A4B1A-E468-4308-886A-1411EE45DC72" KeyPath="yes">
+        <iis:WebAppPool Id="MyWebAppPool"
+								Name="[WEB_APP_NAME]" ManagedPipelineMode="integrated" ManagedRuntimeVersion="v4.0" />
+			</Component>
+		
+			<!-- Configure virtual dir -->
+			<Component Id="MyWebVirtualDirCmp" Guid="751DEB01-ECC1-48ff-869A-65BCEE9E0528" KeyPath="yes" >
+				<iis:WebVirtualDir Id="MyWebVirtualDir" Alias="[VIRTUAL_DIR_VAL_WEB]" Directory="WEB" WebSite="DefaultWebSite">
+					<iis:WebDirProperties Id="MyWebVirtDirProperties" AnonymousAccess="yes" BasicAuthentication="no" WindowsAuthentication="no" />
+					<iis:WebApplication Id="MyWebWebApplication" Name="[VIRTUAL_DIR_VAL_WEB]" WebAppPool="MyWebAppPool" />
+				</iis:WebVirtualDir>
+			</Component>
+		</DirectoryRef>
+
+    <DirectoryRef Id="DOCSSERVICE">
+
+      <!-- Configure virtual dir -->
+      <Component Id="MyWebVirtualDirCmp2" Guid="E5BD1346-66EF-4FE3-91EE-63937CA51D8E" KeyPath="yes" >
+        <iis:WebVirtualDir Id="MyWebVirtualDir2" Alias="[VIRTUAL_DIR_VAL_FLOWDOCS]" Directory="DOCSSERVICE" WebSite="DefaultWebSite">
+          <iis:WebDirProperties Id="MyWebVirtDirProperties2" AnonymousAccess="yes" BasicAuthentication="no" WindowsAuthentication="no" />
+          <iis:WebApplication Id="MyWebWebApplication2" Name="[VIRTUAL_DIR_VAL_FLOWDOCS]" WebAppPool="MyWebAppPool" />
+        </iis:WebVirtualDir>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="TASKSSERVICE">
+
+      <!-- Configure virtual dir -->
+      <Component Id="MyWebVirtualDirCmp3" Guid="32A9A241-93A0-4A6D-88BE-47328115AC3F" KeyPath="yes" >
+        <iis:WebVirtualDir Id="MyWebVirtualDir3" Alias="[VIRTUAL_DIR_VAL_FLOWTASKS]" Directory="TASKSSERVICE" WebSite="DefaultWebSite">
+          <iis:WebDirProperties Id="MyWebVirtDirProperties3" AnonymousAccess="yes" BasicAuthentication="no" WindowsAuthentication="no" />
+          <iis:WebApplication Id="MyWebWebApplication3" Name="[VIRTUAL_DIR_VAL_FLOWTASKS]" WebAppPool="MyWebAppPool" />
+        </iis:WebVirtualDir>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="USERSSERVICE">
+
+      <!-- Configure virtual dir -->
+      <Component Id="MyWebVirtualDirCmp4" Guid="D1FE913E-2CAE-47C2-A747-2B0CFC422583" KeyPath="yes" >
+        <iis:WebVirtualDir Id="MyWebVirtualDir4" Alias="[VIRTUAL_DIR_VAL_FLOWUSERS]" Directory="USERSSERVICE" WebSite="DefaultWebSite">
+          <iis:WebDirProperties Id="MyWebVirtDirProperties4" AnonymousAccess="yes" BasicAuthentication="no" WindowsAuthentication="no" />
+          <iis:WebApplication Id="MyWebWebApplication4" Name="[VIRTUAL_DIR_VAL_FLOWUSERS]" WebAppPool="MyWebAppPool" />
+        </iis:WebVirtualDir>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="WORKFLOWS">
+
+      <!-- Configure virtual dir -->
+      <Component Id="MyWebVirtualDirCmp5" Guid="BD08ADCD-6A5D-4759-92D6-CCFAB33D8458" KeyPath="yes" >
+        <iis:WebVirtualDir Id="MyWebVirtualDir5" Alias="[VIRTUAL_DIR_VAL_WORKFLOWS]" Directory="WORKFLOWS" WebSite="DefaultWebSite">
+          <iis:WebDirProperties Id="MyWebVirtDirProperties5" AnonymousAccess="yes" BasicAuthentication="no" WindowsAuthentication="no" />
+          <iis:WebApplication Id="MyWebWebApplication5" Name="[VIRTUAL_DIR_VAL_WORKFLOWS]" WebAppPool="MyWebAppPool" />
+        </iis:WebVirtualDir>
+      </Component>
+    </DirectoryRef>
+
+    <ComponentGroup Id="MyWebIssConfiguration">
+			<ComponentRef Id="MyWebVirtualDirCmp" />
+      <ComponentRef Id="MyWebVirtualDirCmp2" />
+      <ComponentRef Id="MyWebVirtualDirCmp3" />
+      <ComponentRef Id="MyWebVirtualDirCmp4" />
+      <ComponentRef Id="MyWebVirtualDirCmp5" />
+      <ComponentRef Id="MyWebAppPoolCmp" />
+		</ComponentGroup>
+		
+	</Fragment>
+</Wix>

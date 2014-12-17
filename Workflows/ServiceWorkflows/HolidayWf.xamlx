@@ -1,0 +1,244 @@
+﻿<WorkflowService mc:Ignorable="sap sap2010 sads" p:TextExpression.Namespaces="{x:Reference __ReferenceID0}" p:TextExpression.References="{x:Reference __ReferenceID1}" ConfigurationName="HolidayWf" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap2010:WorkflowViewState.IdRef="WorkflowService_1" Name="HolidayWf"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel"
+ xmlns:ftwa="clr-namespace:Flow.Tasks.Workflow.Activities;assembly=Flow.Tasks.Workflow"
+ xmlns:hw="clr-namespace:Holiday.Workflows;assembly=Holiday.Workflows"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:p="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ftwa:StartWorkflow WorkflowId="{x:Null}" WorkflowResult="{x:Null}" CorrelationId="1" sap2010:WorkflowViewState.IdRef="StartWorkflow_1">
+    <ftwa:StartWorkflow.Activities>
+      <p:Sequence sap2010:WorkflowViewState.IdRef="Sequence_1">
+        <p:Sequence.Variables>
+          <p:Variable x:TypeArguments="x:String" Name="ApproveRes">
+            <p:Variable.Default>
+              <p:Literal x:TypeArguments="x:String" Value="" />
+            </p:Variable.Default>
+          </p:Variable>
+          <p:Variable x:TypeArguments="x:String" Default="N" Name="IsUserMgr" />
+        </p:Sequence.Variables>
+        <ftwa:GenericTask DisplayName="InitializeWf" sap2010:WorkflowViewState.IdRef="GenericTask_1" TaskCode="HolidayMgr">
+          <ftwa:GenericTask.OnRun>
+            <p:ActivityAction x:TypeArguments="ftwa:TaskStateData">
+              <p:ActivityAction.Argument>
+                <p:DelegateInArgument x:TypeArguments="ftwa:TaskStateData" Name="Argument" />
+              </p:ActivityAction.Argument>
+              <hw:OnRunGenericTask Request="{x:Null}" sap2010:WorkflowViewState.IdRef="OnRunGenericTask_1" />
+            </p:ActivityAction>
+          </ftwa:GenericTask.OnRun>
+        </ftwa:GenericTask>
+        <ftwa:AssignParameter DisplayName="GetIsUserMgr" sap2010:WorkflowViewState.IdRef="AssignParameter_1" TaskCode="InitializeWf" TaskParameter="[IsUserMgr]" TaskParameterName="IsUserMgr" />
+        <p:If Condition="[IsUserMgr = &quot;N&quot;]" sap2010:WorkflowViewState.IdRef="If_2">
+          <p:If.Then>
+            <ftwa:ApproveTask DefaultResult="{x:Null}" ExpiresIn="{x:Null}" ExpiresWhen="{x:Null}" HandOverUsers="{x:Null}" AssignResultTo="[TaskResult]" AssignedToUsers="" CorrelationId="1" Description="User {p.UserName} has requested holiday" DisplayName="HolidayMgr" sap2010:WorkflowViewState.IdRef="ApproveTask_1" TaskCode="HolidayMgr" Title="User {p.UserName} holiday request" UiCode="HolidayMgrView">
+              <ftwa:ApproveTask.OnComplete>
+                <p:ActivityFunc x:TypeArguments="ftwa:TaskStateData, ftwa:TaskStateData">
+                  <p:ActivityFunc.Argument>
+                    <p:DelegateInArgument x:TypeArguments="ftwa:TaskStateData" Name="Argument" />
+                  </p:ActivityFunc.Argument>
+                  <p:ActivityFunc.Result>
+                    <p:DelegateOutArgument x:TypeArguments="ftwa:TaskStateData" Name="Result" />
+                  </p:ActivityFunc.Result>
+                  <hw:OnCompleteMgrTask Request="{x:Null}" sap2010:WorkflowViewState.IdRef="OnCompleteMgrTask_1" />
+                </p:ActivityFunc>
+              </ftwa:ApproveTask.OnComplete>
+              <ftwa:ApproveTask.OnInit>
+                <p:ActivityFunc x:TypeArguments="ftwa:TaskStateData, ftwa:TaskStateData">
+                  <p:ActivityFunc.Argument>
+                    <p:DelegateInArgument x:TypeArguments="ftwa:TaskStateData" Name="Argument" />
+                  </p:ActivityFunc.Argument>
+                  <p:ActivityFunc.Result>
+                    <p:DelegateOutArgument x:TypeArguments="ftwa:TaskStateData" Name="Result" />
+                  </p:ActivityFunc.Result>
+                  <hw:OnInitMgrTask Request="{x:Null}" sap2010:WorkflowViewState.IdRef="OnInitMgrTask_1" />
+                </p:ActivityFunc>
+              </ftwa:ApproveTask.OnInit>
+            </ftwa:ApproveTask>
+          </p:If.Then>
+          <p:If.Else>
+            <p:Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+              <p:Assign.To>
+                <p:OutArgument x:TypeArguments="x:String">[TaskResult]</p:OutArgument>
+              </p:Assign.To>
+              <p:Assign.Value>
+                <p:InArgument x:TypeArguments="x:String">Approve</p:InArgument>
+              </p:Assign.Value>
+            </p:Assign>
+          </p:If.Else>
+        </p:If>
+        <p:If Condition="[TaskResult = &quot;Approve&quot;]" sap2010:WorkflowViewState.IdRef="If_1">
+          <p:If.Then>
+            <ftwa:ApproveTask DefaultResult="{x:Null}" ExpiresIn="{x:Null}" ExpiresWhen="{x:Null}" HandOverUsers="{x:Null}" AssignResultTo="[TaskResult]" AssignedToUsers="{}{r.HR}" CorrelationId="1" Description="User {p.UserName} has requested holiday" DisplayName="HolidayHr" sap2010:WorkflowViewState.IdRef="ApproveTask_4" TaskCode="HolidayHr" Title="Holiday request for user: {p.UserName}" UiCode="HolidayMgrView">
+              <ftwa:ApproveTask.OnComplete>
+                <p:ActivityFunc x:TypeArguments="ftwa:TaskStateData, ftwa:TaskStateData">
+                  <p:ActivityFunc.Argument>
+                    <p:DelegateInArgument x:TypeArguments="ftwa:TaskStateData" Name="Argument" />
+                  </p:ActivityFunc.Argument>
+                  <p:ActivityFunc.Result>
+                    <p:DelegateOutArgument x:TypeArguments="ftwa:TaskStateData" Name="Result" />
+                  </p:ActivityFunc.Result>
+                  <hw:OnCompleteHrTask Request="{x:Null}" sap2010:WorkflowViewState.IdRef="OnCompleteHrTask_2" />
+                </p:ActivityFunc>
+              </ftwa:ApproveTask.OnComplete>
+              <ftwa:ApproveTask.OnInit>
+                <p:ActivityFunc x:TypeArguments="ftwa:TaskStateData, ftwa:TaskStateData">
+                  <p:ActivityFunc.Argument>
+                    <p:DelegateInArgument x:TypeArguments="ftwa:TaskStateData" Name="Argument" />
+                  </p:ActivityFunc.Argument>
+                  <p:ActivityFunc.Result>
+                    <p:DelegateOutArgument x:TypeArguments="ftwa:TaskStateData" Name="Result" />
+                  </p:ActivityFunc.Result>
+                  <hw:OnInitHrTask Request="{x:Null}" sap2010:WorkflowViewState.IdRef="OnInitHrTask_2" />
+                </p:ActivityFunc>
+              </ftwa:ApproveTask.OnInit>
+            </ftwa:ApproveTask>
+          </p:If.Then>
+        </p:If>
+        <ftwa:ApproveTask AssignResultTo="{x:Null}" AssignedToUsers="{x:Null}" ExpiresIn="{x:Null}" ExpiresWhen="{x:Null}" HandOverUsers="{x:Null}" CorrelationId="1" DefaultResult="OK" Description="You holiday request has been {p.HolidayResult}" DisplayName="HolidayUser" sap2010:WorkflowViewState.IdRef="ApproveTask_3" TaskCode="HolidayUser" Title="Your holiday has been {p.HolidayResult}" UiCode="HolidayUserView">
+          <ftwa:ApproveTask.OnComplete>
+            <p:ActivityFunc x:TypeArguments="ftwa:TaskStateData, ftwa:TaskStateData">
+              <p:ActivityFunc.Argument>
+                <p:DelegateInArgument x:TypeArguments="ftwa:TaskStateData" Name="Argument" />
+              </p:ActivityFunc.Argument>
+              <p:ActivityFunc.Result>
+                <p:DelegateOutArgument x:TypeArguments="ftwa:TaskStateData" Name="Result" />
+              </p:ActivityFunc.Result>
+              <hw:OnCompleteUserTask Request="{x:Null}" sap2010:WorkflowViewState.IdRef="OnCompleteUserTask_1" />
+            </p:ActivityFunc>
+          </ftwa:ApproveTask.OnComplete>
+          <ftwa:ApproveTask.OnInit>
+            <p:ActivityFunc x:TypeArguments="ftwa:TaskStateData, ftwa:TaskStateData">
+              <p:ActivityFunc.Argument>
+                <p:DelegateInArgument x:TypeArguments="ftwa:TaskStateData" Name="Argument" />
+              </p:ActivityFunc.Argument>
+              <p:ActivityFunc.Result>
+                <p:DelegateOutArgument x:TypeArguments="ftwa:TaskStateData" Name="Result" />
+              </p:ActivityFunc.Result>
+              <hw:OnInitUserTask Request="{x:Null}" sap2010:WorkflowViewState.IdRef="OnInitUserTask_1" />
+            </p:ActivityFunc>
+          </ftwa:ApproveTask.OnInit>
+        </ftwa:ApproveTask>
+      </p:Sequence>
+    </ftwa:StartWorkflow.Activities>
+    <p:TextExpression.Namespaces>
+      <sco:Collection x:TypeArguments="x:String" x:Name="__ReferenceID0">
+        <x:String>System</x:String>
+        <x:String>System.Collections.Generic</x:String>
+        <x:String>System.Data</x:String>
+        <x:String>System.Linq</x:String>
+        <x:String>System.Text</x:String>
+      </sco:Collection>
+    </p:TextExpression.Namespaces>
+    <p:TextExpression.References>
+      <sco:Collection x:TypeArguments="p:AssemblyReference" x:Name="__ReferenceID1">
+        <p:AssemblyReference>log4net</p:AssemblyReference>
+        <p:AssemblyReference>System</p:AssemblyReference>
+        <p:AssemblyReference>System.Activities</p:AssemblyReference>
+        <p:AssemblyReference>System.Activities.Core.Presentation</p:AssemblyReference>
+        <p:AssemblyReference>System.Core</p:AssemblyReference>
+        <p:AssemblyReference>System.ServiceModel</p:AssemblyReference>
+        <p:AssemblyReference>System.ServiceModel.Activities</p:AssemblyReference>
+        <p:AssemblyReference>System.ServiceModel.Channels</p:AssemblyReference>
+        <p:AssemblyReference>System.Xaml</p:AssemblyReference>
+        <p:AssemblyReference>System.Xml.Linq</p:AssemblyReference>
+        <p:AssemblyReference>System.Data.DataSetExtensions</p:AssemblyReference>
+        <p:AssemblyReference>Microsoft.CSharp</p:AssemblyReference>
+        <p:AssemblyReference>System.Data</p:AssemblyReference>
+        <p:AssemblyReference>System.Xml</p:AssemblyReference>
+        <p:AssemblyReference>Flow.Tasks.Contract</p:AssemblyReference>
+        <p:AssemblyReference>Flow.Tasks.Proxy</p:AssemblyReference>
+        <p:AssemblyReference>Flow.Users.Contract</p:AssemblyReference>
+        <p:AssemblyReference>Flow.Users.Proxy</p:AssemblyReference>
+        <p:AssemblyReference>Flow.Tasks.Workflow</p:AssemblyReference>
+        <p:AssemblyReference>mscorlib</p:AssemblyReference>
+        <p:AssemblyReference>Holiday.Workflows</p:AssemblyReference>
+      </sco:Collection>
+    </p:TextExpression.References>
+    <ftwa:StartWorkflow.Variables>
+      <p:Variable x:TypeArguments="x:String" Name="TaskResult">
+        <p:Variable.Default>
+          <p:Literal x:TypeArguments="x:String" Value="" />
+        </p:Variable.Default>
+      </p:Variable>
+      <p:Variable x:TypeArguments="x:String" Name="WorkflowResult">
+        <p:Variable.Default>
+          <p:Literal x:TypeArguments="x:String" Value="" />
+        </p:Variable.Default>
+      </p:Variable>
+    </ftwa:StartWorkflow.Variables>
+    <sads:DebugSymbol.Symbol>dzZDOlxEZXZcRmxvd1Rhc2tzXHNyY1xIb2xpZGF5XFdvcmtmbG93c1xIb2xpZGF5V2YueGFtbHgfDQOuARgBAaQBC6QBPAIBD6kBC6kBPAIBDg8HfRQCARATDxNAAgESFjoWPQIBERgJIRwCAS8iCSLCAQIBKiMJSBACAR5JCWQQAgEWZQl8HAIBExhvGHsCATEeDx5uAgEwIncihQECAS4itAEivwECAS0ilAEioQECASsjGSM2AgEfJQ08IAIBJT8NRhgCASFJGUk9AgEXSw1iIAIBGXkPeWoCARVuD25yAgEUJYwBJZoBAgEoORM5bAIBJy4TLnQCASZEOkRBAgEkQTtBRwIBIkuMAUuaAQIBHF8TX2oCARtUE1RyAgEa</sads:DebugSymbol.Symbol>
+  </ftwa:StartWorkflow>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="OnRunGenericTask_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="GenericTask_1" sap:VirtualizedContainerService.HintSize="551,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="AssignParameter_1" sap:VirtualizedContainerService.HintSize="551,22" />
+      <sap2010:ViewStateData Id="OnCompleteMgrTask_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="OnInitMgrTask_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="ApproveTask_1" sap:VirtualizedContainerService.HintSize="284,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="551,212" />
+      <sap2010:ViewStateData Id="OnCompleteHrTask_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="OnInitHrTask_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="ApproveTask_4" sap:VirtualizedContainerService.HintSize="284,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="551,210">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="OnCompleteUserTask_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="OnInitUserTask_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="ApproveTask_3" sap:VirtualizedContainerService.HintSize="551,326">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="573,1105">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="StartWorkflow_1" sap:VirtualizedContainerService.HintSize="595,1229">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WorkflowService_1" sap:VirtualizedContainerService.HintSize="625,1299" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</WorkflowService>

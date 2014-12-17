@@ -1,0 +1,12 @@
+﻿@model Flow.Tasks.Web.Models.DashboardWorkflowFilterModel
+
+@Html.Hidden("savedWorkflowId", Model.WorkflowId)
+@Html.Hidden("savedCode", Model.Code)
+@Html.Hidden("savedDomain", Model.Domain)
+@Html.Hidden("savedIsActive", Model.IsActive)
+@Html.Hidden("savedStart", Model.Start)
+@Html.Hidden("savedEnd", Model.End)
+@Html.Hidden("savedPageSize", Model.PageSize)
+
+@Html.Hidden("actionId", Model.Actionid, new { @class = "action_id" })
+

@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Flow.Tasks.Service.FlowTasksService" CodeBehind="FlowTasksService.svc.cs" Factory="Ninject.Extensions.Wcf.NinjectServiceHostFactory"%>

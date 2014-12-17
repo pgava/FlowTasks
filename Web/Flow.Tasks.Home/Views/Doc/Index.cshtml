@@ -1,0 +1,136 @@
+﻿@{
+    ViewBag.Title = "FlowTasks - Documentation";
+    ViewBag.Keywords = "flowtasks,documentation";
+    ViewBag.Description = "Check the documentation to know more about FlowTasks";    
+}
+
+<div class="lightBoxBack" style="display:none;">
+</div>
+<div class="lightBoxContent" style="display:none;">
+    <div class="x">
+        X
+    </div>
+    <div class="vertAlignMiddle">
+        <div class="centreContent">
+        </div>
+        <iframe class="feature" src=""></iframe>
+    </div>
+</div>
+
+<div class="navbar navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="~/" class="navbar-brand">
+                    <div class="logo"></div>
+                </a>
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        @Html.ActionLink("Documentation", "Index", "Doc")
+                    </li>
+                    <li>
+                        @Html.ActionLink("Download", "Index", "Download")
+                    </li>
+                    <li>
+                        @Html.ActionLink("FAQ", "Index", "Faq")
+                    </li>
+                    <li>
+                        @Html.ActionLink("Contact", "Index", "Contact")
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="bs-docs-section  clearfix">
+            <div class="row">
+            <div class="col-lg-12">
+                <div class="page-header">
+                </div>
+                <div class="bs-example">
+                    <div class="">
+                        <h1 class="title">Documentation, tutorials and videos</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="bs-example">
+                        <div class="well">
+                            <h2>Installation</h2>
+                            <p>In this document <a href="http://www.codeplex.com/Download?ProjectName=flowtasks&DownloadId=644747">Installation Guide</a> you will find all the information you need
+                        to install FlowTasks from the source code.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="bs-example">
+                        <div class="well">
+                            <h2>Samples</h2>
+                            <p>Learn how to use FlowTasks with a simple demo application: <a href="http://www.codeplex.com/Download?ProjectName=flowtasks&DownloadId=503008">HR Application</a>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="bs-example">
+                        <div class="well">
+                            <h2>Developer's Guides</h2>
+                            <p>FlowTasks overview: <a href="http://www.codeplex.com/Download?ProjectName=flowtasks&DownloadId=644746">Developer's guide</a>.</p>
+                            <p>Learn how to create a task view: <a href="http://www.codeplex.com/Download?ProjectName=flowtasks&DownloadId=503005">How to create a task View</a>.</p>
+                            <p>Learn how to create a workflow: <a href="http://www.codeplex.com/Download?ProjectName=flowtasks&DownloadId=503007">How to create a workflow</a>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="bs-example">
+                        <div class="well">
+                            <h2>Sketch</h2>
+                            <p>Learn how to use Sketch to build your workflows: <a href="http://www.codeplex.com/Download?ProjectName=flowtasks&DownloadId=690605">FlowTasks Sketch Overview</a>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="bs-example">
+                        <div class="well">
+                            <h2>Videos</h2>
+                            <p>
+                                There are few videos you can watch that will help you to understand how to use FlowTasks.</p>
+
+                            <a href="javascript:playVideo('http://www.youtube.com/embed/4SkGzyzp5Po?rel=0&amp;autoplay=1');">TaskList</a>                            
+                            <br />    
+                            <a href="javascript:playVideo('http://www.youtube.com/embed/3p-Za_erE5Y?rel=0&amp;autoplay=1');">Dashboard</a>                            
+                            <br />    
+                            <a href="javascript:playVideo('http://www.youtube.com/embed/4D9SgGxKwwo?rel=0&amp;autoplay=1');">Reports</a>                            
+                            <br />    
+                            <a href="javascript:playVideo('http://www.youtube.com/embed/02LBhSjiVAQ?rel=0&amp;autoplay=1');">Sketch-1</a>                            
+                            <br />    
+                            <a href="javascript:playVideo('http://www.youtube.com/embed/lYNZCZqTGXM?rel=0&amp;autoplay=1');">Sketch-2</a>                            
+                            <br />    
+                            <a href="javascript:playVideo('http://www.youtube.com/embed/7U605qz-jIo?rel=0&amp;autoplay=1');">Topics</a>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@section scripts{
+    <script src="~/Scripts/video.js"></script>
+    <script src="~/Scripts/doc.js"></script>
+}

@@ -1,0 +1,26 @@
+﻿@model Flow.Tasks.View.Models.TaskModel
+@{
+    ViewBag.Title = "Demo Task View";
+
+    Html.Assets().Scripts.Add("../Scripts/task.action.js");
+}
+
+
+@Html.Partial("_HeaderPartial")
+
+@Html.Partial("_ViewDocPartial")
+
+@Html.Partial("_CommentsPartial")
+
+@using (Html.BeginForm("Index", "TaskList", new { area = "", controller = "TaskList" }, FormMethod.Post, new { id = "flowTasksTaskView" }))
+{
+    
+    <div id="taskCommand">
+        <input type="submit" name="completeTask" value="OK" class="roundBox"/>
+    </div>
+    
+    @Html.Partial("_TaskDataPartial")
+
+    @Html.Hidden("TaskAcceptFlag", "OK")
+
+}

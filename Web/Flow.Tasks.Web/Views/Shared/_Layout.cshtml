@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/columnLayout.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/style.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-2.1.1.min.js")" type="text/javascript"></script>
+
+</head>
+<body>
+    <div id="layoutLogic-ABC">
+        @Html.Hidden("MyURL", Url.Action("Index"))
+        <div id="header">
+            @Html.Partial("_LogOnPartial")
+            @Html.Partial("_NavigationBar")
+        </div>
+        <div class="page">
+            @RenderBody()
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="innerMargin">
+        </div>
+    </div>
+</body>
+</html>

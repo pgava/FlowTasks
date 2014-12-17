@@ -1,0 +1,123 @@
+﻿/* Page */
+html {
+    overflow: hidden;
+}
+
+.holiday-control {
+    padding: 0 20px;
+}
+/* Tabs */
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+    background: #e5e5e5;
+    border-radius: 0;
+    border: 1px solid #d9d6c4;
+}
+
+    .ui-state-hover a, .ui-widget-content .ui-state-hover a, .ui-widget-header .ui-state-hover a, .ui-state-active a, .ui-widget-content .ui-state-active a, .ui-widget-header .ui-state-active a {
+        color: #000;
+    }
+
+.ui-widget-content, .ui-widget-header {
+    border: none;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+    border-radius: 0;
+}
+
+.ui-widget-content {
+    background: #fff;
+}
+
+.ui-tabs .ui-tabs-panel {
+    padding: 0 20px 0 0;
+    border: 1px solid #d9d6c4;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+    margin-bottom: 0;
+}
+
+.ui-tabs .ui-tabs-nav {
+    padding: 0;
+}
+
+/* Calendar */
+.ui-datepicker, .ui-datepicker.ui-datepicker-multi {
+    width: 100% !important;
+}
+
+#holiday-calendar {
+    padding: 20px 0 5px 5px;
+}
+
+/* Other Tab */
+#tabs-other {
+    padding: 0 20px 20px 20px;
+}
+
+    #tabs-other h3 {
+        border-bottom: dashed 1px #ccc;
+        padding-bottom: 5px;
+    }
+
+    #tabs-other #searchUserTable .search-control {
+        margin-bottom: 20px;
+    }
+
+        #tabs-other #searchUserTable .search-control input {
+            padding: 3px;
+            border-radius: 3px;
+            border: solid 1px #999;
+        }
+
+    #tabs-other #searchUserTable #userTable {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    #tabs-other #searchUserTable #userTable tbody tr:hover {
+        cursor: pointer;
+    }
+    #tabs-other #searchUserTable #userTable tbody tr:hover td {
+        background: #e5e5e5;
+    }
+        #tabs-other #searchUserTable #userTable td, #tabs-other #searchUserTable #userTable th {
+            text-align: left;
+            border: solid 1px #ccc;
+padding: 5px;
+        }
+
+.jarviswidget {
+    margin: 0 0 30px;
+    position: relative;
+    -moz-border-radius: 0;
+    -khtml-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    padding: 0;
+}
+
+.jarviswidget-color-blueDark > header {
+    background: #2C3742 !important;
+    border-color: #2C3742!important;
+}
+
+.jarviswidget > header h2 {
+    height: 100%;
+    width: auto;
+    display: inline-block;
+    font-size: 14px;
+    position: relative;
+    margin: 0;
+    line-height: 34px;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.jarviswidget > header > h2 {
+    margin-left: 10px;
+    background: none;
+    color: #fff;
+    padding: 0;
+    border: 0;
+}

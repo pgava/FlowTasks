@@ -1,0 +1,113 @@
+﻿<fieldset>
+    <div class="row-line row">
+        <h3>General</h3>
+        <section id="user-avatar" class="col col-3 user-avatar"
+                 data-upload-control
+                 data-files-list="avatar.filesList"
+                 data-upload-url="avatar.postUrl"
+                 data-auto-upload="true"
+                 data-is-clear="avatar.isClear"
+                 data-defer="avatar.defer">
+            <img ng-src="{{currentUser.PhotoPath}}" alt="" />
+            <input type="hidden" id="photoPath" name="photoPath" ng-model="currentUser.PhotoPath" />
+            <div id="file-upload-control"></div>
+            <div class='dropzone fu-dropzone'></div>
+        </section>
+        <section class="col col-9">
+            <label class="label col col-2 lbtitle">Username</label>
+            <section class="col col-10">
+                <p class="form-control-static">{{currentUser.UserName}}</p>
+            </section>
+            <label class="label col col-2 lbtitle">Name</label>
+            <section class="col col-5">
+                <label class="input">
+                    <input type="text" class="form-control" name="firstname" placeholder="Firstname" ng-model="currentUser.FirstName">
+                </label>
+            </section>
+            <section class="col col-5">
+                <label class="input">
+                    <input type="text" class="form-control" name="lastname" placeholder="Lastname" ng-model="currentUser.LastName">
+                </label>
+            </section>
+        </section>
+    </div>
+    <div class="row-line">
+        <h3></h3>
+        <label class="label col col-xs-2 lbtitle">Birthday</label>
+        <section class="col col-sm-5 col-xs-10">
+            <label class="input">
+                <i class="icon-append fa fa-calendar"></i>
+                <input type="text" placeholder="Birthday" ng-model="currentUser.BirthdayStr" name="birthday" ng-readonly="true" max-year="{{maxBirthdateYear}}" default-date="1/1/2000" format="{{birthdayFormat}}" datepicker>
+            </label>
+        </section>
+        <div class="clearfix"></div>
+        <label class="label col col-xs-2 lbtitle">Gender</label>
+        <section class="col col-sm-5 col-xs-10">
+            <div class="inline-group">
+                <label class="radio">
+                    <input type="radio" name="gender" ng-model="currentUser.Gender" value="M"><i></i>Male</label>
+                <label class="radio">
+                    <input type="radio" name="gender" ng-model="currentUser.Gender" value="F"><i></i>Female</label>
+            </div>
+        </section>
+        <div class="clearfix"></div>
+        <label class="label col col-xs-2 lbtitle">Position</label>
+        <section class="col col-sm-5 col-xs-10">
+            <label class="input">
+                <i class="icon-append fa fa-globe"></i>
+                <input type="text" class="form-control" placeholder="Position" name="position" ng-model="currentUser.Position">
+            </label>
+        </section>
+        <div class="clearfix"></div>
+        <label class="label col col-xs-2 lbtitle">Department</label>
+        <section class="col col-sm-5 col-xs-10">
+            <label class="input">
+                <i class="icon-append fa fa-globe"></i>
+                <input type="text" class="form-control" placeholder="Department" name="department" ng-model="currentUser.Department">
+            </label>
+        </section>
+        <div class="clearfix"></div>
+        <label class="label col col-xs-2 lbtitle">Comment</label>
+        <section class="col col-sm-5 col-xs-10">
+            <label class="input">
+                <textarea class="form-control" name="comment" ng-model="currentUser.Note" rows="10"></textarea>
+            </label>
+        </section>
+        <div class="clearfix"></div>
+    </div>
+    <div class="row-line">
+        <h3>Contact</h3>
+        <label class="label col col-xs-2 lbtitle">Email</label>
+        <section class="col col-sm-5 col-xs-10">
+            <label class="input">
+                <i class="icon-append fa fa-envelope"></i>
+                <input type="email" class="form-control" placeholder="Email" name="email" ng-model="currentUser.Email">
+            </label>
+        </section>
+        <div class="clearfix"></div>
+        <label class="label col col-xs-2 lbtitle">Phone</label>
+        <section class="col col-sm-5 col-xs-10">
+            <label class="input">
+                <i class="icon-append fa fa-phone"></i>
+                <input type="text" class="form-control" placeholder="Phone" name="phone" ng-model="currentUser.Phone">
+            </label>
+        </section>
+
+    </div>
+</fieldset>
+<footer>
+    <div class="row-line" ng-show="saveInfoShowMessage">
+    <div class="alert alert-danger" ng-show="!saveInfoSuccessful">
+        <i class="fa-fw fa fa-times"></i>
+        <strong>Error!</strong> {{saveInfoMessage}}
+    </div>
+    <div class="alert alert-success" ng-show="saveInfoSuccessful">
+        <i class="fa-fw fa fa-check"></i>
+        <strong>Success</strong> {{saveInfoMessage}}
+    </div>
+</div>
+    <button class="btn btn-primary" type="submit" ng-disabled="onSubmitting">
+        Save
+    </button>
+    <div data-indicator="2" class="fa-2x" data-show="onSubmitting"></div>
+</footer>

@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{20E13AD7-3513-4E52-B6D2-E2A164ED53DB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Flow.Tasks.Contract</RootNamespace>
+    <AssemblyName>Flow.Tasks.Contract</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IFlowTasksControl.cs" />
+    <Compile Include="IFlowTasksProxyManager.cs" />
+    <Compile Include="IFlowTasksOperations.cs" />
+    <Compile Include="IFlowTasksService.cs" />
+    <Compile Include="Interface\IHoliday.cs" />
+    <Compile Include="Interface\ITask.cs" />
+    <Compile Include="Interface\ITopic.cs" />
+    <Compile Include="Interface\ITracer.cs" />
+    <Compile Include="Interface\IWorkflow.cs" />
+    <Compile Include="Message\ActionTrace.cs" />
+    <Compile Include="Message\AddTraceToWorkflow.cs" />
+    <Compile Include="Message\ApproveTask.cs" />
+    <Compile Include="Message\AssignTaskTo.cs" />
+    <Compile Include="Message\ControlWorkflow.cs" />
+    <Compile Include="Message\CompleteWorkflow.cs" />
+    <Compile Include="Message\CompleteTask.cs" />
+    <Compile Include="Message\AddWorkflow.cs" />
+    <Compile Include="Message\ApplyHoliday.cs" />
+    <Compile Include="Message\GetHolidayForUser.cs" />
+    <Compile Include="Message\GetStatsForUser.cs" />
+    <Compile Include="Message\GetTask.cs" />
+    <Compile Include="Message\HolidayInfo.cs" />
+    <Compile Include="Message\RemoveHoliday.cs" />
+    <Compile Include="Message\SearchForTopic.cs" />
+    <Compile Include="Message\SearchInfo.cs" />
+    <Compile Include="Message\GetTopicCount.cs" />
+    <Compile Include="Message\GetTaskCount.cs" />
+    <Compile Include="Message\RepliesShowType.cs" />
+    <Compile Include="Message\SearchForTasks.cs" />
+    <Compile Include="Message\GetRepliesForUser.cs" />
+    <Compile Include="Message\GetTopicsForUser.cs" />
+    <Compile Include="Message\CreateReply.cs" />
+    <Compile Include="Message\CreateTopic.cs" />
+    <Compile Include="Message\SearchWorkflow.cs" />
+    <Compile Include="Message\TopicAttachmentInfo.cs" />
+    <Compile Include="Message\TopicInfo.cs" />
+    <Compile Include="Message\TopicMessageInfo.cs" />
+    <Compile Include="Message\TopicStatusType.cs" />
+    <Compile Include="Message\UpdateHoliday.cs" />
+    <Compile Include="Message\UpdateWorkflowParameters.cs" />
+    <Compile Include="Message\GetSketchForFilter.cs" />
+    <Compile Include="Message\SketchInfo.cs" />
+    <Compile Include="Message\SketchStatusType.cs" />
+    <Compile Include="Message\SketchWorkflow.cs" />
+    <Compile Include="Message\ReportUserTaskCount.cs" />
+    <Compile Include="Message\ReportUserTaskCountInfo.cs" />
+    <Compile Include="Message\ReportWorkflowTime.cs" />
+    <Compile Include="Message\ReportTaskTime.cs" />
+    <Compile Include="Message\ReportUserTasks.cs" />
+    <Compile Include="Message\ReportWorkflowTimeInfo.cs" />
+    <Compile Include="Message\ReportTaskTimeInfo.cs" />
+    <Compile Include="Message\ReportUserTasksInfo.cs" />
+    <Compile Include="Message\TerminateWorkflow.cs" />
+    <Compile Include="Message\GetWorkflowParameters.cs" />
+    <Compile Include="Message\PropertyType.cs" />
+    <Compile Include="Message\WorkflowEvent.cs" />
+    <Compile Include="Message\CreateNotification.cs" />
+    <Compile Include="Message\NotificationInfo.cs" />
+    <Compile Include="Message\GetNextTasksForWorkflow.cs" />
+    <Compile Include="Message\GetExpiryDatetime.cs" />
+    <Compile Include="Message\GetExpiryTimeSpan.cs" />
+    <Compile Include="Message\GetWorkflow.cs" />
+    <Compile Include="Message\IsWorkflowInProgress.cs" />
+    <Compile Include="Message\GetWorkflowResult.cs" />
+    <Compile Include="Message\CreateWorkflow.cs" />
+    <Compile Include="Message\CreateTask.cs" />
+    <Compile Include="Message\GetWorkflowType.cs" />
+    <Compile Include="Message\GetHandOverUsersForTask.cs" />
+    <Compile Include="Message\GetNextTasksForUser.cs" />
+    <Compile Include="Message\GetPropertiesForTask.cs" />
+    <Compile Include="Message\GetTraceForWorkflow.cs" />
+    <Compile Include="Message\GetUsersForTask.cs" />
+    <Compile Include="Message\GetWorkflowChildren.cs" />
+    <Compile Include="Message\GiveBackTask.cs" />
+    <Compile Include="Message\HandOverTaskTo.cs" />
+    <Compile Include="Message\PropertyInfo.cs" />
+    <Compile Include="Message\ReStartWorkflow.cs" />
+    <Compile Include="Message\StartWorkflow.cs" />
+    <Compile Include="Message\TaskInfo.cs" />
+    <Compile Include="Message\TraceEventType.cs" />
+    <Compile Include="Message\WorkflowConfigurationInfo.cs" />
+    <Compile Include="Message\WorkflowInfo.cs" />
+    <Compile Include="Message\WorkflowResultInfo.cs" />
+    <Compile Include="Message\WorkflowStatusType.cs" />
+    <Compile Include="Message\WorkflowTraceInfo.cs" />
+    <Compile Include="Message\WorkflowTypeInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetFileName)" "$(ProjectDir)..\..\..\Demo\CommonLib"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

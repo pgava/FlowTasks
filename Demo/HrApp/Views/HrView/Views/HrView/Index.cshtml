@@ -1,0 +1,48 @@
+﻿@model Flow.Tasks.View.Models.TaskModel
+@{
+    ViewBag.Title = "HR Review";
+
+    Html.Assets().Styles.Add("../Content/hr.css");
+    Html.Assets().Scripts.Add("../Scripts/jquery.validate.min.js");
+    Html.Assets().Scripts.Add("../Scripts/HrView.js");
+    Html.Assets().Scripts.Add("../Scripts/task.action.js");
+
+}
+@Html.Partial("_HeaderPartial")
+@Html.Partial("_ViewDocPartial")
+@Html.Partial("_CommentsPartial")
+<br />
+<div class="error-container">
+    <ul>
+    </ul>
+</div>
+
+@using (Html.BeginForm("Index", "TaskList", new { area = "", controller = "TaskList" }, FormMethod.Post, new { id = "flowTasksTaskView" }))
+{
+    <div class="rowHr">
+        <h5>Name</h5>
+        <input id="TaskParameterCandidateName" name="TaskParameterCandidateName" type="text" />
+    </div>
+    <div class="rowHr">
+        <h5>Email</h5>
+        <input id="TaskParameterCandidateEmail" name="TaskParameterCandidateEmail" type="text" />
+    </div>
+    <div class="rowHr">
+        <h5>Job type</h5>
+        <select id="TaskParameterCandidateJobType" name="TaskParameterCandidateJobType">
+            <option value="developer">Developer</option>
+            <option value="administration">Administration</option>
+        </select>
+    </div>
+    <br />
+    <div id="taskCommand">
+        <input type="submit" name="completeTask" value="Hire" class="roundBox" />
+        <input type="submit" name="completeTask" value="Reject" class="roundBox" />
+    </div>
+
+    @Html.Partial("_TaskDataPartial")
+    @Html.Hidden("TaskAcceptFlag", "Hire") @*Comma separated values*@
+    @Html.Hidden("TaskRejectFlag", "Reject") @*Comma separated values*@
+
+}
+

@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico?v=4" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="@ViewBag.Description">
+    <meta name="author" content="SydneyShown">
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    @Html.Hidden("ImgDir", Url.Content("~/Images/"))
+    @RenderBody()
+
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

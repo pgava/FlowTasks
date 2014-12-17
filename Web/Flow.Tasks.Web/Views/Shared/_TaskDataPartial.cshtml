@@ -1,0 +1,39 @@
+﻿@model Flow.Tasks.View.Models.TaskModel           
+
+@Html.HiddenFor(m => m.Expires, Model.Expires)
+@Html.HiddenFor(m => m.Title, Model.Title)
+@Html.HiddenFor(m => m.Description, Model.Description)
+@Html.HiddenFor(m => m.UiCode, Model.UiCode)
+@Html.HiddenFor(m => m.TaskCode, Model.TaskCode)
+@Html.HiddenFor(m => m.TaskOid, Model.TaskOid)
+@Html.HiddenFor(m => m.WorkflowOid, Model.WorkflowOid)
+@Html.HiddenFor(m => m.TaskCorrelationId, Model.TaskCorrelationId)
+@Html.HiddenFor(m => m.IsAssigned, Model.IsAssigned)
+
+@Html.HiddenFor(m => m.Filter.DisplayMethod, Model.Filter.DisplayMethod)
+@Html.HiddenFor(m => m.Filter.Filter, Model.Filter.Filter)
+@Html.HiddenFor(m => m.Filter.OrderMethod, Model.Filter.OrderMethod)
+@Html.HiddenFor(m => m.Filter.Domain, Model.Filter.Domain)
+@Html.HiddenFor(m => m.Filter.CurrentPage, Model.Filter.CurrentPage)
+@Html.HiddenFor(m => m.Filter.FilteredPages, Model.Filter.FilteredPages)
+@Html.HiddenFor(m => m.Filter.TotalPages, Model.Filter.TotalPages)
+@Html.HiddenFor(m => m.Filter.MaxTasks, Model.Filter.MaxTasks)
+    
+@Html.HiddenFor(m => m.Comment.TaskComment, Model.Comment.TaskComment)
+@Html.HiddenFor(m => m.Comment.Status, Model.Comment.Status)
+
+@if (Model.Parameters != null)
+{
+    int count = 0;
+    string fmtId = "Parameters_{0}__{1}";
+    string fmtName = "Parameters[{0}].{1}";
+    
+    foreach (var p in Model.Parameters)
+    {
+        @Html.Hidden(string.Format(fmtName, count, "Name"), p.Name, new { @id = string.Format(fmtId, count, "Name") });
+        @Html.Hidden(string.Format(fmtName, count, "Value"), p.Value, new { @id = string.Format(fmtId, count, "Value") });
+        count++;
+    }
+}
+
+

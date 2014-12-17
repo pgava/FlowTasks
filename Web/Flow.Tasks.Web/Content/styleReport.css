@@ -1,0 +1,265 @@
+
+body
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 0.7em;
+}
+
+p
+{
+	margin-bottom: 5px;
+	line-height: 1.6em;
+}
+
+
+/* HEADINGS   
+----------------------------------------------------------*/
+
+h1, h2, h3, h4{
+    font-size: 1.5em;
+}
+
+h1 {
+    background-color: #F4F2E4;
+    border-bottom: 1px solid #9A8E51;
+    margin-bottom: 20px;
+}
+
+h2 {
+	background-color: #F4F2E4;
+    border-bottom: 1px solid #9A8E51;
+    display: inline;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5, h6 {
+    font-weight: bold;
+    padding:0px;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+/* Paragraph
+----------------------------------------------------------*/
+.blockBreak {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/* ==== CSS 3 ==============================*/
+
+.roundBox
+{
+	cursor: pointer;
+	border: 1px solid #a1a1a1;
+	padding: 2px 4px;
+	background: #FFFFFF;
+	width: 80px;
+	border-radius: 5px;
+	-moz-border-radius: 5px; /* Firefox 3.6 and earlier */
+}
+
+.linkBox
+{
+	cursor: pointer;
+	border: 0px;
+	padding: 2px 4px;
+	background: #FFFFFF;
+	color:Navy;
+	font-style:italic;
+}
+
+.linkBoxColor
+{
+	cursor: pointer;
+	border: 0px;
+	padding:2px;
+	/*padding: 2px 4px;*/
+	background: #FFFFFF;
+	color:Navy;
+}
+.linkBoxColor:hover
+{
+	cursor: pointer;
+	border: 0px;
+	padding:2px;
+	/*padding: 2px 4px;*/
+	background: #FFFFFF;
+	color:Black;
+	text-decoration: underline;	
+}
+
+/* =========================================
+
+Error
+
+========================================= */
+
+.validationError
+{
+	padding-left: 6px;
+	color: Red;
+}
+
+.error-container
+{
+	padding-left: 6px;
+	color: Red;
+}
+
+/* =========================================
+
+Header
+
+========================================= */
+
+#header
+{
+	background-color: #FBFAF4;
+	border-bottom: 1px solid #999999;
+	margin-bottom: 30px;
+}
+
+/* =========================================
+
+Login
+
+========================================= */
+
+#login
+{
+	margin-bottom: 10px;
+}
+
+.btnLogin
+{
+	display: inline-block;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none; /*font: 14px/100% Arial, Helvetica, sans-serif;*/
+	padding: .2em 1em .25em;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.btnLogin:hover
+{
+	text-decoration: none;
+}
+.btnLogin:active
+{
+	position: relative;
+	top: 1px;
+}
+
+.lblLogin
+{
+	float: left;
+	padding: 5px;
+	width: 90px;
+}
+
+.rowLogin
+{
+	padding: 5px;
+}
+
+
+/* ============== Datepicker ================= */
+
+.datePicker
+{
+	width:85px;
+}
+
+.ui-datepicker
+{
+	/*font-size: 62.5%;*/
+}
+
+
+/* ============== Reports ================= */
+
+#chart_userTasks {
+    padding-bottom:10px;
+    padding-top:10px;
+    border-bottom:dashed 1px black;
+}
+
+#chart_taskTime {
+    padding-bottom:10px;
+    padding-top:10px;
+    border-bottom:dashed 1px black;
+}
+
+#chart_workflowTime {
+    padding-bottom:10px;
+    padding-top:10px;
+    border-bottom:dashed 1px black;
+}
+
+/* HEADER   
+----------------------------------------------------------*/
+
+#header {
+    background-color: #FBFAF4;
+    border-bottom: 1px solid #999999;
+    margin-bottom: 30px;
+}
+
+.logo {
+    font-size: 2.0em;
+    background-image: url("../Images/logo.png");
+    height: 64px;
+    width: 200px;
+    float: left;
+}
+
+.menuSpace {
+    margin-left: 40px;
+}
+
+#headerMenu {
+    padding-left: 150px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+    #headerMenu a {
+        font-size: 1.3em;
+        font-weight: bold;
+        color: gray;
+        text-decoration: none;
+    }
+
+        #headerMenu a.menuSelected {
+            font-weight: bold;
+            color: Black;
+            text-decoration: none;
+        }
+
+        #headerMenu a:hover {
+            font-weight: bold;
+            color: #ef910d;
+            text-decoration: underline;
+        }
+
+        #headerMenu a.menuSelected:hover {
+            font-weight: bold;
+            color: Black;
+            text-decoration: none;
+        }

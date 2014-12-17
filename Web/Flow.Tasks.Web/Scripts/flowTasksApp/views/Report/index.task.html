@@ -1,0 +1,41 @@
+﻿<div id="searchWorkflow">
+    <form class="smart-form">
+        <div class="row">
+            <div class="col col-xs-6 col-md-2">
+                <label class="label">Starting from</label>
+                <label class="input">
+                    <i class="icon-append fa fa-calendar"></i>
+                    <input type="text" id="Start_TaskTime" class="datePicker" data-ng-model="startDate" data-datepicker data-format="{{ dateFormat }}" />
+                </label>
+            </div>
+            <div class="col col-xs-6 col-md-2">
+                <label class="label">till</label>
+                <label class="input">
+                    <i class="icon-append fa fa-calendar"></i>
+                    <input type="text" id="End_TaskTime" class="datePicker" data-ng-model="endDate" data-datepicker data-format="{{ dateFormat }}" />
+                </label>
+            </div>
+            <div class="col col-xs-4 col-md-3 line2">
+                <label class="label">Tasks</label>
+                <label class="input">
+                    <select id="Select_TaskTime" name="Select_TaskTime" multiple="multiple" data-ng-model="selectedTasksList" data-multiple-select="tasksList" data-non-selected-text="Select tasks below"></select>
+                </label>
+            </div>
+            <div class="col col-xs-4 col-md-3 line2">
+                <label class="label">Workflows</label>
+                <label class="input">
+                    <select id="Select_TaskWfTime" name="Select_TaskWfTime" multiple="multiple" data-ng-model="selectedWorkflowsList" data-multiple-select="workflowsList" data-non-selected-text="Select workflows below"></select>
+                </label>
+            </div>
+            <div class="col col-xs-4 col-md-2 line2">
+                <label class="label">Action</label>
+                <label class="input">
+                    <button type="button" name="refresh_TaskTime" id="refresh_TaskTime" value="Refresh" class="btn btn-primary" data-ng-click="refresh()">Refresh</button>
+                </label>
+            </div>
+        </div>
+    </form>
+</div>
+
+<br class="break" />
+<div id="chart_taskTime" data-google-chart data-chart="chartObject" style="height:400px; width:100%;"></div>

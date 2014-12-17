@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+	 xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
+  xmlns:sql="http://schemas.microsoft.com/wix/SqlExtension">
+
+  <Product Id="FA1B9338-B6F6-413e-B67F-86CA8BCED6E8"
+			 Name="FlowTasks"
+			 Language="1033"
+			 Version="1.0.5.0"
+			 Manufacturer="FlowTasks"
+			 UpgradeCode="E5C9F391-5787-4fd1-81E6-D1A4A91D226D">
+
+    <Package InstallerVersion="200" Compressed="yes" />
+
+    <Media Id="1" Cabinet="FlowTasks.cab" EmbedCab="yes" />
+
+    <!-- 
+			* Variables 
+		 -->
+    <!-- Configurable install location -->
+    <PropertyRef Id="NETFRAMEWORK45" />
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION" />
+
+    <Property Id="APPFABRIC">
+      <RegistrySearch Id="AppFabricRegistry" Type="raw" Root="HKLM" Key="SOFTWARE\Microsoft\AppFabric\v1.0" Name="ProductVersion" />
+    </Property>
+
+    <Property Id="APPFABRIC_64">
+      <RegistrySearch Id="AppFabricRegistry64" Type="raw" Root="HKLM" Key="SOFTWARE\Microsoft\AppFabric\v1.0" Name="ProductVersion" Win64="yes" />
+    </Property>
+
+    <Condition Message="Microsoft AppFabric was not found on this machine. Please install Microsoft AppFabric.">
+      <![CDATA[APPFABRIC <> "" or APPFABRIC_64 <> ""]]>
+    </Condition>
+
+    <Property Id="ASP_NET_MVC_4_0_DLL">
+      <DirectorySearch Id="MVC_DLL_DIR" Path="[ProgramFilesFolder]\Microsoft ASP.NET\ASP.NET MVC 4\Assemblies">
+        <FileSearch Id="MVC_DLL_FILE" Name="System.Web.Mvc.dll"/>
+      </DirectorySearch>
+    </Property>
+
+    <Condition Message="ASP.NET MVC 4.0 is required to proceed with the installation.">
+      <![CDATA[ASP_NET_MVC_4_0_DLL <> ""]]>
+    </Condition>
+
+    <!-- Creating directories -->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <!-- Install stuff into program files folder. -->
+      <Directory Id="ProgramFilesFolder">
+        <!-- In program files create folder with name MyWeb. -->
+        <Directory Id="INSTALLLOCATION" Name="FlowTasks">
+          <!-- This is the folder where the website content will be located -->
+          <Directory Id="FLOWTASKS" Name="FlowTasks">
+            <!-- This is the folder where the website content will be located -->
+            <Directory Id="FLOWTASKSWEB" Name="Web">
+
+              <Directory Id="WEB" Name="Web">
+                <!-- Continue in DirectoryRef with specific name -->
+              </Directory>
+
+              <Directory Id="DOCSSERVICE" Name="DocsService">
+                <!-- Continue in DirectoryRef with specific name -->
+              </Directory>
+
+              <Directory Id="TASKSSERVICE" Name="TasksService">
+                <!-- Continue in DirectoryRef with specific name -->
+              </Directory>
+
+              <Directory Id="USERSSERVICE" Name="UsersService">
+                <!-- Continue in DirectoryRef with specific name -->
+              </Directory>
+
+              <Directory Id="WORKFLOWS" Name="Workflows">
+                <!-- Continue in DirectoryRef with specific name -->
+              </Directory>
+
+            </Directory>
+
+            <!-- This is the folder where the SQL content will be located -->
+            <Directory Id="FLOWTASKSSQL" Name="SQL">
+              <!-- Continue in DirectoryRef with specific name -->
+            </Directory>
+
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+
+
+    <!-- Complete feature which will be installed. -->
+    <Feature Id="Complete"
+             Title="FlowTasks"
+             Level="1"
+             Display="expand"
+             ConfigurableDirectory="INSTALLLOCATION">
+
+      <!-- Main content of the Complete feature. -->
+      <Feature Id="MainContent"
+					 Title="Flowtasks Components"
+					 Description="FlowTasks installation"
+					 Level="1">
+
+        <!-- Include IIS Configuration. -->
+        <ComponentGroupRef Id="MyWebIssConfiguration" />
+
+        <!-- Include web content. -->
+        <ComponentGroupRef Id="MyWebWebComponents" />
+
+        <!-- Perform changes in the web.config file. -->
+        <ComponentRef Id="WebConfigCmpDocs" />
+
+        <!-- Perform changes in the web.config file. -->
+        <ComponentRef Id="WebConfigCmpTasks" />
+
+        <!-- Perform changes in the web.config file. -->
+        <ComponentRef Id="WebConfigCmpUsers" />
+
+        <!-- Perform changes in the web.config file. -->
+        <ComponentRef Id="WebConfigCmpWeb" />
+
+        <!-- Perform changes in the web.config file. -->
+        <ComponentRef Id="WebConfigCmpWorkflows" />
+      </Feature>
+
+      <Feature Id="Database"
+               Title="Database installation"
+               Description="Database installation"
+               Level="1">
+        <ComponentRef Id="CreateDatebases" /> 
+        <ComponentRef Id="RegKeyDatabase" />
+      </Feature>
+    </Feature>
+
+    <DirectoryRef Id="DOCSSERVICE">
+      <!-- Component handling the web.config -->
+      <Component Id="WebConfigCmpDocs" Guid="50E21982-EA05-481C-B1B5-990D64E7A01F">
+        <!-- Copy web.config to FLOWTASKS folder. -->
+        <File Id="WebConfigFileDocs" KeyPath="yes" Source="$(var.publishDir)\Configs\DocsService\Web.config" Vital="yes" />
+        <util:XmlFile Id="DocsDocsEntities"
+                   Action="setValue"
+                   Permanent="yes"
+                   ElementPath="/configuration/connectionStrings/add[\[]@name='FlowDocsEntities'[\]]"
+                   Name="connectionString"
+                   File="[#WebConfigFileDocs]"
+                   Value="[CONNECTION_STRING_FLOWDOCS]"
+                   SelectionLanguage="XSLPattern"
+                   Sequence="1" />
+        <util:XmlFile Id="DocsNetUploader"
+                 Action="setValue"
+                 Permanent="yes"
+                 ElementPath="/configuration/neatUpload/providers/add[\[]@name='dbUploader'[\]]"
+                 Name="connectionString"
+                 File="[#WebConfigFileDocs]"
+                 Value="[CONNECTION_STRING_FLOWDOCS]"
+                 SelectionLanguage="XSLPattern"
+                 Sequence="2" />
+
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="TASKSSERVICE">
+      <!-- Component handling the web.config -->
+      <Component Id="WebConfigCmpTasks" Guid="E698922A-E481-41DE-BBC8-2AB9C7683318">
+        <!-- Copy web.config to FLOWTASKS folder. -->
+        <File Id="WebConfigFileTasks" KeyPath="yes" Source="$(var.publishDir)\Configs\TasksService\Web.config" Vital="yes" />
+        <util:XmlFile Id="TasksDocsEntities"
+                   Action="setValue"
+                   Permanent="yes"
+                   ElementPath="/configuration/connectionStrings/add[\[]@name='FlowDocsEntities'[\]]"
+                   Name="connectionString"
+                   File="[#WebConfigFileTasks]"
+                   Value="[CONNECTION_STRING_FLOWDOCS]"
+                   SelectionLanguage="XSLPattern"
+                   Sequence="1" />
+        <util:XmlFile Id="TasksTasksEntities"
+                    Action="setValue"
+                    Permanent="yes"
+                    ElementPath="/configuration/connectionStrings/add[\[]@name='FlowTasksEntities'[\]]"
+                    Name="connectionString"
+                    File="[#WebConfigFileTasks]"
+                    Value="[CONNECTION_STRING_FLOWTASKS]"
+                    SelectionLanguage="XSLPattern"
+                    Sequence="2" />
+        <util:XmlFile Id="TasksUsersEntities"
+                    Action="setValue"
+                    Permanent="yes"
+                    ElementPath="/configuration/connectionStrings/add[\[]@name='FlowUsersEntities'[\]]"
+                    Name="connectionString"
+                    File="[#WebConfigFileTasks]"
+                    Value="[CONNECTION_STRING_FLOWUSERS]"
+                    SelectionLanguage="XSLPattern"
+                    Sequence="3" />
+        <util:XmlFile Id="TasksDocsNetUploader"
+                     Action="setValue"
+                     Permanent="yes"
+                     ElementPath="/configuration/neatUpload/providers/add[\[]@name='dbUploader'[\]]"
+                     Name="connectionString"
+                     File="[#WebConfigFileTasks]"
+                     Value="[CONNECTION_STRING_FLOWDOCS]"
+                     SelectionLanguage="XSLPattern"
+                     Sequence="4" />
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="USERSSERVICE">
+      <!-- Component handling the web.config -->
+      <Component Id="WebConfigCmpUsers" Guid="DB2952CA-F4A9-4569-BB8D-3E506D120FDC">
+        <!-- Copy web.config to FLOWTASKS folder. -->
+        <File Id="WebConfigFileUsers" KeyPath="yes" Source="$(var.publishDir)\Configs\UsersService\Web.config" Vital="yes" />
+        <util:XmlFile Id="UsersUsersEntities"
+                   Action="setValue"
+                   Permanent="yes"
+                   ElementPath="/configuration/connectionStrings/add[\[]@name='FlowUsersEntities'[\]]"
+                   Name="connectionString"
+                   File="[#WebConfigFileUsers]"
+                   Value="[CONNECTION_STRING_FLOWUSERS]"
+                   SelectionLanguage="XSLPattern"
+                   Sequence="1" />
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="WEB">
+      <!-- Component handling the web.config -->
+      <Component Id="WebConfigCmpWeb" Guid="26B7AC6A-8B46-49AE-87A8-9B9B4073EF9B">
+        <!-- Copy web.config to FLOWTASKS folder. -->
+        <File Id="WebConfigFileWeb" KeyPath="yes" Source="$(var.publishDir)\Configs\Web\Web.config" Vital="yes" />
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="WORKFLOWS">
+      <!-- Component handling the web.config -->
+      <Component Id="WebConfigCmpWorkflows" Guid="478B8067-16A8-4AB6-A76E-D4579D75F34B">
+        <!-- Copy web.config to FLOWTASKS folder. -->
+        <File Id="WebConfigFileWorkflows" KeyPath="yes" Source="$(var.publishDir)\Configs\Workflows\Web.config" Vital="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="FLOWTASKSSQL">
+      <!-- Component handling the web.config -->
+      <Component Id="CreateDatebases" Guid="A889FB2B-1792-4B2E-B660-A5E81E2E1A66">
+
+        <util:User Id="SQLUser" Name="[DATABASE_USER]" Password="[DATABASE_PWD]" />
+        <sql:SqlDatabase Id="SqlDatabaseDocs"
+          Database="[DATABASE_DOCS_NAME]"
+          Server="[DATABASE_SERVER]"
+          Instance="[DATABASE_INSTANCE]"
+          CreateOnInstall="yes"
+          DropOnUninstall="no"
+          User="SQLUser">
+          <sql:SqlScript Id="DocsScript" ExecuteOnInstall="yes" BinaryKey="DocsBinary" />
+        </sql:SqlDatabase>
+        <sql:SqlDatabase Id="SqlDatabaseTasks"
+          Database="[DATABASE_TASKS_NAME]"
+          Server="[DATABASE_SERVER]"
+          Instance="[DATABASE_INSTANCE]"
+          CreateOnInstall="yes"
+          DropOnUninstall="no"
+          User="SQLUser">
+          <sql:SqlScript Id="TasksScript" ExecuteOnInstall="yes" BinaryKey="TasksBinary" />
+        </sql:SqlDatabase>
+        <sql:SqlDatabase Id="SqlDatabaseUsers"
+          Database="[DATABASE_USERS_NAME]"
+          Server="[DATABASE_SERVER]"
+          Instance="[DATABASE_INSTANCE]"
+          CreateOnInstall="yes"
+          DropOnUninstall="no"
+          User="SQLUser">
+          <sql:SqlScript Id="UsersScript" ExecuteOnInstall="yes" BinaryKey="UsersBinary" />
+        </sql:SqlDatabase>
+        
+        <CreateFolder/>
+      
+      </Component>
+    
+      <Component Id="RegKeyDatabase" Guid="0192B277-8DBC-4CA2-A1C7-80AAD8FD646E">
+          <RegistryKey Root="HKCU" Key="Software\Microsoft\FlowTasks">
+              <RegistryValue Type="string" Name="DatabaseUser" Value="[DATABASE_USER]" />
+              <RegistryValue Type="string" Name="DatabasePwd" Value="[DATABASE_PWD]" />
+              <RegistryValue Type="string" Name="DatabaseServer" Value="[DATABASE_SERVER]" />
+              <RegistryValue Type="string" Name="DatabaseInstance" Value="[DATABASE_INSTANCE]" />
+              <RegistryValue Type="string" Name="DatabaseDocsName" Value="[DATABASE_DOCS_NAME]" />
+              <RegistryValue Type="string" Name="DatabaseTasksName" Value="[DATABASE_TASKS_NAME]" />
+              <RegistryValue Type="string" Name="DatabaseUsersName" Value="[DATABASE_USERS_NAME]" />
+          </RegistryKey>
+      </Component>
+
+    </DirectoryRef>
+
+    <!-- License and images -->
+    <WixVariable Id="WixUILicenseRtf" Value="$(var.MyWebResourceDir)\License.rtf" />
+
+    <!-- Specify UI -->
+    <UIRef Id="MyWebUI" />
+
+    <Binary Id="DocsBinary"  SourceFile="$(var.publishDir)\SQL\CreateDocs.sql" />
+    <Binary Id="TasksBinary"  SourceFile="$(var.publishDir)\SQL\CreateTasks.sql" />
+    <Binary Id="UsersBinary"  SourceFile="$(var.publishDir)\SQL\CreateUsers.sql" />
+
+  </Product>
+</Wix>

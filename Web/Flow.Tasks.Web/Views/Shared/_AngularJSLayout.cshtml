@@ -1,0 +1,48 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+
+<html ng-app="flowTasksApp" ng-controller="AppCtrl">
+<head>
+    <meta charset="utf-8">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+    
+    <title data-ng-bind="pageTitle.title"></title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <base href="/Flow.Tasks.Web/" />
+
+    <!-- Use the correct meta names below for your web application
+             Ref: http://davidbcalhoun.com/2010/viewport-metatag
+
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">-->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    @Styles.Render("~/Content/themes/smart/css/css")
+    <!-- Report css -->
+    @Styles.Render("~/Content/reportcss")
+    <!-- Sketch Css -->
+    @Styles.Render("~/Content/sketchcss")
+
+    <link rel="stylesheet" type="text/css" media="screen" href="@Url.Content("~/Content/themes/smart/css/font-awesome.min.css")">
+
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" href="@Url.Content("~/Content/themes/smart/img/favicon/favicon.ico?v=2")" type="image/x-icon">
+    <link rel="icon" href="@Url.Content("~/Content/themes/smart/img/favicon/favicon.ico?v=2")" type="image/x-icon">
+
+    <!-- GOOGLE FONT -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+
+
+</head>
+<body class="smart-style-2" data-my-alert-container data-resize data-browser-version data-hide-menu960 data-special-page data-show-hide-main-content>
+
+    <div data-indicator="1" class="fa-2x" data-show="true"></div>
+
+    @RenderBody()
+
+
+    @RenderSection("scripts", false)
+</body>
+</html>

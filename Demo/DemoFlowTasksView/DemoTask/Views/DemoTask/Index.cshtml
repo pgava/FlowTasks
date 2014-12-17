@@ -1,0 +1,17 @@
+﻿@model Flow.Tasks.View.Models.TaskModel
+@{
+    ViewBag.Title = "Demo Task View";
+
+    Html.Assets().Scripts.Add("../Scripts/task.action.js");
+    
+}
+
+
+@Html.Partial("_HeaderPartial")
+
+<div class="demoTask">
+    This is the demo View. Here you can add everything you need for the user.
+<div>
+
+
+@Html.Partial("_CommandsPartial")

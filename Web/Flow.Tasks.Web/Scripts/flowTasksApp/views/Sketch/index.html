@@ -1,0 +1,254 @@
+﻿<div ng-controller="SketchCtrl" data-load-sketch data-clear-old-data>
+    <div class="pre-loading" style="display: block;">
+        <div data-indicator="0" class="fa-2x" data-show="true"></div>
+        <span class="preloadertext">Loading...</span>
+    </div>
+    <div id="content" class="fadeWhenChange" style="display: none;">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-pencil-square-o"></i>Sketch</h1>
+            </div>
+        </div>
+        <!--<div data-view-port-resize data-ng-if="hasWorkflow"></div>-->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="tools">
+                    <div class="widget-body">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                Workflows: <input id="workflows" type="text" onkeydown="return handlePressKey(event)" maxlength="75" onkeypress="return restrictCharacter(event)" onpaste="return false;" />
+                                <button onclick="return handleLoad();" id="loadSketch" class="btn btn-primary btn-sketch">Select</button>
+                                <button onclick="return handleNew();" id="newSketch" class="btn btn-primary btn-sketch">New</button>
+                            </div>
+                            <div class="col-xs-4">
+                                <div id="workflow-name">workflow name</div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div id="save" style="float: right; display: none">
+                                    <button onclick="return handleSave();" id="saveSketch" class="btn btn-primary btn-sketch">Save</button>
+                                    <button onclick="return handleDeploy();" id="deploySketch" class="btn btn-primary btn-sketch">Deploy</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div id="flowchartjs" class="sketch-container">
+                <div class="col-xs-3">
+                    <div id="toolbars">
+                        <div class="jarviswidget" id="device-tools">
+                            <header role="heading">
+                                <span class="widget-icon"> <i class="fa fa-gears"></i> </span>
+                                <h2>Action</h2>
+                            </header>
+                            <div role="content">
+                                <div class="widget-body" id="device-toolbox">
+                                    <button class="btn btn-danger btn-block hidden" id="btnDelete" data-name="delete" onclick="fnDelete();"><i class="fa fa-times"></i> Delete</button>
+                                    <button class="btn btn-primary btn-block hidden" id="btnStartConnecting" data-name="connect" onclick="fnStartConnecting();"><i class="fa fa-plug"></i> Start Connecting</button>
+                                    <button class="btn btn-warning btn-block hidden" id="btnCancelConnecting" data-name="deconnect" onclick="fnCancelConnecting();"><i class="fa fa-plug"></i> Cancel Connecting</button>
+                                </div>
+                                <section id="nodes-section" class="hidden">
+                                    <form class="smart-form">
+                                        <header>From Node</header>
+                                        <fieldset>
+                                            <div class="row">
+                                                <section class="col col-xs-12 hidden">
+                                                    <label class="select">
+                                                        <select id="decision-nodes-from" data-name="decision" data-direction="from"></select> <i></i>
+                                                    </label>
+                                                </section>
+                                                <section id="nodes-from-direction" class="col col-xs-12 hidden">
+                                                    <label class="select">
+                                                        <select>
+                                                            <option value="top" selected="selected">Top</option>
+                                                            <option value="right">Right</option>
+                                                            <option value="bottom">Bottom</option>
+                                                            <option value="left">Left</option>
+                                                        </select> <i></i>
+                                                    </label>
+                                                </section>
+                                                <section id="nodes-from-direction-node" class="col col-xs-12 hidden">
+                                                    <label class="select">
+                                                        <select>
+                                                            <option value="1" selected="selected">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                        </select> <i></i>
+                                                    </label>
+                                                </section>
+                                            </div>
+                                        </fieldset>
+                                        <header>To Node</header>
+                                        <fieldset>
+                                            <div class="row">
+                                                <section id="nodes-to-direction" class="col col-xs-12 hidden">
+                                                    <label class="select">
+                                                        <select>
+                                                            <option value="top" selected="selected">Top</option>
+                                                            <option value="right">Right</option>
+                                                            <option value="bottom">Bottom</option>
+                                                            <option value="left">Left</option>
+                                                        </select> <i></i>
+                                                    </label>
+                                                </section>
+                                                <section id="nodes-to-direction-node" class="col col-xs-12 hidden">
+                                                    <label class="select">
+                                                        <select>
+                                                            <option value="1" selected="selected">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                        </select> <i></i>
+                                                    </label>
+                                                </section>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </section>
+                            </div>
+                        </div>
+
+                        <div class="jarviswidget">
+                            <header role="heading">
+                                <span class="widget-icon"> <i class="fa fa-gears"></i> </span>
+                                <h2>Toolbox</h2>
+                            </header>
+                            <div role="content">
+                                <div class="widget-body no-padding" id="toolbox">
+                                    <form novalidate class="smart-form">
+                                        <section id="flowchart">
+                                            <header>Flowchart</header>
+                                            <ul class="flowchart">
+                                                <li id="decision">
+                                                    <img width="15" src="Images/decision-icon.png" />
+                                                    <span>FlowDecision</span>
+                                                </li>
+                                                <li id="switch">
+                                                    <img width="15" src="Images/switch-icon.png" />
+                                                    <span>FlowSwitch</span>
+                                                </li>
+                                            </ul>
+                                        </section>
+                                        <section id="flowtask">
+                                            <header>FlowTasks</header>
+                                            <ul class="flowtask" style="display: none;">
+                                                <li id="generic">
+                                                    <img width="15" src="Images/generic-icon.png" />
+                                                    <span>Generic</span>
+                                                </li>
+                                                <li id="approve">
+                                                    <img width="15" src="Images/approve-icon.png" />
+                                                    <span>Approve</span>
+                                                </li>
+                                            </ul>
+                                        </section>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="jarviswidget">
+                            <header role="heading">
+                                <span class="widget-icon"> <i class="fa fa-reorder "></i> </span>
+                                <h2>Variables</h2>
+                            </header>
+                            <div role="content">
+                                <div class="widget-body no-padding" id="variables">
+                                    <form novalidate class="smart-form">
+                                        <header>Flowchart</header>
+                                        <section id="addvariables">
+                                            <div class="title btn btn-xs btn-primary">Add Variables</div>
+                                            <div class="scroll" style="overflow: auto">
+                                                <ul class="variables"></ul>
+                                            </div>
+                                        </section>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-9">
+                    <div id="chart">
+                        <!-- viewport -->
+                        <div id="viewport"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- popup content-->
+        <div id="popup-modal" title="Properties">
+            <div class="properties">
+                <table class="table-properties">
+                    <tr>
+                        <td class="label">Condition</td>
+                        <td class="value"></td>
+                    </tr>
+                    <tr>
+                        <td class="label">Name</td>
+                        <td class="value">
+                            <div id="name-properties">
+                                <input type="text" id="name" maxlength="30" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">Description</td>
+                        <td class="value">
+                            <div id="decsription-properties">
+                                <input type="text" id="description" maxlength="150" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- popup variable -->
+        <div id="popup-variable-modal" title="Add Avariable">
+            <div class="variable">
+                <table class="table-variable">
+                    <thead>
+                        <tr>
+                            <th class="var-name">Name</th>
+                            <th class="var-type">Variable Type</th>
+                            <th class="var-value">Default</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="var-name">
+                                <input id="var-name" type="text" value="Res" maxlength="20" />
+                            </td>
+                            <td class="var-type">
+                                <select id="var-type" style="width: 99%; padding: 1px;"></select>
+                            </td>
+                            <td class="var-value">
+                                <input id="var-value" type="text" value="Flowchart" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="confirm-popup-modal">
+            <div class="message">
+                Do you want to save this workflow?
+            </div>
+        </div>
+
+        <div class="clear">
+        </div>
+
+        <div id="footer">
+            <div class="innerMargin">
+            </div>
+        </div>
+
+        <div class="modal2"></div>
+
+    </div>
+</div>

@@ -1,0 +1,62 @@
+﻿@model Flow.Tasks.View.Models.TaskModel
+@{
+    ViewBag.Title = "Dev Workflow";
+
+    Html.Assets().Styles.Add("../Content/sketchview.css");
+    Html.Assets().Styles.Add("../Content/cluetip/jquery.cluetip.css");
+    Html.Assets().Scripts.Add("../Scripts/jquery.validate.min.js");
+    Html.Assets().Scripts.Add("../Scripts/sketchdevview.js");
+    Html.Assets().Scripts.Add("../Scripts/cluetip/jquery.cluetip.js");
+    <!-- Send data back to app -->
+    Html.Assets().Scripts.Add("../Scripts/task.action.js");
+}
+
+@Html.Partial("_HeaderPartial")
+@Html.Partial("_ViewDocPartial")
+@Html.Partial("_CommentsPartial")
+<div class="overlay">
+   @* <img class="loading" src="@Url.Content("~/Content/themes/smart/img/ie-preloader.GIF")" />*@
+</div>
+<div class="error-container wfrow">
+    <ul>
+    </ul>
+</div>
+
+@using (Html.BeginForm("UploadFile", "SketchDevView", FormMethod.Post, new { id = "flowTasksTaskView", enctype = "multipart/form-data", area = "SketchDevView", controller = "SketchDevView" }))
+{
+    <div class="workflowfilename wfrow">
+        <label for="file">Workflow file name</label>
+        <input type="file" name="workflowFile" id="workflowFile" />
+    </div>
+    
+    <div class="wfrow">
+        <h5>Workflow Code</h5>
+        <input id="TaskParameterSketchWorkflowCode" name="TaskParameterSketchWorkflowCode" type="text" class="form-control" value="@Model.GetPropertyValueFromName("SketchWorkflowCode")" />
+    </div>
+
+    <div class="wfrow">
+        <h5>Url <a class="urlHelp" href="#" title="Url|This is the root URL (without the xamlx file name) where the service will be installed"><span class="help-question"></span></a></h5>
+        <input id="TaskParameterSketchWorkflowUrl" name="TaskParameterSketchWorkflowUrl" type="text" class="sketchTextBox form-control" value="@Model.GetPropertyValueFromName("SketchWorkflowUrl")"/>
+
+    </div>
+    
+    
+    <div class="wfrow">
+        <h5>Path <a class="pathHelp" href="#" title="Path|This is the server path where the xamlx file will be copied"><span class="help-question"></span></a></h5>
+        <input id="TaskParameterSketchWorkflowPath" name="TaskParameterSketchWorkflowPath" type="text" class="sketchTextBox form-control" value="@Model.GetPropertyValueFromName("SketchWorkflowPath")"/>
+    </div>
+        
+    
+    <div id="taskCommand">
+        <input type="submit" name="completeTask" value="Deploy" class="roundBox btn" />
+        <input type="submit" name="completeTask" value="Send Back" class="unvalidate cancel roundBox btn" />
+        @*<input type="submit" name="completeTask" value="Back" class="cancel roundBox identRight btn" />*@
+    </div>
+
+    @Html.Partial("_TaskDataPartial")
+    @Html.Hidden("TaskAcceptFlag", "Deploy") @*Comma separated values*@
+    @Html.Hidden("TaskRejectFlag", "Send Back") @*Comma separated values*@
+    
+    
+}
+

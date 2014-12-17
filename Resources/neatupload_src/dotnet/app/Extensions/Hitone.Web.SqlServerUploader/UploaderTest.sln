@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UploaderTest", "UploaderTest.csproj", "{7B9F7543-0784-41E9-9F9E-F6814F0C1D52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brettle.Web.NeatUpload", "..\..\..\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.csproj", "{8C57C0B1-A668-4CDD-BE3B-54B15175BEC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hitone.Web.SqlServerUploader", "..\..\..\src\Extensions\Hitone.Web.SqlServerUploader\Hitone.Web.SqlServerUploader.csproj", "{D312FA63-ACC3-4C2B-9479-5ACF78F0154E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B9F7543-0784-41E9-9F9E-F6814F0C1D52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B9F7543-0784-41E9-9F9E-F6814F0C1D52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B9F7543-0784-41E9-9F9E-F6814F0C1D52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B9F7543-0784-41E9-9F9E-F6814F0C1D52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C57C0B1-A668-4CDD-BE3B-54B15175BEC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C57C0B1-A668-4CDD-BE3B-54B15175BEC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C57C0B1-A668-4CDD-BE3B-54B15175BEC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C57C0B1-A668-4CDD-BE3B-54B15175BEC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D312FA63-ACC3-4C2B-9479-5ACF78F0154E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D312FA63-ACC3-4C2B-9479-5ACF78F0154E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D312FA63-ACC3-4C2B-9479-5ACF78F0154E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D312FA63-ACC3-4C2B-9479-5ACF78F0154E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

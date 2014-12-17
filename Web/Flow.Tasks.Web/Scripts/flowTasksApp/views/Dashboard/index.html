@@ -1,0 +1,85 @@
+﻿<section ng-controller="DashboardCtrl" class="workflow-page">
+    <div class="pre-loading">
+        <div data-indicator="0" class="fa-2x" data-show="true"></div>
+        <span class="preloadertext">Loading...</span>
+    </div>
+
+    <div id="content" class="fadeWhenChange">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-table"></i>{{dashboard.workflow.onViewDetail?'Workflow Detail':'Dashboard'}}</h1>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-xs-12" ng-show="!dashboard.workflow.onViewDetail">
+                <div data-dashboard-filter></div>
+                <div class="jarviswidget jarviswidget-color-blueDark margin-bottom-0">
+                    <header>
+                        <div class="workflow-loading">
+                            <div data-indicator="7" class="fa-2x" data-show="dashboard.workflow.onLoading || dashboard.workflow.onAction"></div>
+                        </div>
+                        <span class="widget-icon"><i class="fa fa-table"></i></span>
+                        <h2>Workflow(s) </h2>
+                    </header>
+                </div>
+                <div>
+                    <div class="widget-body workflowtable-wrapper">
+                        <div class="overlay" ng-show="dashboard.workflow.onLoading || dashboard.workflow.onAction"></div>
+                        <div class="workflow-control" data-dashboard-workflow-control></div>
+                        <div class="clearfix"></div>
+                        <div class="alert alert-success no-margin" ng-show="dashboard.workflow.showMessage && !dashboard.workflow.hasErrors && !dashboard.workflow.hasWarning">
+                            <i class="fa-fw fa fa-check"></i> {{ dashboard.workflow.message }}
+
+                        </div>
+                        <div class="alert alert-danger no-margin" ng-show="dashboard.workflow.showMessage && dashboard.workflow.hasErrors && !dashboard.workflow.hasWarning && !dashboard.workflow.messages.length">
+                            <i class="fa-fw fa fa-times"></i> {{ dashboard.workflow.message }}
+                        </div>
+                        <div class="alert alert-danger no-margin" ng-show="dashboard.workflow.showMessage && dashboard.workflow.hasErrors && !dashboard.workflow.hasWarning && dashboard.workflow.messages.length">
+                            <div ng-repeat="err in dashboard.workflow.messages"><i class="fa-fw fa fa-times"></i> <b>{{ err.id }}:</b> {{ err.message }}</div>
+                        </div>
+                        <div class="alert alert-warning no-margin" ng-show="dashboard.workflow.showMessage && dashboard.workflow.hasWarning">
+                            <i class="fa-fw fa fa-warning"></i> {{ dashboard.workflow.message }}
+                        </div>
+                        <div class="table-responsive">
+                            <table id="datatable_fixed_column" class="table table-striped table-bordered smart-form workflowtable">
+                                <thead>
+                                    <tr>
+                                        <th class="workflow-select-header">Select</th>
+                                        <th>Code</th>
+                                        <th>Status</th>
+                                        <th>Workflow Id</th>
+                                        <th>Started On</th>
+                                        <th>Completed On</th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-switch="isExpanded(fl)" ng-class-odd="odd" ng-class-even="even" ng-repeat="fl in dashboard.workflow.data | filter:dashboard.workflow.dataFilter">
+                                    <tr class="parent-tr workflow-tr" ng-class="{'expanded-child':isExpanded(fl),'selected-wf':isSelected(fl)}" data-workflow-row></tr>
+                                    <tr ng-switch-when="true" data-workflow-child></tr>
+                                </tbody>
+                                <tbody ng-show="!dashboard.workflow.data.length">
+                                    <tr class="workflow-nodata">
+                                        <td colspan="6">No workflows was found</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row margin-top-10">
+                            <div class="col-sm-12 text-right">
+                                <div class="dataTables_paginate paging_bootstrap_full">
+                                    <paginate paginate-pages='{{dashboard.workflow.total}}' current-page='dashboard.workflow.pageIndex' control="dashboard.workflow.pageControl"></paginate>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="workflow-control" data-dashboard-workflow-control></div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12" ng-if="dashboard.workflow.onViewDetail" data-dashboard-workflow-details>
+            </div>
+        </div>
+
+    </div>
+</section>

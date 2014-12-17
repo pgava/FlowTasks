@@ -1,0 +1,30 @@
+﻿<td colspan="6">
+    <div class="table-responsive child-table">
+        <table class="table table-striped table-bordered smart-form workflowtable">
+            <thead>
+                <tr>
+                    <th class="workflow-select-header">Select</th>
+                    <th>Code</th>
+                    <th>Status</th>
+                    <th>Workflow Id</th>
+                    <th>Started On</th>
+                    <th>Completed On</th>
+                </tr>
+            </thead>
+            <tbody ng-class-odd="odd" ng-class-even="even" ng-repeat="flc in getWorkflowChild(fl.wfid)">
+                <tr class="workflow-tr" ng-class="{'selected\-wf':isSelected(flc)}">
+                    <td class="tbcheckbox">
+                        <label class="checkbox">
+                            <input type="checkbox" name="checkbox-inline" ng-checked="isSelected(flc)" data-select-workflow="selectWorkflow(flc,selected)"><i></i>
+                        </label>
+                    </td>
+                    <td ng-click="viewWorkflowDetail(flc)">{{flc.code}}</td>
+                    <td ng-click="viewWorkflowDetail(flc)">{{flc.status}}</td>
+                    <td ng-click="viewWorkflowDetail(flc)">{{flc.wfid}}</td>
+                    <td ng-click="viewWorkflowDetail(flc)">{{flc.start}}</td>
+                    <td ng-click="viewWorkflowDetail(flc)">{{flc.end}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</td>

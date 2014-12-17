@@ -1,0 +1,20 @@
+﻿@using Flow.Tasks.View
+@model Flow.Tasks.View.Models.TaskModel
+
+@{
+    Html.Assets().Styles.Add("../Content/cluetip/jquery.cluetip.css");
+
+    Html.Assets().Scripts.Add("../Scripts/TaskList/commentImpl.js");
+    Html.Assets().Scripts.Add("../Scripts/TaskList/comments.js");
+    Html.Assets().Scripts.Add("../Scripts/cluetip/jquery.cluetip.js");
+    Html.Assets().Scripts.Add("../Scripts/json/json2.js");
+}
+
+<div class="comment wfrow">
+    <p>Add your comment in the text box below. It will be automatically saved when you complete the task.</p>
+    <textarea cols="60" rows="2" class="taskComment form-control"></textarea>
+</div>
+@*<div id="comments"></div>
+<div id="no_comments" style="display:none;">
+    <p>There are no comments yet.</p>
+</div>*@

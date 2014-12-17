@@ -1,0 +1,5 @@
+﻿@model Flow.Tasks.View.Models.TaskModel           
+@using (Html.BeginForm("TaskSelect", "TaskList", FormMethod.Post, new { id = "RedirectToTask" }))
+{
+    @Html.Partial("_TaskHiddenValues")
+}

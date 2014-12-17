@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+	<!-- +++++++++++++++++++++++++++ VIRTUAL_DIR_VAL property initialize +++++++++++++++++++++++++++ -->
+	<Property Id="VIRTUAL_DIR_VAL_WEB" Value="Flow.Tasks.Web" />
+  <Property Id="VIRTUAL_DIR_VAL_WORKFLOWS" Value="Flow.Tasks.Workflows" />
+  <Property Id="VIRTUAL_DIR_VAL_FLOWTASKS" Value="Flow.Tasks.Service" />
+  <Property Id="VIRTUAL_DIR_VAL_FLOWUSERS" Value="Flow.Users.Service" />
+  <Property Id="VIRTUAL_DIR_VAL_FLOWDOCS" Value="Flow.Docs.Service" />
+
+  <!-- +++++++++++++++++++++++++++ web app name properties initialize +++++++++++++++++++++++++++ -->
+	<Property Id="WEB_APP_NAME" Value="FlowTasks" />
+
+  <!-- +++++++++++++++++++++++++++ datebase properties initialize +++++++++++++++++++++++++++ -->
+  <Property Id="DATABASE_USER" Value="SQL User">
+    <RegistrySearch Id="database_user_id" Type="raw" Root="HKCU" Key="SOFTWARE\Microsoft\FlowTasks" Name="DatabaseUser" />
+  </Property>
+    
+  <Property Id="DATABASE_PWD" Value="pwd">
+    <RegistrySearch Id="database_pwd_id" Type="raw" Root="HKCU" Key="SOFTWARE\Microsoft\FlowTasks" Name="DatabasePwd" />
+  </Property>
+
+  <Property Id="DATABASE_SERVER" Value=".">
+    <RegistrySearch Id="database_server_id" Type="raw" Root="HKCU" Key="SOFTWARE\Microsoft\FlowTasks" Name="DatabaseServer" />
+  </Property>
+
+  <Property Id="DATABASE_INSTANCE" Value="SQLEXPRESS">
+    <RegistrySearch Id="database_instance_id" Type="raw" Root="HKCU" Key="SOFTWARE\Microsoft\FlowTasks" Name="DatabaseInstance" />
+  </Property>
+
+  <Property Id="DATABASE_DOCS_NAME" Value="FlowDocs">
+    <RegistrySearch Id="database_docs_name_id" Type="raw" Root="HKCU" Key="SOFTWARE\Microsoft\FlowTasks" Name="DatabaseDocsName" />
+  </Property>
+
+  <Property Id="DATABASE_TASKS_NAME" Value="FlowTasks">
+    <RegistrySearch Id="database_tasks_name_id" Type="raw" Root="HKCU" Key="SOFTWARE\Microsoft\FlowTasks" Name="DatabaseTasksName" />
+  </Property>
+
+  <Property Id="DATABASE_USERS_NAME" Value="FlowUsers">
+    <RegistrySearch Id="database_users_name_id" Type="raw" Root="HKCU" Key="SOFTWARE\Microsoft\FlowTasks" Name="DatabaseUsersName" />
+  </Property>
+
+  <!-- +++++++++++++++++++++++++++ Connection String +++++++++++++++++++++++++++ -->
+	<Property Id="CONNECTION_STRING_FLOWTASKS" Value="data source=|SERVER|;Database=|Database name|;UID=|LOGIN|;Password=|PASSWORD|" />
+  <Property Id="CONNECTION_STRING_FLOWUSERS" Value="data source=|SERVER|;Database=|Database name|;UID=|LOGIN|;Password=|PASSWORD|" />
+  <Property Id="CONNECTION_STRING_FLOWDOCS" Value="data source=|SERVER|;Database=|Database name|;UID=|LOGIN|;Password=|PASSWORD|" />
+
+</Include>

@@ -1,0 +1,23 @@
+﻿<section ng-controller="ReportCtrl" data-load-report>
+    <div class="pre-loading" style="display: block;">
+        <div data-indicator="0" class="fa-2x" data-show="true"></div>
+        <span class="preloadertext">Loading...</span>
+    </div>
+    <div id="content" class="fadeWhenChange" style="display: none;">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-bar-chart-o"></i>Report</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <section data-report-user-tasks></section>
+                <section data-report-user-task-count></section>
+                <section data-report-task></section>
+                <section data-report-workflow></section>
+            </div>
+        </div>
+        
+    </div>
+</section>

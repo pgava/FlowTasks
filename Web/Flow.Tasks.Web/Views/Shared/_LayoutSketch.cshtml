@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Sketch JS</title>
+    <link href="@Url.Content("~/Content/columnLayoutSketch.css")" rel="stylesheet" type="text/css" />
+    <!--<link href="@Url.Content("~/Content/cluetip/jquery.cluetip.css")" rel="stylesheet" type="text/css" />-->
+    <!--<link href="@Url.Content("~/Scripts/jqgrid/css/ui.jqgrid.css")" rel="stylesheet" type="text/css" />-->
+    <link href="@Url.Content("~/Content/themes/base/jquery.ui.all.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/styleSketch.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/jquery.ui.dialog.css")" rel="stylesheet" type="text/css" />   
+
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Sketch/jquery-ui.touch-punch.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/ui/jquery.ui.draggable.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/ui/jquery.ui.autocomplete.js")" type="text/javascript"></script>
+    
+    <script src="@Url.Content("~/Scripts/Common/navigationBar.js")" type="text/javascript"></script>    
+    <script src="@Url.Content("~/Scripts/Sketch/sketch.js")" type="text/javascript"></script>    
+
+</head>
+<body>
+    <div id="layoutLogic-ABC">
+        @Html.Hidden("MyURL", Url.Action("Index"))
+        @*<div id="header">
+            @Html.Partial("_LogOnPartial")
+            @Html.Partial("_NavigationBar")
+        </div>*@
+        <div class="page">
+            @RenderBody()
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="innerMargin">
+        </div>
+    </div>
+    @*ajax *@
+    <div class="modal"></div>
+
+</body>
+</html>

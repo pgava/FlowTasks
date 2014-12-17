@@ -1,0 +1,26 @@
+﻿<section ng-controller="HomeCtrl">
+    <div class="pre-loading" style="display:block;">
+        <div data-indicator="0" class="fa-2x" data-show="true"></div> <span class="preloadertext">Loading...</span>
+    </div>
+    <!-- MAIN CONTENT -->
+    <div id="content" class="fadeWhenChange" style="display:none;">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-home"></i>Home</h1>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                <ul id="sparks" class="" data-user-stats>
+                    <li class="sparks-info" data-task-completed-count></li>
+                    <li class="sparks-info" data-task-to-do-count></li>
+                    <li class="sparks-info" data-following-count></li>
+                    <li class="sparks-info" data-follower-count></li>
+                </ul>
+            </div>
+        </div>
+        <div ng-controller="TopicCtrl">
+            <topic-list></topic-list>
+            <!--<ng-include src="'scripts/app/views/topic/index.html'"></ng-include>-->
+        </div>
+    </div>
+    <!-- END MAIN CONTENT -->
+</section>

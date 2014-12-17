@@ -1,0 +1,93 @@
+﻿<WorkflowService mc:Ignorable="sads sap sap2010" mva:VisualBasic.Settings="{x:Null}" ConfigurationName="SampleWf2" sap2010:WorkflowViewState.IdRef="WorkflowService_1" Name="SampleWf2"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel"
+ xmlns:ftwa="clr-namespace:Flow.Tasks.Workflow.Activities;assembly=Flow.Tasks.Workflow"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mv="clr-namespace:Microsoft.VisualBasic;assembly=System"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:p="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:s1="clr-namespace:System;assembly=System"
+ xmlns:s2="clr-namespace:System;assembly=System.Xml"
+ xmlns:s3="clr-namespace:System;assembly=System.Core"
+ xmlns:s4="clr-namespace:ServiceWorkflows;assembly=ServiceWorkflows"
+ xmlns:sad="clr-namespace:System.Activities.Debugger;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System"
+ xmlns:scg1="clr-namespace:System.Collections.Generic;assembly=System.ServiceModel"
+ xmlns:scg2="clr-namespace:System.Collections.Generic;assembly=System.Core"
+ xmlns:scg3="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
+ xmlns:sl="clr-namespace:System.Linq;assembly=System.Core"
+ xmlns:st="clr-namespace:System.Text;assembly=mscorlib"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <p:TextExpression.Namespaces>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.ServiceModel</x:String>
+      <x:String>System.ServiceModel.Activities</x:String>
+      <x:String>System.ServiceModel.Channels</x:String>
+      <x:String>System.ServiceModel.Description</x:String>
+      <x:String>System.ServiceModel.Security</x:String>
+      <x:String>Flow.Tasks.Workflow.Activities</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System</x:String>
+      <x:String>ServiceWorkflows</x:String>
+      <x:String>System.Activities.Debugger</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Windows.Markup</x:String>
+    </sco:Collection>
+  </p:TextExpression.Namespaces>
+  <p:TextExpression.References>
+    <sco:Collection x:TypeArguments="p:AssemblyReference">
+      <p:AssemblyReference>System.ServiceModel.Activities</p:AssemblyReference>
+      <p:AssemblyReference>System.ServiceModel</p:AssemblyReference>
+      <p:AssemblyReference>Flow.Tasks.Workflow</p:AssemblyReference>
+      <p:AssemblyReference>System</p:AssemblyReference>
+      <p:AssemblyReference>System.Activities</p:AssemblyReference>
+      <p:AssemblyReference>mscorlib</p:AssemblyReference>
+      <p:AssemblyReference>System.Xml</p:AssemblyReference>
+      <p:AssemblyReference>System.Core</p:AssemblyReference>
+      <p:AssemblyReference>ServiceWorkflows</p:AssemblyReference>
+      <p:AssemblyReference>System.Data</p:AssemblyReference>
+      <p:AssemblyReference>PresentationFramework</p:AssemblyReference>
+      <p:AssemblyReference>WindowsBase</p:AssemblyReference>
+      <p:AssemblyReference>PresentationCore</p:AssemblyReference>
+      <p:AssemblyReference>System.Xaml</p:AssemblyReference>
+    </sco:Collection>
+  </p:TextExpression.References>
+  <ftwa:StartWorkflow WorkflowId="{x:Null}" WorkflowResult="{x:Null}" CorrelationId="1" sap2010:WorkflowViewState.IdRef="StartWorkflow_1" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces">
+    <ftwa:StartWorkflow.Activities>
+      <s4:MyApproveTask CorrelationId="1" DisplayName="MyApproveTask1" sap2010:WorkflowViewState.IdRef="MyApproveTask_1" TaskCode="ApproveTask1" />
+      <s4:MyApproveTask CorrelationId="2" DisplayName="MyApproveTask2" sap2010:WorkflowViewState.IdRef="MyApproveTask_2" TaskCode="ApproveTask2" />
+    </ftwa:StartWorkflow.Activities>
+    <ftwa:StartWorkflow.Variables>
+      <p:Variable x:TypeArguments="x:String" Name="MyTask" />
+    </ftwa:StartWorkflow.Variables>
+    <sads:DebugSymbol.Symbol>d1dDOlxEZXZcQ29kZXBsZXhcRmxvd1Rhc2tzXHNyY1xUZXN0XEZsb3cuV29ya2Zsb3dzLlRlc3RcU2VydmljZVdvcmtmbG93c1xTYW1wbGVXZjIueGFtbHgERQNOGAEBRwdHqgECAQ9IB0iqAQIBDkedAUenAQIBEA==</sads:DebugSymbol.Symbol>
+  </ftwa:StartWorkflow>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="MyApproveTask_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="MyApproveTask_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="StartWorkflow_1" sap:VirtualizedContainerService.HintSize="222,208">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg3:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WorkflowService_1" sap:VirtualizedContainerService.HintSize="252,278" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</WorkflowService>

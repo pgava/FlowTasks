@@ -1,0 +1,781 @@
+
+body
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 0.7em;
+}
+
+p
+{
+	margin-bottom: 5px;
+	line-height: 1.6em;
+}
+
+
+/* HEADINGS   
+----------------------------------------------------------*/
+
+h1, h2, h3, h4{
+    font-size: 1.5em;
+}
+
+h1 {
+    background-color: #F4F2E4;
+    border-bottom: 1px solid #9A8E51;
+    margin-bottom: 20px;
+}
+
+h2 {
+	background-color: #F4F2E4;
+    border-bottom: 1px solid #9A8E51;
+    display: inline;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5, h6 {
+    font-weight: bold;
+    padding:0px;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+/* Paragraph
+----------------------------------------------------------*/
+.blockBreak {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/* ==== CSS 3 ==============================*/
+
+.roundBox
+{
+	cursor: pointer;
+	border: 1px solid #a1a1a1;
+	padding: 2px 4px;
+	background: #FFFFFF;
+	width: 80px;
+	border-radius: 5px;
+	-moz-border-radius: 5px; /* Firefox 3.6 and earlier */
+}
+
+.linkBox
+{
+	cursor: pointer;
+	border: 0px;
+	padding: 2px 4px;
+	background: #FFFFFF;
+	color:Navy;
+	font-style:italic;
+}
+
+.linkBoxColor
+{
+	cursor: pointer;
+	border: 0px;
+	padding:2px;
+	/*padding: 2px 4px;*/
+	background: #FFFFFF;
+	color:Navy;
+}
+.linkBoxColor:hover
+{
+	cursor: pointer;
+	border: 0px;
+	padding:2px;
+	/*padding: 2px 4px;*/
+	background: #FFFFFF;
+	color:Black;
+	text-decoration: underline;	
+}
+
+/* =========================================
+
+Error
+
+========================================= */
+
+.validationError
+{
+	padding-left: 6px;
+	color: Red;
+}
+
+.error-container
+{
+	padding-left: 6px;
+	color: Red;
+}
+
+/* =========================================
+
+Header
+
+========================================= */
+
+#header
+{
+	background-color: #FBFAF4;
+	border-bottom: 1px solid #999999;
+	margin-bottom: 20px;
+}
+
+/* =========================================
+
+Login
+
+========================================= */
+
+#login
+{
+	margin-bottom: 10px;
+}
+
+.btnLogin
+{
+	display: inline-block;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none; /*font: 14px/100% Arial, Helvetica, sans-serif;*/
+	padding: .2em 1em .25em;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.btnLogin:hover
+{
+	text-decoration: none;
+}
+.btnLogin:active
+{
+	position: relative;
+	top: 1px;
+}
+
+.lblLogin
+{
+	float: left;
+	padding: 5px;
+	width: 90px;
+}
+
+.rowLogin
+{
+	padding: 5px;
+}
+
+/* =========================================
+
+Comments
+
+========================================= */
+
+
+.comment
+{
+	/*padding-top:10px;*/
+	padding-bottom:10px;
+}
+
+.comment p
+{
+	color:Black;
+}
+
+.comment input
+{
+	width:700px;
+}
+
+#comments 
+{
+	/*height:150px;*/
+	overflow:auto;
+}
+
+#comments
+{
+	border:0px solid #dddddd;
+}
+
+#comments table
+{
+	border:0;
+	padding: 0px;
+	margin:0px;
+	width:100%;
+	border-collapse:collapse;
+}
+
+#comments table tr
+{
+	margin:0px;
+	padding: 0px;
+	border:0px;
+}
+
+#comments table th
+{
+	color: #FF6A00;
+	background-color: #ffffff;
+	margin:0px;
+	padding: 5px;
+	border-right:1px solid #cccccc;	
+	border-bottom:1px solid #cccccc;
+	border-left:1px solid #cccccc;
+	border-top:1px solid #cccccc;
+}
+
+#comments table td
+{
+	margin:0px;
+	padding: 5px;
+	border-right:1px solid #cccccc;	
+	border-bottom:1px solid #cccccc;
+	border-left:1px solid #cccccc;
+}
+
+.taskComment
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+#no_comments
+{
+	margin:0px;
+	padding:0px;
+}
+
+#no_comments p
+{
+	margin:0px;
+	padding:0px;
+	font-size:0.8em;
+	font-style:italic;
+}
+
+.workflowId {
+    width:250px;
+}
+
+/* =========================================
+
+Property
+
+========================================= */
+
+
+.property
+{
+	/*padding-top:10px;*/
+	padding-bottom:10px;
+}
+
+.property p
+{
+	color:Black;
+}
+
+.property input
+{
+	width:700px;
+}
+
+#properties 
+{
+	/*height:150px;*/
+	overflow:auto;
+}
+
+#properties
+{
+	border:0px solid #dddddd;
+}
+
+#properties table
+{
+	border:0;
+	padding: 0px;
+	margin:0px;
+	width:100%;
+	border-collapse:collapse;
+}
+
+#properties table tr
+{
+	margin:0px;
+	padding: 0px;
+	border:0px;
+}
+
+#properties table th
+{
+	color: #FF6A00;
+	background-color: #ffffff;
+	margin:0px;
+	padding: 5px;
+	border-right:1px solid #cccccc;	
+	border-bottom:1px solid #cccccc;
+	border-left:1px solid #cccccc;
+	border-top:1px solid #cccccc;
+}
+
+#properties table td
+{
+	margin:0px;
+	padding: 5px;
+	border-right:1px solid #cccccc;	
+	border-bottom:1px solid #cccccc;
+	border-left:1px solid #cccccc;
+}
+
+#no_properties
+{
+	margin:0px;
+	padding:0px;
+}
+
+#no_properties p
+{
+	margin:0px;
+	padding:0px;
+	font-size:0.8em;
+	font-style:italic;
+}
+
+/* =========================================
+
+Tasks
+
+========================================= */
+
+
+.task
+{
+	/*padding-top:10px;*/
+	padding-bottom:10px;
+}
+
+.task p
+{
+	color:Black;
+}
+
+.task input
+{
+	width:700px;
+}
+
+#tasks 
+{
+	/*height:150px;*/
+	overflow:auto;
+}
+
+#tasks
+{
+	border:0px solid #dddddd;
+}
+
+#tasks table
+{
+	border:0;
+	padding: 0px;
+	margin:0px;
+	width:100%;
+	border-collapse:collapse;
+}
+
+#tasks table tr
+{
+	margin:0px;
+	padding: 0px;
+	border:0px;
+}
+
+#tasks table th
+{
+	color: #FF6A00;
+	background-color: #ffffff;
+	margin:0px;
+	padding: 5px;
+	border-right:1px solid #cccccc;	
+	border-bottom:1px solid #cccccc;
+	border-left:1px solid #cccccc;
+	border-top:1px solid #cccccc;
+}
+
+#tasks table td
+{
+	margin:0px;
+	padding: 5px;
+	border-right:1px solid #cccccc;	
+	border-bottom:1px solid #cccccc;
+	border-left:1px solid #cccccc;
+}
+
+#no_tasks
+{
+	margin:0px;
+	padding:0px;
+}
+
+#no_tasks p
+{
+	margin:0px;
+	padding:0px;
+	font-size:0.8em;
+	font-style:italic;
+}
+
+/* ============== Datepicker ================= */
+
+
+.datePicker
+{
+	width:85px;
+}
+
+.ui-datepicker
+{
+	/*font-size: 62.5%;*/
+}
+
+/* =========================================== */
+
+
+#searchWorkflow
+{			
+	padding-bottom:10px;	
+}
+
+#workflowPager
+{		
+}
+
+.workflowCommands
+{		
+    padding-top:10px;
+}
+
+.floatRight
+{			
+	float:right;
+}
+
+/* =========================================== */
+
+#errorMessageBox
+{	
+}
+
+/*
+.ui-dialog-title 
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 0.7em;
+}
+
+.ui-dialog .ui-dialog-buttonpane button  
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 0.7em;
+}
+*/
+
+/* flowchart js stylist*/
+.tools button{
+	padding: 0 10px;
+}
+
+#workflow-name{
+	float: left;
+	min-width: 50%;
+	text-align: center;
+	font-weight: bold;
+	font-size: 16px;
+	padding: 3px 10px 0;
+	display: none;
+}
+
+
+#flowchartjs
+{
+	clear: both;
+	margin-top: 10px;
+	width: 100%;
+	margin: 10px auto 0;
+}
+
+#toolbars
+{
+	float: left;
+	width: 18%;
+	border: 1px solid #FF6A00;
+}
+#toolbars #toolbox, #toolbars #variables{
+    width: 100%;
+	min-height: 250px;
+}
+#toolbars #flowchart,#toolbars #flowtask,#toolbars #addvariables{padding: 10px;}
+.title{
+    background: #FF6A00;
+    color: #fff;
+    padding: 3px 10px;
+}
+#toolbars #toolbox ul, #toolbars #variables ul{
+	margin-left: 0;
+	padding: 0;
+	list-style-type: none;
+}
+#toolbars #toolbox ul li, #toolbars #variables ul li
+{
+	padding: 3px;
+	font-weight: bold;
+	color: #4A4A4A;
+}
+#toolbars #toolbox ul li:hover, #toolbars #variables ul li:hover{
+	color: #292929;
+	cursor: pointer;
+	background-color: #efefef;
+}
+#toolbars #toolbox ul li span{
+	position: absolute;
+	margin-left: 10px;
+}
+#toolbars #variables ul li{
+	float: left;
+	margin-bottom: 3px;
+	width: 97%;
+}
+#toolbars #variables ul li div{
+	width: 90%;
+	word-wrap: break-word;
+	float: left;
+}
+#toolbars #variables ul li .delButton{
+	float: right;
+}
+#toolbars #variables ul li .delButton img
+{
+	width: 10px;
+	border: none;
+}
+#toolbars #variables .scroll
+{
+	padding-top: 5px;
+	height: 180px;
+}
+#toolbars #toolbar
+{
+	width: 100%;
+	height: 100%;
+}
+#chart
+{
+	float: right;
+	width: 77%;
+	height: 600px;
+	border: 1px solid #FF6A00;
+	padding: 5px;
+	background-color: #ebebeb;
+	overflow: auto;
+	border-radius: 5px;
+	box-shadow: 0px 0px 15px #757575;
+}
+
+#chart #viewport
+{
+	width: 614px;
+	height: 636px;
+	margin: 0 auto;
+	background-color: #ffffff;
+}
+
+.entity-shadow
+{
+	width: 15px;
+	height: 9px;
+	border: 1px dotted #a1a1a1;
+	background-color: #ffffff;
+	position: fixed !important;
+	position: absolute;
+	z-index: 1000;
+}
+.label-flow
+{
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+	width: 68px;
+	display: none;
+	color: #454545;
+	text-align: center;
+	border: none
+}
+
+.table-properties
+{ 
+	width: 100%;
+	border-collapse: collapse;
+	background-color: rgba(0,0,0,.2);
+}
+.table-properties tr.desc
+{
+	height: 75px;
+}
+.table-properties tr td
+{
+	vertical-align: top;
+	border: 1px solid #757575;
+	padding: 2px;
+}
+.table-properties .label
+{
+	width: 30%;
+	padding: 5px;
+}
+.table-properties .value input
+{
+	width: 98%;
+}
+.table-properties .value textarea
+{
+	width: 98%;
+	height: 85px;
+	resize: none;
+}
+
+.table-variable
+{
+	width: 100%;
+	border-collapse: collapse;
+}
+.table-variable th
+{
+	vertical-align: top;
+	border: 1px solid #757575;
+	padding: 2px;
+	background-color: rgba(0,0,0,.2);
+}
+.table-variable td
+{
+	vertical-align: top;
+	border: 1px solid #757575;
+	padding: 2px;
+	background-color: rgba(255,255,255,.2);
+}
+.table-variable th.var-name
+{
+	width: 30%;
+}
+.table-variable th.var-type
+{
+	width: 30%;
+}
+.table-variable #var-name, #var-type, #var-value
+{
+	width: 98%;
+	margin-top: 1px;
+}
+
+/* HEADER   
+----------------------------------------------------------*/
+
+#header {
+    background-color: #FBFAF4;
+    border-bottom: 1px solid #999999;
+    margin-bottom: 30px;
+}
+
+.logo {
+    font-size: 2.0em;
+    background-image: url("../Images/logo.png");
+    height: 64px;
+    width: 200px;
+    float: left;
+}
+
+.menuSpace {
+    margin-left: 40px;
+}
+
+#headerMenu {
+    padding-left: 150px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+    #headerMenu a {
+        font-size: 1.3em;
+        font-weight: bold;
+        color: gray;
+        text-decoration: none;
+    }
+
+        #headerMenu a.menuSelected {
+            font-weight: bold;
+            color: Black;
+            text-decoration: none;
+        }
+
+        #headerMenu a:hover {
+            font-weight: bold;
+            color: #ef910d;
+            text-decoration: underline;
+        }
+
+        #headerMenu a.menuSelected:hover {
+            font-weight: bold;
+            color: Black;
+            text-decoration: none;
+        }
+
+/*************************/
+/* loading img for ajax  */
+/*************************/
+
+/* Start by setting display:none to make this hidden.
+   Then we position it in relation to the viewport window
+   with position:fixed. Width, height, top and left speak
+   speak for themselves. Background we set to 80% white with
+   our animation centered, and no-repeating */
+.modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('../Images/ajax-loader.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block;
+}

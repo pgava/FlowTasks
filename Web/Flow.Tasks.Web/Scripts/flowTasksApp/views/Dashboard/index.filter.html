@@ -1,0 +1,49 @@
+﻿<form class="smart-form" name="workflowlistform" novalidate>
+    <header>Search workflows</header>
+    <fieldset>
+        <div class="row">
+            <section class="col col-xs-12 col-md-4">
+                <label class="label">Workflow Id</label>
+                <label class="input">
+                    <input type="text" name="woidfilter" ng-model="dashboard.workflow.filter.woid" placeholder="Type workflow id...">
+                </label>
+            </section>
+            <section class="col col-xs-12 col-md-4">
+                <label class="label">Workflow Code</label>
+                <label class="select">
+                    <select ng-model="dashboard.workflow.filter.wcode" ng-options="wocode for wocode in dashboard.workflow.search.workflowCodes"></select>
+                    <i></i>
+                </label>
+            </section>
+            <section class="col col-xs-12 col-md-4">
+                <label class="label">Active</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="activefilter" ng-model="dashboard.workflow.filter.isActive"><i></i>
+                </label>
+            </section>
+        </div>
+        <div class="row">
+            <section class="col col-xs-12 col-md-4">
+                <label class="label">Started from</label>
+                <label class="input">
+                    <i class="icon-append fa fa-calendar"></i>
+                    <input type="text" id="startdatepicker" placeholder="Started from" ng-model="dashboard.workflow.filter.start" name="startfilter" format="{{dashboard.workflow.formatDate}}" data-limitid="tilldatepicker" data-limit-type="mindate" data-datepicker>
+                </label>
+            </section>
+            <section class="col col-xs-12 col-md-4">
+                <label class="label">Till</label>
+                <label class="input">
+                    <i class="icon-append fa fa-calendar"></i>
+                    <input type="text" id="tilldatepicker" placeholder="Till" ng-model="dashboard.workflow.filter.end" data-limitid="startdatepicker" data-limit-type="maxdate" name="endfilter" format="{{dashboard.workflow.formatDate}}" data-datepicker>
+                </label>
+            </section>
+            <section class="col col-xs-12 col-md-4">
+                <label class="label">Show</label>
+                <label class="select">
+                    <select ng-model="dashboard.workflow.filter.pageSize" ng-options="ps for ps in dashboard.workflow.search.pageSizes"></select>
+                    <i></i>
+                </label>
+            </section>
+        </div>
+    </fieldset>
+</form>

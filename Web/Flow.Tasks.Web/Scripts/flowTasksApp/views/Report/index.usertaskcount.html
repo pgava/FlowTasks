@@ -1,0 +1,44 @@
+﻿<div id="searchWorkflow">
+    
+    <form class="smart-form">
+        <div class="row">
+            <div class="col col-xs-6 col-md-2">
+                <label class="label">Starting from</label>
+                <label class="input">
+                    <i class="icon-append fa fa-calendar"></i>
+                    <input type="text" id="Start_UserTaskCount" class="datePicker" data-ng-model="startDate" data-datepicker data-format="{{ dateFormat }}" />
+                </label>
+            </div>
+            <div class="col col-xs-6 col-md-2">
+                <label class="label">till</label>
+                <label class="input">
+                    <i class="icon-append fa fa-calendar"></i>
+                    <input type="text" id="End_UserTaskCount" class="datePicker" data-ng-model="endDate" data-datepicker data-format="{{ dateFormat }}" />
+                </label>
+            </div>
+            <div class="col col-xs-4 col-md-3 line2">
+                <label class="label">Users</label>
+                <label class="input">
+                    <select id="Select_UserCount" name="Select_UserCount" multiple="multiple" data-ng-model="selectedUsersList" data-multiple-select="usersList" data-non-selected-text="Select users below"></select>
+                </label>
+            </div>
+            <div class="col col-xs-4 col-md-3 line2">
+                <label class="label">Tasks</label>
+                <label class="input">
+                    <select id="Select_TaskCount" name="Select_TaskCount" multiple="multiple" data-ng-model="selectedTasksList" data-multiple-select="tasksList" data-non-selected-text="Select tasks below"></select>
+                </label>
+            </div>
+            <div class="col col-xs-4 col-md-2 line2">
+                <label class="label">Action</label>
+                <label class="input">
+                    <button type="button" name="refresh_UserTaskCount" id="refresh_UserTaskCount" value="Refresh" class="btn btn-primary" data-ng-click="refresh()">Refresh</button>
+                </label>
+            </div>
+        </div>
+    </form>
+</div>
+
+<br class="break" />
+
+<div id="chart_userTaskCount" data-google-chart data-chart="chartObject" style="height:400px; width:100%;"></div>
+

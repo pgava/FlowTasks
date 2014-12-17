@@ -1,0 +1,64 @@
+﻿<div class="row">
+    <div class="col-xs-12">
+        <form class="form-horizontal smart-form userprofileform" name="userprofileform" ng-submit="follow(userInfo)">
+            <fieldset>
+                <div class="row-line">
+                    <section class="col col-3 user-avatar">
+                        <img ng-src="{{userInfo.photoPath}}" alt="" />
+                    </section>
+                    <section class="col col-9">
+                        <h3 class="user-profile-name">{{userInfo.firstName}} {{userInfo.lastName}}</h3>
+                        <label class="label col col-4 lbtitle">Username</label>
+                        <section class="col col-8">
+                            <p class="form-control-static">{{userInfo.userName}}</p>
+                        </section>
+                        <label class="label col col-4 lbtitle"></label>
+                        <section class="col col-8" ng-show="display">
+                            <button class="btn btn-follow" ng-class="{'btn-success':!followed,'btn-warning':followed}" type="submit" ng-disabled="onSubmitting"><i class="fa fa-plus-circle "></i> {{followText}}</button>
+                            <span data-indicator="9" class="fa-2x" data-show="onSubmitting"></span>
+                            <div class="clearfix"></div>
+                        </section>
+                    </section>
+                </div>
+                <div class="row-line">
+                    <h3></h3>
+                    <label class="label col col-3 lbtitle">Birthday</label>
+                    <section class="col col-9">
+                        <p class="form-control-static">{{userInfo.birthday}}</p>
+                    </section>
+                    <div class="clearfix"></div>
+                    <label class="label col col-3 lbtitle">Gender</label>
+                    <section class="col col-9">
+                        <p class="form-control-static">{{userInfo.gender==='M'?'Male':userInfo.gender==='F'?'Female':''}}</p>
+                    </section>
+                    <div class="clearfix"></div>
+                    <label class="label col col-3 lbtitle">Position</label>
+                    <section class="col col-9">
+                        <p class="form-control-static">{{userInfo.position}}</p>
+                    </section>
+                    <div class="clearfix"></div>
+                    <label class="label col col-3 lbtitle">Department</label>
+                    <section class="col col-9">
+                       <p class="form-control-static">{{userInfo.department}}</p>
+                    </section>
+                    <div class="clearfix"></div>
+                    <label class="label col col-3 lbtitle">Comment</label>
+                    <section class="col col-9">
+                        <p class="form-control-static">{{userInfo.note}}</p>
+                    </section>
+                    <div class="clearfix"></div>
+                    <label class="label col col-3 lbtitle">Email</label>
+                    <section class="col col-9">
+                        <p class="form-control-static">{{userInfo.email}}</p>
+                    </section>
+                    <div class="clearfix"></div>
+                    <label class="label col col-3 lbtitle">Phone</label>
+                    <section class="col col-9">
+                        <p class="form-control-static">{{userInfo.phone}}</p>
+                    </section>
+                </div>
+                
+            </fieldset>
+        </form>
+    </div>
+</div>

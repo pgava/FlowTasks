@@ -1,0 +1,57 @@
+﻿@model Flow.Tasks.View.Models.TaskModel
+
+@Html.HiddenFor(m => m.Expires, Model.Expires)
+@Html.HiddenFor(m => m.Title, Model.Title)
+@Html.HiddenFor(m => m.Description, Model.Description)
+@Html.HiddenFor(m => m.DefaultResult, Model.DefaultResult)
+@Html.HiddenFor(m => m.UiCode, Model.UiCode)
+@Html.HiddenFor(m => m.TaskCode, Model.TaskCode)
+@Html.HiddenFor(m => m.TaskOid, Model.TaskOid)
+@Html.HiddenFor(m => m.WorkflowOid, Model.WorkflowOid)
+@Html.HiddenFor(m => m.TaskCorrelationId, Model.TaskCorrelationId)
+
+@Html.HiddenFor(m => m.IsAssigned, Model.IsAssigned)
+
+@Html.HiddenFor(m => m.Filter.DisplayMethod, Model.Filter.DisplayMethod)
+@Html.HiddenFor(m => m.Filter.Filter, Model.Filter.Filter)
+@Html.HiddenFor(m => m.Filter.OrderMethod, Model.Filter.OrderMethod)
+@Html.HiddenFor(m => m.Filter.Domain, Model.Filter.Domain)
+@Html.HiddenFor(m => m.Filter.CurrentPage, Model.Filter.CurrentPage)
+@Html.HiddenFor(m => m.Filter.FilteredPages, Model.Filter.FilteredPages)
+@Html.HiddenFor(m => m.Filter.TotalPages, Model.Filter.TotalPages)
+@Html.HiddenFor(m => m.Filter.MaxTasks, Model.Filter.MaxTasks)
+
+@Html.HiddenFor(m => m.Comment.TaskComment, Model.Comment.TaskComment)
+@Html.HiddenFor(m => m.Comment.Status, Model.Comment.Status)
+
+@if (Model.Parameters != null)
+{
+    for (var loop = 0; loop < Model.Parameters.Count(); loop++)
+    {
+        @Html.Hidden("Parameters[" + loop + "].Name", Model.Parameters[loop].Name)
+        @Html.Hidden("Parameters[" + loop + "].Value", Model.Parameters[loop].Value)
+    }
+}
+
+@if (Model.Comment.Comments != null)
+{
+    var loop = 0;
+    foreach (var c in Model.Comment.Comments)
+    {
+        @Html.Hidden("Comments[" + loop + "].When", c.When)
+        @Html.Hidden("Comments[" + loop + "].User", c.User)
+        @Html.Hidden("Comments[" + loop + "].Message", c.Message)
+        loop++;
+    }
+}
+
+@if (Model.Documents != null)
+{
+    var loop = 0;
+    foreach (var d in Model.Documents)
+    {
+        @Html.Hidden("Documents[" + loop + "].DocumentName", d.DocumentName)
+        @Html.Hidden("Documents[" + loop + "].DocumentOid", d.DocumentOid)
+        loop++;
+    }
+}

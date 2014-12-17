@@ -1,0 +1,80 @@
+/*body {
+	color: #000;
+	background-color: #fff }
+
+p, h1, h2 {
+	margin: 0;
+	padding: 0.5em }
+*/
+
+#layoutLogic-ABC, #layoutLogic-AB, #layoutLogic-A {
+	/*background-color: #000;*/
+	margin: 0 -1px;
+	width: 100%;
+	/*border: solid 1px black*/ }
+
+#header, #footer {
+	/*color: white;*/
+	position: relative;
+	z-index: 13;
+	width: 100% }
+
+#layoutLogic-ABC .page {
+	background-color: #fff;
+	width: auto;
+	border-right: 100px solid #fff;
+	border-left: 100px solid #fff }
+
+#layoutLogic-AB .page {
+	background-color: #fff;
+	width: auto;
+	border-left: 200px solid #fff }
+
+#layoutLogic-A .page {
+	background-color: #fff;
+	width: auto }
+
+.section {
+	margin: 0;
+	width: 100% }
+
+.col-A, .col-B, .col-C {
+	position: relative;
+	float: left }
+
+.col-A {
+	margin-right: 1px }
+
+.col-B {
+	margin: 0 -3px 0 -2px }
+
+.col-C {
+	margin-left: 1px }
+
+#layoutLogic-ABC .col-A, #layoutLogic-AB .col-A {
+	margin-left: -200px;
+	z-index: 10;
+	width: 200px }
+
+#layoutLogic-ABC .col-B, #layoutLogic-AB .col-B {
+	z-index: 20;
+	width: 100% }
+
+#layoutLogic-ABC .col-C {
+	/*color: #fff;*/
+	margin-right: -300px;
+	z-index: 10;
+	width: 300px }
+
+#layoutLogic-A .col-B, #layoutLogic-AB .col-C, #layoutLogic-A .col-C {
+	display: none }
+
+.clear {
+	clear: both }
+
+.page > .section {
+	border-bottom: 1px solid transparent }
+
+#layoutLogic-ABC .page {
+    border: none !important;
+}

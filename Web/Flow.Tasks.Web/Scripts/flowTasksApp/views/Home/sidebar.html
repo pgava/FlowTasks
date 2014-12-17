@@ -1,0 +1,30 @@
+﻿
+
+<!-- Left panel : Navigation area -->
+<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+<aside id="left-panel">
+    <!-- User info -->
+    <div class="login-info">
+        <span>
+            <!-- User image size is adjusted inside CSS, it should stay as it -->
+
+            <a id="show-shortcut" data-ui-sref="userprofile()">
+                <img ng-src="{{application.userData.photoPath}}" alt="me" class="online" />
+                <span>{{application.userData.userName}}
+                </span>
+                
+            </a>
+
+        </span>
+    </div>
+    <!-- end user info -->
+    <nav>
+        <ul>
+            <li ng-repeat="menu in application.userData.pages" data-active-page-sidebar="{{ menu.name }}">
+                <a href="{{menu.url}}" title="{{menu.name}}"><i class="fa fa-lg fa-fw" ng-class="'fa-{{menu.name}}'"></i><span class="menu-item-parent">{{menu.name}}</span></a>
+            </li>
+        </ul>
+    </nav>
+    <collapse-sidebar></collapse-sidebar>
+</aside>
+<!-- END NAVIGATION -->

@@ -1,0 +1,72 @@
+﻿<section id="widget-grid" class="" sizeelement>
+    <!-- row -->
+    <div class="row">
+        <article class="col-sm-12 col-md-12 col-lg-12">
+            <!-- new widget -->
+            <div class="jarviswidget jarviswidget-color-blueDark">
+                <div class="task-message" ng-click="expandTaskBox($event,task)" ng-class="{'has-assigned':task.task.isAssigned}">
+                    <div class="chat-body">
+                        <div class="task-box-loading-comments" ng-show="taskComment.loadingComments">
+                            <div data-indicator="8" class="fa-2x" data-show="taskComment.loadingComments"></div>
+                        </div>
+                        <ul>
+                            <li class="message">
+                            <div class="message-text">
+                                
+                                <time>{{task.task.expires}}</time>
+                                <label class="label label-danger lbassigned" ng-click="completeTask(task)" ng-show="task.task.defaultResult!=='' && task.task.defaultResult!==null">Complete</label>
+                                <label class="label label-info lbassigned lbviewtaskdetails" ng-click="quickViewTaskDetail(task)">View details</label>
+                                <a href="javascript:void(0)" class="username task-title">{{task.task.title}}</a>
+                                    
+                                <p ng-bind-html="task.task.description"></p>
+                                <p class="chat-file row" ng-repeat="file in task.task.documents">
+                                    <download-file-task file="file" task="task.task"></download-file-task>
+                                </p>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="task-comments">
+                    <div class="widget-body widget-hide-overflow no-padding">
+                        <div id="chat-body" class="chat-body custom-scroll">
+                            <ul>
+                                <li class="message" ng-repeat="comment in taskDetail.task.comment.comments" fade-in="300">
+                                    <div class="dmessage-avatar">
+                                        <img ng-src="{{comment.avatar}}" class="online" alt="">
+                                    </div>
+                                    <div class="message-text">
+                                        <time>{{comment.when}}</time>
+                                        <a href="javascript:void(0)" class="username">{{comment.user}}</a>
+                                        <p ng-bind-html="comment.message"></p>
+                                    </div>
+                                </li>
+                                <li class="message task-no-message" ng-if="taskDetail.task.comment.comments.length<=0">
+                                    <div class="task-no-message-text">No comments</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="chat-footer">
+                            <form name="commentform" novalidate ui-keypress="{13:'submitComment(task,false)'}">
+                                <span class="textarea-controls">
+                                    <span data-indicator="6" class="pull-right fa-2x" data-show="taskComment.onSubmitting"></span>
+                                    <button class="btn btn-sm btn-default pull-right" type="submit" ng-click="giveBackTask(taskDetail)" ng-disabled="taskComment.onSubmitting" ng-if="taskDetail.task.isAssigned">Give Back</button>
+                                    <button class="btn btn-sm btn-info pull-right margin-right-10" type="button" ng-click="viewTaskDetail(taskDetail)" ng-disabled="taskComment.onSubmitting">View details</button>
+                                </span>
+                                <div class="alert alert-danger fade in" ng-show="taskComment.showMessage && taskComment.hasErrors">
+                                    <i class="fa-fw fa fa-times"></i>
+                                    <strong>Error</strong> {{taskComment.errorMessage}}
+                                </div>
+                                <div class="alert alert-success fade in" ng-show="taskComment.showMessage && !taskComment.hasErrors">
+                                    <i class="fa-fw fa fa-check"></i>
+                                    <strong>Success</strong> {{taskComment.errorMessage}}
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </article>
+    </div>
+</section>

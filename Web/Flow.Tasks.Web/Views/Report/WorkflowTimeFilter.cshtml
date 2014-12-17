@@ -1,0 +1,28 @@
+﻿<div id="searchWorkflow">
+    <p>
+        @*
+        This is not working
+    
+        @Html.TextBoxFor(x => x.Start, new { @value = "01/10/2012", @class = "datePicker" })
+        
+        1. the value is converted in a date with hours so datepicker don't recognize it as a date.
+        2. NOTE that the format of the date has to be initialized as MM/dd/yyyy even if you set 
+            it to be dd/MM/yyyy (!!!)
+        *@
+
+        Starting from
+        @Html.TextBox("Start_WorkflowTime", DateTime.Now.AddMonths(-1).ToString("MM/dd/yyyy"), new { @class = "datePicker" })
+
+        till        
+        @Html.TextBox("End_WorkflowTime", DateTime.Now.AddDays(1).ToString("MM/dd/yyyy"), new { @class = "datePicker" })
+
+        @* multiselect jquery docs: http://www.erichynds.com/jquery/jquery-ui-multiselect-widget/*@
+
+        <select id="Select_WorkflowTime" name="Select_TaskTime" multiple="multiple"></select>
+
+        <input type="submit" name="refresh_WorkflowTime" id="refresh_WorkflowTime" value="Refresh" class="roundBox" />
+    </p>
+</div>
+
+<br class="break" />
+

@@ -1,0 +1,132 @@
+﻿﻿@model Flow.Tasks.View.Models.TaskModel
+@{
+    ViewBag.Title = "Fix Workflow";
+
+    Html.Assets().Styles.Add("../Content/holidayview.css");
+    Html.Assets().Scripts.Add("../Scripts/jquery.validate.min.js");
+    Html.Assets().Scripts.Add("../Scripts/holidayhrview.js");
+    <!-- Send data back to app -->
+    Html.Assets().Styles.Add("../Content/holiday.view.calendar.css");
+    Html.Assets().Styles.Add("../Content/themes/smart/js/datepicker/css/pepper-ginder-custom.css");
+    Html.Assets().Styles.Add("../Content/themes/base/jquery.ui.tabs.css");
+    Html.Assets().Styles.Add("../Content/themes/base/jquery.ui.datepicker.css");
+
+
+    Html.Assets().Scripts.Add("../Scripts/task.action.js");
+    Html.Assets().Scripts.Add("../Scripts/holiday.mgr.view.calendar.js");
+    Html.Assets().Scripts.Add("../Content/Themes/smart/js/datepicker/jquery-ui.multidatespicker.js");
+    Html.Assets().Scripts.Add("../Content/Themes/smart/js/datetime/moment.min.js");
+    Html.Assets().Scripts.Add("../Scripts/global.js");
+    Html.Assets().Scripts.Add("../Scripts/jquery-ui-1.10.4.min.js");
+
+}
+<div class="overlay">
+    @* <img class="loading" src="@Url.Content("~/Content/themes/smart/img/ie-preloader.GIF")" />*@
+</div>
+<input type="hidden" id="currentCulture" value="@System.Globalization.CultureInfo.CurrentCulture.Name"/>
+@Html.Partial("_HeaderPartial")
+
+
+<div style="padding-left: 20px;">
+    <div style="font-weight: bold;">Holidays:</div><br />
+    @{
+        int counter = 0;
+        foreach (var d in ViewBag.Dates)
+        {
+            <span style="padding-right: 10px;">@d</span>
+            counter += 1;
+            if (counter%5 == 0)
+            {
+                <br/>
+            }
+        }                    
+    }
+    <br/>
+    <br/>
+    @{
+        var notes = Model.GetPropertyValueFromName("UserNote");
+        if (!string.IsNullOrEmpty(notes))
+        {
+            <div>        
+                <div style="font-weight: bold;">Notes:</div><br />
+                <div>@notes</div>
+            </div>
+        }
+    }
+    <br/>
+</div>
+
+
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-user">User holidays</a></li>
+        <li><a href="#tabs-other">View other users</a></li>
+    </ul>
+    <div id="tabs-user">
+        <input type="hidden" id="currentUserName" value="@Model.GetPropertyValueFromName("UserName")"/>
+        <div class="user-holiday-calendar" id="holiday-calendar">
+        </div>
+
+        @Html.Partial("_CommentsPartial")
+
+        <div class="error-container">
+            <ul>
+            </ul>
+        </div>
+
+        @using (Html.BeginForm("CompleteMgrTask", "HolidayMgrView", FormMethod.Post, new { id = "flowTasksTaskView", area = "HolidayMgrView", controller = "HolidayMgrView" }))
+        {
+            <div class="holiday-control">
+                <div id="taskCommand">
+                    <input type="submit" name="completeTask" value="Approve" class="roundBox btn" />
+                    <input type="submit" name="completeTask" value="Reject" class="roundBox btn" />
+                    @*<input type="submit" name="completeTask" value="Back" class="cancel roundBox identRight btn" />*@
+                </div>
+            </div>
+            @Html.Partial("_TaskDataPartial")
+            @Html.Hidden("TaskAcceptFlag", "Approve") @*Comma separated values*@
+            @Html.Hidden("TaskRejectFlag", "Reject") @*Comma separated values*@
+        }
+    </div>
+    <div id="tabs-other">
+        <div id="searchUserTable">
+            <h3>Search user</h3>
+            <div class="search-control">
+                <span>Name: </span>
+                <input type="text" name="namfilter" id="searchName" placeholder="Type name...">
+                <span style="visibility: hidden; position: relative; top: 7px;" id="loader">
+                    <img src="@Url.Content("../Content/themes/smart/img/ie-preloader.GIF")" alt="" />
+                </span>
+            </div>
+            <div class="jarviswidget jarviswidget-color-blueDark" style="margin-bottom: 0">
+
+                <header>
+                    <h2>User(s)</h2>
+                </header>
+            </div>
+            <div class="widget-body">
+                <table id="userTable">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="viewOtherDetail" style="display: none;">
+            <div class="backtouserlist" style="margin: 25px 0 0 0;">
+                <button class="btn btn-default" type="button" id="btnBackToList">< Back</button>
+            </div>
+            <h3><span id="otherUserName"></span>&nbsp;holiday(s)</h3>
+            <div id="other-holiday-calendar"></div>
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,52 @@
+﻿
+<div id="content" class="container" ng-controller="LoginCtrl">
+
+    <div class="row">
+        <div class="col-xs-12 margin-center">
+            <form id="login-form" class="smart-form client-form" name="loginform" novalidate ui-keypress="{13:'login.doLogin(login.user)'}">
+                <!-- form-autofill-fix -->
+                <div class="alert alert-danger fade in" ng-show="login.showError && login.errorMessage!=''">
+                    <strong>Error</strong> {{login.errorMessage}}
+                </div>
+                <div class="well no-padding margin-center w-300">
+                    <header>
+                        Sign In
+                    </header>
+                    <fieldset>
+                        <section>
+                            <label class="label">Username</label>
+                            <label class="input" ng-class="{'state-error': login.validate('UserName','required')}">
+                                <i class="icon-append fa fa-user"></i>
+                                <input type="text" name="UserName" ng-model="login.user.userName" ng-class="{'invalid': login.validate('UserName','required')}" value="" autocomplete="off" required id="login-username" data-nois-focus data-auto-fill-sync />
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Please enter username</b>
+                            </label>
+                            <em class="invalid" ng-show="login.validate('UserName','required')">Please enter your username</em>
+                        </section>
+                        <section>
+                            <label class="label">Password</label>
+                            <label class="input" ng-class="{'state-error': login.validate('Password','required')}">
+                                <i class="icon-append fa fa-lock"></i>
+                                <input type="password" name="Password" ng-model="login.user.password" value="" required ng-class="{'invalid': login.validate('Password','required')}" autocomplete="off" id="login-password" data-auto-fill-sync />
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Enter your password</b>
+                            </label>
+                            <em class="invalid" ng-show="login.validate('Password','required')">Please enter your password</em>
+                        </section>
+                        <section>
+                            <label class="checkbox">
+                                <input type="checkbox" name="remember" checked="" ng-model="login.user.remember">
+                                <i></i>Stay signed in
+                            </label>
+                        </section>
+                    </fieldset>
+                    <footer>
+                        <button type="button" class="btn btn-primary" ng-click="login.doLogin(login.user)" ng-disabled="login.onSubmitting">
+                            Sign in
+                        </button>
+                        <div data-indicator="2" class="fa-2x" data-show="login.onSubmitting"></div>
+                    </footer>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

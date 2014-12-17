@@ -1,0 +1,105 @@
+﻿@using System.Web.Optimization
+@model Flow.Tasks.Web.Models.HomeModel
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_AngularJSLayout.cshtml";
+}
+
+<!-- HEADER -->
+<header id="header" class="hidden" data-hide-until-ready>
+    <div id="logo-group">
+        <!-- PLACE YOUR LOGO HERE -->
+        <span id="logo">
+            <img src="Content/themes/smart/img/logo.png" alt="SmartAdmin">
+        </span>
+        <!-- END LOGO PLACEHOLDER -->
+    </div>
+
+    <!-- pulled right: nav area -->
+    <div class="pull-right">
+        <!-- collapse menu button -->
+        <div id="hide-menu" class="btn-header pull-right">
+            <span>
+                <close-sidebar></close-sidebar>
+            </span>
+        </div>
+        <!-- end collapse menu -->
+        <!-- logout button -->
+        <div id="logout" class="btn-header transparent pull-right">
+            <span>
+                <smart-alert iconclass="fa fa-sign-out" type="logout" title="{{application.userData.userName}}" text="You can improve your security further after logging out by closing this opened browser" />
+                <!--<a href="#" ng-click="signout()" title="Sign Out" confirm-box><i class="fa fa-sign-out"></i></a>-->
+            </span>
+        </div>
+        <!-- end logout button -->
+        <span data-blink="application.taskData.isBlink" class="header-bar-go-to pull-right" ng-click="application.goToTask()"><i class="fa fa-inbox"></i><b class="badge bounceIn animated">{{application.taskData.counter}} </b></span>
+        <span data-blink="application.topicData.isBlink" class="header-bar-go-to pull-right" ng-click="application.goToHome()"><i class="fa fa-comments"></i><b class="badge bounceIn animated">{{application.topicData.counter}} </b></span>
+    </div>
+    <!-- end pulled right: nav area -->
+
+</header>
+<!-- END HEADER -->
+<!-- Left panel : Navigation area -->
+<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+<aside id="left-panel" class="hidden" data-hide-until-ready>
+    <!-- User info -->
+    <div class="login-info">
+        <span>
+            <!-- User image size is adjusted inside CSS, it should stay as it -->
+
+            <a id="show-shortcut" data-ui-sref="userprofile()">
+                <img ng-src="{{application.userData.photoPath}}" alt="me" class="online" />
+                <span>
+                    {{application.userData.userName}}
+                </span>
+            </a>
+
+        </span>
+    </div>
+    <!-- end user info -->
+    
+    <nav data-sidebar-menu="{{application.userData.pages}}"></nav>
+
+    <collapse-sidebar></collapse-sidebar>
+</aside>
+<!-- END NAVIGATION -->
+
+<div id="main" role="main" class="main-container" data-ui-view></div>
+
+<input type="hidden" id="currentCulture" value="@System.Globalization.CultureInfo.CurrentCulture.Name" />
+<div class="modal fade" data-ng-cloak id="viewuserinfo" tabindex="-1" role="dialog" aria-labelledby="viewUserInfoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                    ×
+                </button>
+                <h4 id="myModalLabel" class="modal-title">View user's infomation</h4>
+            </div>
+            <div class="modal-body">
+                <user-info></user-info>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    
+    @*Added By New Ocean*@
+    @Scripts.Render("~/bundles/report")
+    @Scripts.Render("~/bundles/sketchjs")
+
+    @Scripts.Render("~/bundles/smart")
+    
+    @Scripts.Render("~/bundles/angular")
+
+    @Scripts.Render("~/bundles/app-config")
+
+    @Scripts.Render("~/bundles/app-services")
+
+    @Scripts.Render("~/bundles/app-directives")
+
+    @Scripts.Render("~/bundles/app-controllers")
+}

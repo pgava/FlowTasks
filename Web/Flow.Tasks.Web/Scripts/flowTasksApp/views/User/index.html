@@ -1,0 +1,43 @@
+﻿<section ng-controller="UserCtrl">
+    <div class="pre-loading">
+        <span data-indicator="0" class="fa-2x" data-show="true"></span>
+        <span class="preloadertext">Loading...</span>
+    </div>
+
+    <div id="content" class="fadeWhenChange" >
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-user"></i>User profile</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <ul class="nav nav-tabs tabs-pull-left">
+                    <li ng-class="{'active':isTab('info')}">
+                        <a href="javascript:;" ng-click="changeTab('info')"><i class="fa fa-lg fa-fw fa-pencil-square-o"></i>Basic info</a>
+                    </li>
+                    <li ng-class="{'active':isTab('following')}">
+                        <a href="javascript:;" ng-click="changeTab('following')"><i class="fa fa-lg fa-fw fa-gear"></i>Following</a>
+                    </li>
+                    <li ng-class="{'active':isTab('password')}">
+                        <a href="javascript:;" ng-click="changeTab('password')"><i class="fa fa-lg fa-fw fa-key"></i>Password</a>
+                    </li>
+                </ul>
+                <div class="col-xs-12" ng-if="isTab('info')" data-ng-controller="UserProfileCtrl">
+                    <form class="form-horizontal smart-form userinfoform" name="userinfoform" ng-submit="saveInfo(currentUser)" id="userinfoform">
+                        <section data-ng-include data-src="'scripts/flowTasksApp/views/user/index.profile.html'"></section>
+                    </form>
+                </div>
+                <div class="col-xs-12 user-following-tab" ng-if="isTab('following')" data-ng-controller="UserFollowingCtrl">
+                    <section data-ng-include data-src="'scripts/flowTasksApp/views/user/index.following.html'"></section>
+                </div>
+                <div class="col-xs-12" ng-if="isTab('password')" data-ng-controller="UserPasswordCtrl">
+                    <form class="form-horizontal smart-form userpasswordform" name="userpasswordform" ng-submit="savePassword(passwordModel)">
+                        <section data-ng-include data-src="'scripts/flowTasksApp/views/user/index.password.html'"></section>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

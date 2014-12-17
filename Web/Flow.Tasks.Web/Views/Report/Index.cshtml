@@ -1,0 +1,42 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutReport.cshtml";
+    ViewBag.Title = "Reports";
+}
+
+<script src="@Url.Content("~/Scripts/report/report.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/report/rptUserTasks.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/report/rptUserTaskCount.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/report/rptTaskTime.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/report/rptWorkflowTime.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/Common/navigationBar.js")" type="text/javascript"></script>
+
+<script src="@Url.Content("~/Scripts/jquery-ui-1.10.4.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.multiselect.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/json/json2.js")" type="text/javascript"></script>
+
+@*<h1>Reports</h1>*@
+
+<script type="text/javascript">
+
+    // Load the Visualization API and the piechart package.
+    google.load('visualization', '1.0', { 'packages': ['corechart'] });
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.setOnLoadCallback(rptUserTasks);
+    google.setOnLoadCallback(rptTaskTime);
+    google.setOnLoadCallback(rptWorkflowTime);
+    google.setOnLoadCallback(rptUserTaskCount);
+
+</script>
+
+@Html.Partial("UserTasksFilter")
+<div id="chart_userTasks"></div>
+
+@Html.Partial("UserTaskCountFilter")
+<div id="chart_userTaskCount"></div>
+
+@Html.Partial("TaskTimeFilter")
+<div id="chart_taskTime"></div>
+
+@Html.Partial("WorkflowTimeFilter")
+<div id="chart_workflowTime"></div>

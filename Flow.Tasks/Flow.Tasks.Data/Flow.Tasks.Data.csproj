@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{77C50C55-C377-4F0B-B5D0-F1478487F8CA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Flow.Tasks.Data</RootNamespace>
+    <AssemblyName>Flow.Tasks.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Holiday.cs" />
+    <Compile Include="Core\HolidayType.cs" />
+    <Compile Include="Core\TopicAttachment.cs" />
+    <Compile Include="Core\TopicStatus.cs" />
+    <Compile Include="Core\TopicUser.cs" />
+    <Compile Include="Core\Topic.cs" />
+    <Compile Include="Core\SketchConfiguration.cs" />
+    <Compile Include="Core\SketchStatus.cs" />
+    <Compile Include="Core\TaskUserHandOver.cs" />
+    <Compile Include="Core\TaskUser.cs" />
+    <Compile Include="Core\TopicMessage.cs" />
+    <Compile Include="Core\TraceEvent.cs" />
+    <Compile Include="Core\WorkflowCode.cs" />
+    <Compile Include="Core\WorkflowOutParameter.cs" />
+    <Compile Include="Core\TaskOutParameter.cs" />
+    <Compile Include="Core\Property.cs" />
+    <Compile Include="Core\TaskConfiguration.cs" />
+    <Compile Include="Core\Interfaces\IFlowTasksUnitOfWork.cs" />
+    <Compile Include="Core\TaskDefinition.cs" />
+    <Compile Include="Core\TaskInParameter.cs" />
+    <Compile Include="Core\TaskProperty.cs" />
+    <Compile Include="Core\WorkflowConfiguration.cs" />
+    <Compile Include="Core\WorkflowDefinition.cs" />
+    <Compile Include="Core\WorkflowInParameter.cs" />
+    <Compile Include="Core\WorkflowProperty.cs" />
+    <Compile Include="Core\WorkflowStatus.cs" />
+    <Compile Include="Core\WorkflowTrace.cs" />
+    <Compile Include="DAL\Holiday.cs" />
+    <Compile Include="DAL\ParseUsers.cs" />
+    <Compile Include="DAL\PlaceHolder.cs" />
+    <Compile Include="DAL\Task.cs" />
+    <Compile Include="DAL\Topic.cs" />
+    <Compile Include="DAL\Tracer.cs" />
+    <Compile Include="DAL\Workflow.cs" />
+    <Compile Include="FlowTasksContextAdapter.cs" />
+    <Compile Include="FlowTasksEntities.cs" />
+    <Compile Include="Infrastructure\FlowTasksUnitOfWork.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\CreateDatabase.cs" />
+    <Compile Include="Migrations\CreateDatabase.Designer.cs">
+      <DependentUpon>CreateDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\FullTextIndex.cs" />
+    <Compile Include="Migrations\FullTextIndex.Designer.cs">
+      <DependentUpon>FullTextIndex.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Flow.Library\Flow.Library.csproj">
+      <Project>{9C2CE3B8-7FAF-43A8-9692-B23C1305A215}</Project>
+      <Name>Flow.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Flow.Services\Tasks\Flow.Tasks.Contract\Flow.Tasks.Contract.csproj">
+      <Project>{20E13AD7-3513-4E52-B6D2-E2A164ED53DB}</Project>
+      <Name>Flow.Tasks.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Flow.Services\Users\Flow.Users.Contract\Flow.Users.Contract.csproj">
+      <Project>{AEAA0E19-938C-4973-815E-C687F7D7D0C0}</Project>
+      <Name>Flow.Users.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Flow.Services\Users\Flow.Users.Proxy\Flow.Users.Proxy.csproj">
+      <Project>{6B68DE3C-3C1F-4B48-9FB9-C623EA67CBBC}</Project>
+      <Name>Flow.Users.Proxy</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\CreateDatabase.resx">
+      <DependentUpon>CreateDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\FullTextIndex.resx">
+      <DependentUpon>FullTextIndex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetFileName)" "$(ProjectDir)..\..\Demo\CommonLib"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

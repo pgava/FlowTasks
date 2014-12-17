@@ -1,0 +1,41 @@
+﻿@model Flow.Tasks.View.Models.TaskModel
+@{
+    ViewBag.Title = "Fix Workflow";
+    
+    Html.Assets().Styles.Add("../Content/sketchview.css");
+    Html.Assets().Scripts.Add("../Scripts/jquery.validate.min.js");
+    Html.Assets().Scripts.Add("../Scripts/sketchdevview.js");
+    <!-- Send data back to app -->
+    Html.Assets().Scripts.Add("../Scripts/task.action.js");
+}
+<div class="overlay">
+   @* <img class="loading" src="@Url.Content("~/Content/themes/smart/img/ie-preloader.GIF")" />*@
+</div>
+
+@Html.Partial("_HeaderPartial")
+
+<p class="downloadsketchworkflow wfrow">Click @Html.ActionLink("here", "Index", new { workflow = @Model.GetPropertyValueFromName("SketchWorkflowCode"), area = "", controller = "Sketch" },new{target="_parent"}) to open the workflow in Sketch.</p>
+
+@Html.Partial("_CommentsPartial")
+
+<div class="error-container">
+    <ul>
+    </ul>
+</div>
+
+@using (Html.BeginForm("CompleteFixTask", "SketchFixView", FormMethod.Post, new { id = "flowTasksTaskView", area = "SketchFixView", controller = "SketchFixView" }))
+{
+    <input id="SketchWorkflowCode" name="SketchWorkflowCode" type="hidden" value="@Model.GetPropertyValueFromName("SketchWorkflowCode")" />
+        
+    <div id="taskCommand">
+        <input type="submit" name="completeTask" value="Deploy" class="roundBox btn" />
+        <input type="submit" name="completeTask" value="Abort" class="roundBox btn" />
+        @*<input type="submit" name="completeTask" value="Back" class="cancel roundBox identRight btn" />*@
+    </div>
+
+    @Html.Partial("_TaskDataPartial")
+    @Html.Hidden("TaskAcceptFlag", "Deploy") @*Comma separated values*@
+    @Html.Hidden("TaskRejectFlag", "Abort") @*Comma separated values*@
+
+}
+

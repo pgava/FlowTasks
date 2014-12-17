@@ -1,0 +1,29 @@
+﻿<WorkflowService mc:Ignorable="sap" ConfigurationName="SampleWf5" sap:VirtualizedContainerService.HintSize="516,482" Name="SampleWf5" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel" xmlns:ftwa="clr-namespace:Flow.Tasks.Workflow.Activities;assembly=Flow.Tasks.Workflow" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mv="clr-namespace:Microsoft.VisualBasic;assembly=System" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:s1="clr-namespace:System;assembly=System" xmlns:s2="clr-namespace:System;assembly=System.Xml" xmlns:s3="clr-namespace:System;assembly=System.Core" xmlns:s4="clr-namespace:System;assembly=System.ServiceModel" xmlns:s5="clr-namespace:ServiceWorkflows;assembly=ServiceWorkflows" xmlns:sa="clr-namespace:System.Activities;assembly=System.Activities" xmlns:sad="clr-namespace:System.Activities.Debugger;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System" xmlns:scg1="clr-namespace:System.Collections.Generic;assembly=System.ServiceModel" xmlns:scg2="clr-namespace:System.Collections.Generic;assembly=System.Core" xmlns:scg3="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sl="clr-namespace:System.Linq;assembly=System.Core" xmlns:st="clr-namespace:System.Text;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ftwa:StartWorkflow sad:XamlDebuggerXmlReader.FileName="C:\Dev\paolog\Invisi\Working\Test\Flow.Workflows.Test\ServiceWorkflows\SampleWf5.xamlx" sap:VirtualizedContainerService.HintSize="486,452" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces">
+    <ftwa:StartWorkflow.Activities>
+      <p:DoWhile sap:VirtualizedContainerService.HintSize="464,328" Condition="[ExitLoop &lt;&gt; &quot;OK&quot;]">
+        <p:Sequence sap:VirtualizedContainerService.HintSize="438,208">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg3:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <s5:MyApproveTask CorrelationId="1" DisplayName="WhileTask" sap:VirtualizedContainerService.HintSize="200,22" TaskCode="WhileTask" />
+          <ftwa:AssignResult sap:VirtualizedContainerService.HintSize="200,22" TaskCode="WhileTask" TaskResult="[ExitLoop]" />
+        </p:Sequence>
+      </p:DoWhile>
+    </ftwa:StartWorkflow.Activities>
+    <ftwa:StartWorkflow.Variables>
+      <p:Variable x:TypeArguments="x:String" Name="ExitLoop">
+        <p:Variable.Default>
+          <p:Literal x:TypeArguments="x:String" Value="" />
+        </p:Variable.Default>
+      </p:Variable>
+    </ftwa:StartWorkflow.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg3:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+  </ftwa:StartWorkflow>
+</WorkflowService>

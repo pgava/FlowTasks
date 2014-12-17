@@ -1,0 +1,14 @@
+﻿<div class="wf-refresh">
+    <button class="btn btn-xs btn-primary" ng-disabled="dashboard.workflow.onAction" ng-click="refreshWorkflowsList('Restart')"><i class="fa fa-refresh"></i>&nbsp;Refresh</button>
+</div>
+<ul class="demo-btns wf-buttons">
+    <li>
+        <button class="btn btn-xs btn-default" ng-disabled="dashboard.workflow.onAction" ng-click="doAction('Restart')"><i class="fa fa-refresh"></i>&nbsp;Restart</button>
+    </li>
+    <li>
+        <button class="btn btn-xs btn-warning" ng-disabled="dashboard.workflow.onAction" ng-click="doAction('Terminate')"><i class="fa fa-stop"></i>&nbsp;Terminate</button>
+    </li>
+    <li>
+        <button class="btn btn-xs btn-danger" ng-disabled="dashboard.workflow.onAction" ng-click="doAction('Delete')"><i class="fa fa-times"></i>&nbsp;Delete</button>
+    </li>
+</ul>

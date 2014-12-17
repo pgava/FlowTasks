@@ -1,0 +1,47 @@
+﻿<section ng-controller="TaskCtrl">
+    <div class="pre-loading">
+        <div data-indicator="0" class="fa-2x" data-show="true"></div>
+        <span class="preloadertext">Loading...</span>
+    </div>
+    <div id="content" class="task-page fadeWhenChange" data-hide-task-comment data-hide-task-search-result="taskSearch">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-inbox"></i>{{taskDetail.enabled?'Task View':'Tasks'}}</h1>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                <ul id="sparks" class="" data-user-stats>
+                    <li class="sparks-info" data-task-completed-count></li>
+                    <li class="sparks-info" data-task-to-do-count></li>
+                    <li class="sparks-info" data-following-count></li>
+                    <li class="sparks-info" data-follower-count></li>
+                </ul>
+            </div>
+        </div>
+        <section id="task-detail" class="task-detail" ng-if="taskDetail.enabled">
+            <div id="taskdetailcontrol">
+                <button class="btn btn-default" type="button" ng-click="backToTasklist(taskDetail)"><i class="fa fa-chevron-left"></i> Back to list</button>
+            </div>
+            <div id="taskdetailiframe" data-task-details-iframe="taskDetail" data-selected-task="selectedTask" data-task-list="taskList"></div>
+        </section>
+        <section class="task-search" ng-hide="taskDetail.enabled">
+            <h5><i class="fa fa-fw fa-lg fa-inbox"></i>Search Tasks</h5>
+            <div class="well well-sm col-md-12">
+                <div class="input-group">
+                    <input type="text" placeholder="Search for task..." id="fa-icon-search" class="form-control input-lg" ng-model="taskSearch.query">
+                    <span class="input-group-addon"><i class="fa fa-fw fa-lg fa-search"></i></span>
+                </div>
+            </div>
+        </section>
+
+        <div data-infinite-scroll='loadMoreTasks()' data-infinite-scroll-distance='1' ng-hide="taskDetail.enabled">
+            <section data-task-box data-index="{{$index}}" data-task="task" data-task-list="taskList" tindex="{{$index}}" data-open-task-details="taskDetail.openTaskDetails(task)" ng-repeat="task in taskList.results" data-fade-in="800"></section>
+        </div>
+        <div class="task-loader ct100" ng-show="taskList.onLoading && !taskDetail.enabled">
+            <span data-indicator="0" class="fa-2x" data-show="taskList.onLoading"></span>
+        </div>
+        <div class="alert alert-info alert-block" ng-show="taskList.noResult && !taskDetail.enabled">
+            <h4 class="alert-heading">No Tasks was found!</h4>
+        </div>
+    </div>
+
+</section>

@@ -1,0 +1,208 @@
+﻿@{
+    ViewBag.Title = "FlowTasks - Faq";
+    ViewBag.Keywords = "flowtasks,faq";
+    ViewBag.Description = "Check the frequently asked questions if you need for extra information regarding FlowTasks";
+}
+
+<div class="navbar navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="~/" class="navbar-brand">
+                <div class="logo"></div>
+            </a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li>
+                    @Html.ActionLink("Documentation", "Index", "Doc")
+                </li>
+                <li>
+                    @Html.ActionLink("Download", "Index", "Download")
+                </li>
+                <li class="active">
+                    @Html.ActionLink("FAQ", "Index", "Faq")
+                </li>
+                <li>
+                    @Html.ActionLink("Contact", "Index", "Contact")
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="bs-docs-section  clearfix">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-header">
+                </div>
+                <div class="bs-example">
+                    <div class="">
+                        <h1 class="title">Frequently Asked Questions</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bs-example">
+                    <div class="">
+                        <h2>Can I assign a task to more than one user?</h2>
+                        <blockquote>
+                            <p>
+                                Yes. You can list the users separeted by ";" or you can assign the task to a role.
+                                For example if you have a "Dev" role this: "{r.Dev}" will assign the task to 
+                                all the users that belong to "Dev" role.
+                            </p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bs-example">
+                    <div class="">
+                        <h2>Can I pass data from the task view to the wokflow?</h2>
+                        <blockquote>
+                            <p>
+                                Yes. In your view if you post back a field with an Id that starts with
+                            TaskParameter example TaskParameterTaxAmount, the field TaxAmount will be passed to the 
+                            workflow.                           
+                            </p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bs-example">
+                    <div class="">
+                        <h2>Can I use State Machine workflow type?</h2>
+                        <blockquote>
+                            <p>
+                                Yes. You can use both state machine and Flowchart workflows. Just add 
+                            them into the "StartWorkflow" activity.                          
+                            </p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bs-example">
+                    <div class="">
+                        <h2>I get an error when I start a workflow</h2>
+                        <div class="alert alert-dismissable">
+                            The communication object, System.ServiceModel.Channels.ServiceChannel, cannot be used for 
+                            communication because it is in the Faulted state.
+                        </div>
+                        <blockquote>
+                            <p>
+                                Make sure that the workflow you try to run is correctly configured in the database.
+                            If this doesn't help check the log files for any clue. In the folder where you 
+                            deployed the workflows (the xamlx files) check the <i>web.config</i> and make sure
+                            <i>system.diagnostics</i> is properly configured. This will give you a lot of 
+                            information regarding the execution of the workflow.
+                            </p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bs-example">
+                    <div class="">
+                        <h2>I configured log4net but the workflow doesn't log anything</h2>
+                        <blockquote>
+                            <p>
+                                In the folder where you deployed the workflows check the <i>web.config</i> and make 
+                            sure behavior configuration is set up correctly for the workflow. You should have
+                            something like this:
+                            </p>
+                            <div class="code">
+                                &lt;service name="SampleWf1" behaviorConfiguration="<b>workflowServiceBehavior</b>"&gt;<br />
+                                &nbsp;&nbsp;&lt;endpoint address="" binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_FlowTasks" contract="IFlowTasksOperations" name="BasicHttpBinding_FlowTasks" /&gt;<br />
+                                &lt;/&lt;service&gt;
+                            </div>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bs-example">
+                    <div class="">
+                        <h2>What's a domain?</h2>
+                        <blockquote>
+                            <p>
+                                If your organization has different branches in cities or countries you may want to
+                            separate them with domains. So you could use the same Flowtasks hinstance but with 
+                            different domains one for every branch.
+                            </p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bs-example">
+                    <div class="">
+                        <h2>In Topics, can I change the image for the user?</h2>
+                        <blockquote>
+                            <p>
+                                Yes. In the table <i>User</i> on the FlowUser database, change the <i>PhotoPath</i>
+                                column to the correct user image file. Example: "Images\users\user.png". This is the 
+                                    relative path where the Topics web application is installed.
+                            </p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bs-example">
+                    <div class="">
+                        <h2>Can I use FlowTasks in my production environment?</h2>
+                        <blockquote>
+                            <p>
+                                FlowTasks is still under development however all the functionalities are working
+                                    and there are no major issues raised so far. If you find something that you want
+                                    to be fixed, please raise an issue at <a href="https://flowtasks.codeplex.com/workitem/list/basic">Issues</a> or 
+                                    send us an email at <a href="mailto:sydney.shown@gmail.com">sydney.shown@gmail.com</a>
+                            </p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bs-example">
+                    <div class="">
+                        <h2>Is it possible to use JavaScript and CSS in the workflow views?</h2>
+                        <blockquote>
+                            <p>
+                                Yes. The workflow view can access all the resources i.e. JavaScript files, 
+                                    CSS and images from the main Task List web application. The workflow view 
+                                    can also have its own JavaScript or CSS but you have to remember to deploy
+                                    them together with the workflow view assembly.
+                            </p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
