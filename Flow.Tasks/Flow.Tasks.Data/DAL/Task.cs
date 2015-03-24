@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Flow.Tasks.Contract.Interface;
+using Flow.Tasks.Contract.Message;
+using Flow.Tasks.Data.Core;
+using Flow.Tasks.Data.Core.Interfaces;
+using Flow.Tasks.Data.Infrastructure;
+using Flow.Users.Contract;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using Flow.Tasks.Data.Core.Interfaces;
-using Flow.Tasks.Data.Core;
 using System.Text.RegularExpressions;
-using Flow.Tasks.Contract.Interface;
-using Flow.Tasks.Contract.Message;
-using Flow.Users.Contract;
-using Flow.Tasks.Data.Infrastructure;
 
 namespace Flow.Tasks.Data.DAL
 {
@@ -20,7 +20,7 @@ namespace Flow.Tasks.Data.DAL
         /// <summary>
         /// Day Flag
         /// </summary>
-        const string DAY_FLAG = "D";
+        private const string DAY_FLAG = "D";
 
         /// <summary>
         /// Hand Over Statuses
@@ -133,7 +133,6 @@ namespace Flow.Tasks.Data.DAL
 
             _tracer.Trace(workflowOid, ActionTrace.TaskCreated, taskInfo.TaskCode,
                 string.Format(Properties.Resources.TK_STARTED, taskInfo.TaskCode), TraceEventType.Activity);
-
         }
 
         /// <summary>
@@ -189,7 +188,6 @@ namespace Flow.Tasks.Data.DAL
                 uofw.TaskDefinitions.Delete(tkd);
                 uofw.Commit();
             }
-
         }
 
         /// <summary>
@@ -226,7 +224,7 @@ namespace Flow.Tasks.Data.DAL
         }
 
         /// <summary>
-        /// Get Next Tasks For User. 
+        /// Get Next Tasks For User.
         /// </summary>
         /// <param name="user">User</param>
         /// <param name="workflowOid">Workflow Oid</param>
@@ -258,7 +256,6 @@ namespace Flow.Tasks.Data.DAL
                                      AcceptedBy = t.AcceptedBy
                                  }).ToList();
             }
-
 
             var skip = pageIndex * pageSize;
             var tasks = taskInfos;
@@ -325,7 +322,7 @@ namespace Flow.Tasks.Data.DAL
         {
             using (var uofw = new FlowTasksUnitOfWork())
             {
-                var task = uofw.TaskDefinitions.Find(t => t.TaskOid == taskOid, t => t.WorkflowDefinition) 
+                var task = uofw.TaskDefinitions.Find(t => t.TaskOid == taskOid, t => t.WorkflowDefinition)
                                  .Select(t => new TaskInfo
                                  {
                                      WorkflowOid = t.WorkflowDefinition.WorkflowOid,
@@ -342,7 +339,6 @@ namespace Flow.Tasks.Data.DAL
                 return task;
             }
         }
-
 
         /// <summary>
         /// Get Parameters For Task
@@ -442,7 +438,6 @@ namespace Flow.Tasks.Data.DAL
 
             _tracer.Trace(tkd.WorkflowDefinition.WorkflowOid, ActionTrace.TaskAssigned, tkd.TaskCode, string.Empty, tkd.AcceptedBy,
                 string.Format(Properties.Resources.TK_ASSIGNED, tkd.TaskCode, tkd.AcceptedBy), TraceEventType.Activity);
-
         }
 
         /// <summary>
@@ -679,9 +674,7 @@ namespace Flow.Tasks.Data.DAL
                 total = taskDone.Count;
             }
 
-
             return results;
-
         }
 
         /// <summary>
@@ -698,8 +691,8 @@ namespace Flow.Tasks.Data.DAL
             if (tasks.Any())
             {
                 results = (from t in tasks
-                              group t.TaskOid by t.ExpiryDate.HasValue ? t.ExpiryDate.Value.ToString("ddd d MMM") :  "Other" into g
-                               select new TasksOn { Date = g.Key, Counter = g.Count() }).ToList();
+                           group t.TaskOid by t.ExpiryDate.HasValue ? t.ExpiryDate.Value.ToString("ddd d MMM") : "Other" into g
+                           select new TasksOn { Date = g.Key, Counter = g.Count() }).ToList();
             }
             total = tasks.Count;
 
@@ -939,7 +932,6 @@ namespace Flow.Tasks.Data.DAL
                     parametersAdded.Add(p.Name);
                 }
             }
-
         }
 
         /// <summary>
@@ -1012,7 +1004,7 @@ namespace Flow.Tasks.Data.DAL
             var propertyInfos = sourceProperties as IList<PropertyInfo> ?? sourceProperties.ToList();
             foreach (var matchp in matchProperties)
             {
-                if (!propertyInfos.Any(p => p.Name.Equals(matchp.Name,StringComparison.OrdinalIgnoreCase) &&
+                if (!propertyInfos.Any(p => p.Name.Equals(matchp.Name, StringComparison.OrdinalIgnoreCase) &&
                     p.Value.Equals(matchp.Value, StringComparison.OrdinalIgnoreCase)))
                 {
                     found = false;
@@ -1056,10 +1048,8 @@ namespace Flow.Tasks.Data.DAL
                     select t;
 
             return q;
-
         }
 
-        #endregion
+        #endregion Private Methods
     }
 }
-

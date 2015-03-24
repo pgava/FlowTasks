@@ -10,11 +10,6 @@ FlowTasks also has other components:<br>
 *Dashboard*: manage workflows<br>
 *Report*: analize workflow performance
 
-Home
-====
-
-FlowTasks has a new home page [here](http://www.getflowtasks.com)
-
 Videos
 ======
 
