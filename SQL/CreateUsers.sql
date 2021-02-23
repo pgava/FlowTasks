@@ -709,31 +709,31 @@ SELECT [RoleUserId]
 FROM [dbo].[RoleUser]
 WHERE @@ROWCOUNT > 0 AND [RoleUserId] = scope_identity()',N'@0 bit,@1 int,@2 int',@0=1,@1=21,@2=12
 go
-exec sp_executesql N'INSERT [dbo].[UserFollowing]([FoolowerUserId], [FollowingUserId])
+exec sp_executesql N'INSERT [dbo].[UserFollowing]([FollowerUserId], [FollowingUserId])
 VALUES (@0, @1)
 SELECT [UserFollowingId]
 FROM [dbo].[UserFollowing]
 WHERE @@ROWCOUNT > 0 AND [UserFollowingId] = scope_identity()',N'@0 int,@1 int',@0=1,@1=2
 go
-exec sp_executesql N'INSERT [dbo].[UserFollowing]([FoolowerUserId], [FollowingUserId])
+exec sp_executesql N'INSERT [dbo].[UserFollowing]([FollowerUserId], [FollowingUserId])
 VALUES (@0, @1)
 SELECT [UserFollowingId]
 FROM [dbo].[UserFollowing]
 WHERE @@ROWCOUNT > 0 AND [UserFollowingId] = scope_identity()',N'@0 int,@1 int',@0=2,@1=1
 go
-exec sp_executesql N'INSERT [dbo].[UserFollowing]([FoolowerUserId], [FollowingUserId])
+exec sp_executesql N'INSERT [dbo].[UserFollowing]([FollowerUserId], [FollowingUserId])
 VALUES (@0, @1)
 SELECT [UserFollowingId]
 FROM [dbo].[UserFollowing]
 WHERE @@ROWCOUNT > 0 AND [UserFollowingId] = scope_identity()',N'@0 int,@1 int',@0=1,@1=3
 go
-exec sp_executesql N'INSERT [dbo].[UserFollowing]([FoolowerUserId], [FollowingUserId])
+exec sp_executesql N'INSERT [dbo].[UserFollowing]([FollowerUserId], [FollowingUserId])
 VALUES (@0, @1)
 SELECT [UserFollowingId]
 FROM [dbo].[UserFollowing]
 WHERE @@ROWCOUNT > 0 AND [UserFollowingId] = scope_identity()',N'@0 int,@1 int',@0=1,@1=4
 go
-exec sp_executesql N'INSERT [dbo].[UserFollowing]([FoolowerUserId], [FollowingUserId])
+exec sp_executesql N'INSERT [dbo].[UserFollowing]([FollowerUserId], [FollowingUserId])
 VALUES (@0, @1)
 SELECT [UserFollowingId]
 FROM [dbo].[UserFollowing]

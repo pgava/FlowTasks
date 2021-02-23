@@ -826,13 +826,13 @@ GO
 CREATE FULLTEXT TOPIC INDEX
 
 --------------------------------------------------------------*/
-CREATE FULLTEXT CATALOG [Topic] WITH ACCENT_SENSITIVITY = ON AS DEFAULT
-GO
+--CREATE FULLTEXT CATALOG [Topic] WITH ACCENT_SENSITIVITY = ON AS DEFAULT
+--GO
 
-CREATE FULLTEXT INDEX ON TopicMessage(Message)
-KEY INDEX [pk_dbo.TopicMessage] 
-	ON Topic
-GO
+--CREATE FULLTEXT INDEX ON TopicMessage(Message)
+--KEY INDEX [pk_dbo.TopicMessage] 
+--	ON Topic
+--GO
 
 create function SearchTopicForUser
 (

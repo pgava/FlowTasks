@@ -401,6 +401,11 @@ namespace Flow.Tasks.Data.DAL
         /// <returns>users</returns>
         private string GetBroadcastUsers(string from)
         {
+            if (string.IsNullOrWhiteSpace(from))
+            {
+                return string.Empty;
+            }
+
             GetUserResponse resp;
             if (_usersService == null)
             {
